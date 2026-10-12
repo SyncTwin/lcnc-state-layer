@@ -1,0 +1,21 @@
+2026-10-12 14:49:54,740 lcnc_state INFO LinuxCNC 2.10.0~pre2, ini /home/cnc/sl-bench/sim/run/axis_mm_headless.ini, 3 joints, period 0.100 s ([DISPLAY]CYCLE_TIME = 0.100 in /home/cnc/sl-bench/sim/run/axis_mm_headless.ini), 88 stat fields
+2026-10-12 14:49:54,763 websockets.server INFO server listening on 127.0.0.1:8791
+2026-10-12 14:49:54,763 lcnc_state.ws INFO listening on ws://127.0.0.1:8791/ period=0.100 s commands=False epoch=f77733fa3be54783b27bdb7c9c41db37
+2026-10-12 14:49:57,938 websockets.server INFO connection open
+2026-10-12 14:49:57,938 lcnc_state.ws INFO client ('127.0.0.1', 40660) connected (encoding=json view_key=None), 1 clients
+2026-10-12 14:49:57,995 websockets.server INFO connection open
+2026-10-12 14:49:57,995 lcnc_state.ws INFO client ('127.0.0.1', 40666) connected (encoding=json view_key=None), 2 clients
+2026-10-12 14:49:58,034 websockets.server INFO connection open
+2026-10-12 14:49:58,034 lcnc_state.ws INFO client ('127.0.0.1', 40678) connected (encoding=json view_key=None), 3 clients
+2026-10-12 14:49:58,037 websockets.server INFO connection open
+2026-10-12 14:49:58,038 lcnc_state.ws INFO client ('127.0.0.1', 40680) connected (encoding=json view_key=None), 4 clients
+2026-10-12 14:49:58,041 websockets.server INFO connection open
+2026-10-12 14:49:58,041 lcnc_state.ws INFO client ('127.0.0.1', 40684) connected (encoding=json view_key=None), 5 clients
+2026-10-12 14:55:00,568 websockets.server INFO server closing
+2026-10-12 14:55:00,569 lcnc_state.ws INFO client ('127.0.0.1', 40660) gone, 4 clients
+2026-10-12 14:55:00,569 lcnc_state.ws INFO client ('127.0.0.1', 40666) gone, 3 clients
+2026-10-12 14:55:00,569 lcnc_state.ws INFO client ('127.0.0.1', 40684) gone, 2 clients
+2026-10-12 14:55:00,571 lcnc_state.ws INFO client ('127.0.0.1', 40678) gone, 1 clients
+2026-10-12 14:55:00,571 lcnc_state.ws INFO client ('127.0.0.1', 40680) gone, 0 clients
+2026-10-12 14:55:00,571 websockets.server INFO server closed
+2026-10-12 14:55:00,572 lcnc_state INFO ticks=3027 empty=0 seq=3027

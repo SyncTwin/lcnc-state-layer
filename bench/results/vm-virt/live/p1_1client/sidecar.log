@@ -1,0 +1,9 @@
+2026-10-12 14:44:48,847 lcnc_state INFO LinuxCNC 2.10.0~pre2, ini /home/cnc/sl-bench/sim/run/axis_mm_headless.ini, 3 joints, period 0.100 s ([DISPLAY]CYCLE_TIME = 0.100 in /home/cnc/sl-bench/sim/run/axis_mm_headless.ini), 88 stat fields
+2026-10-12 14:44:48,867 websockets.server INFO server listening on 127.0.0.1:8791
+2026-10-12 14:44:48,868 lcnc_state.ws INFO listening on ws://127.0.0.1:8791/ period=0.100 s commands=False epoch=900154ead20f48458bca1341730c951d
+2026-10-12 14:44:51,873 websockets.server INFO connection open
+2026-10-12 14:44:51,874 lcnc_state.ws INFO client ('127.0.0.1', 48396) connected (encoding=json view_key=None), 1 clients
+2026-10-12 14:49:54,641 websockets.server INFO server closing
+2026-10-12 14:49:54,642 lcnc_state.ws INFO client ('127.0.0.1', 48396) gone, 0 clients
+2026-10-12 14:49:54,643 websockets.server INFO server closed
+2026-10-12 14:49:54,644 lcnc_state INFO ticks=3027 empty=0 seq=3027

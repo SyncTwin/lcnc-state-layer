@@ -1,0 +1,2 @@
+sidecar cpu_pct_60s=0.87 rss_kb=30552
+pid 2110414's current affinity list: 0,1

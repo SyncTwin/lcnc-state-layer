@@ -1,0 +1,5 @@
+servo-thread.tmax 9969
+timedelta.0.max 1033801
+timedelta.0.min 972024
+timedelta.0.jitter 33801
+timedelta.0.avg-err 0.0007192611
