@@ -13,7 +13,8 @@ State layout (snapshot.state):
                  error_channel is read here only, so every client sees every
                  entry the sidecar gets
     program_end  {"seq", "reason", "file", "line", "command_id"} -- absent
-                 until the first program run ends
+                 until the first program run ends; command_id only when the
+                 run was started through this sidecar
 
 Commands go through ONE queue and are sent one at a time, each with its own
 NML serial, by a child process (sender.py) that owns the only
@@ -407,8 +408,11 @@ class StateLayer:
             self.program_end_seq += 1
             self.program_end = {"seq": self.program_end_seq, "reason": reason,
                                 "file": run["file"], "line": stat["motion_line"],
-                                "command_id": run["command_id"],
                                 "attribution": "heuristic"}
+            # absent, not null, for a run started by another NML client:
+            # a JSON Merge Patch cannot carry a null value (it means delete)
+            if run["command_id"] is not None:
+                self.program_end["command_id"] = run["command_id"]
             self._run = None
 
     def _track_aborts(self, stat):

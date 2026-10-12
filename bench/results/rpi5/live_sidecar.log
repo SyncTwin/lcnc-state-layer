@@ -1,0 +1,37 @@
+2026-10-13 01:03:49,097 lcnc_state INFO LinuxCNC 2.9.4, ini /home/cnc/lcnc-sim/axis_mm_headless.ini, 3 joints, period 0.100 s (--period), 86 stat fields
+2026-10-13 01:03:49,156 lcnc_state INFO schema check of first snapshot: state/stat: 'call_stack' is a required property
+2026-10-13 01:03:49,166 websockets.server INFO server listening on 127.0.0.1:8791
+2026-10-13 01:03:49,167 lcnc_state.ws INFO listening on ws://127.0.0.1:8791/ period=0.100 s commands=False epoch=6abe68b62cb9436c80a44fa60587a187
+2026-10-13 01:03:52,105 websockets.server INFO connection open
+2026-10-13 01:03:52,105 lcnc_state.ws INFO client ('127.0.0.1', 43910) connected (encoding=json view_key=None), 1 clients
+2026-10-13 01:05:18,205 lcnc_state.ws INFO client ('127.0.0.1', 43910): ConnectionClosedError
+2026-10-13 01:05:18,205 lcnc_state.ws INFO client ('127.0.0.1', 43910) gone, 0 clients
+2026-10-13 01:05:18,205 websockets.server INFO connection closed
+2026-10-13 01:05:20,515 websockets.server INFO connection open
+2026-10-13 01:05:20,515 lcnc_state.ws INFO client ('127.0.0.1', 54376) connected (encoding=json view_key=None), 1 clients
+2026-10-13 01:05:20,548 websockets.server INFO connection open
+2026-10-13 01:05:20,548 lcnc_state.ws INFO client ('127.0.0.1', 54386) connected (encoding=json view_key=None), 2 clients
+2026-10-13 01:05:20,566 websockets.server INFO connection open
+2026-10-13 01:05:20,566 lcnc_state.ws INFO client ('127.0.0.1', 54394) connected (encoding=json view_key=None), 3 clients
+2026-10-13 01:05:20,582 websockets.server INFO connection open
+2026-10-13 01:05:20,582 lcnc_state.ws INFO client ('127.0.0.1', 54402) connected (encoding=json view_key=None), 4 clients
+2026-10-13 01:05:20,588 websockets.server INFO connection open
+2026-10-13 01:05:20,588 lcnc_state.ws INFO client ('127.0.0.1', 54418) connected (encoding=json view_key=None), 5 clients
+2026-10-13 01:06:46,623 lcnc_state.ws INFO client ('127.0.0.1', 54376): ConnectionClosedError
+2026-10-13 01:06:46,623 lcnc_state.ws INFO client ('127.0.0.1', 54376) gone, 4 clients
+2026-10-13 01:06:46,623 websockets.server INFO connection closed
+2026-10-13 01:06:46,656 lcnc_state.ws INFO client ('127.0.0.1', 54386): ConnectionClosedError
+2026-10-13 01:06:46,656 lcnc_state.ws INFO client ('127.0.0.1', 54386) gone, 3 clients
+2026-10-13 01:06:46,656 websockets.server INFO connection closed
+2026-10-13 01:06:46,672 lcnc_state.ws INFO client ('127.0.0.1', 54394): ConnectionClosedError
+2026-10-13 01:06:46,672 lcnc_state.ws INFO client ('127.0.0.1', 54394) gone, 2 clients
+2026-10-13 01:06:46,672 websockets.server INFO connection closed
+2026-10-13 01:06:46,696 lcnc_state.ws INFO client ('127.0.0.1', 54402): ConnectionClosedError
+2026-10-13 01:06:46,696 lcnc_state.ws INFO client ('127.0.0.1', 54402) gone, 1 clients
+2026-10-13 01:06:46,697 websockets.server INFO connection closed
+2026-10-13 01:06:46,706 lcnc_state.ws INFO client ('127.0.0.1', 54418): ConnectionClosedError
+2026-10-13 01:06:46,706 lcnc_state.ws INFO client ('127.0.0.1', 54418) gone, 0 clients
+2026-10-13 01:06:46,707 websockets.server INFO connection closed
+2026-10-13 01:06:48,787 websockets.server INFO server closing
+2026-10-13 01:06:48,787 websockets.server INFO server closed
+2026-10-13 01:06:48,788 lcnc_state INFO ticks=1723 empty=0 seq=1723

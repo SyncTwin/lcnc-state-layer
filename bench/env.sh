@@ -3,7 +3,10 @@
 # Environment of a benchmark run (CPU, OS, compiler, library versions).
 PY=${PY:-python3}
 echo "date: $(date -u +%FT%TZ)"
-echo "cpu: $(lscpu | sed -n 's/^Model name:\s*//p'), $(nproc) CPUs, $(lscpu | sed -n 's/^Hypervisor vendor:\s*//p') VM"
+hv=$(lscpu | sed -n 's/^Hypervisor vendor:\s*//p')
+echo "cpu: $(lscpu | sed -n 's/^Model name:\s*//p' | paste -sd/), $(nproc --all) CPUs, bench affinity $(taskset -pc $$ | sed 's/.*: //')${hv:+, $hv VM}"
+grep -o 'isolcpus=[^ ]*' /proc/cmdline | sed 's/^/kernel cmdline: /'
+uname -v | grep -q PREEMPT_RT && echo "kernel: PREEMPT_RT"
 echo "os: $(. /etc/os-release; echo "$PRETTY_NAME"), kernel $(uname -r)"
 echo "compiler: $(${CXX:-g++} --version | head -1), flags -O2 -std=c++20"
 for p in nlohmann-json3-dev libflatbuffers-dev flatbuffers-compiler protobuf-compiler zlib1g-dev \
