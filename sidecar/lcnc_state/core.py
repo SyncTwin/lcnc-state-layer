@@ -278,6 +278,7 @@ class StateLayer:
         self.pending = []           # handed over to the tick tracker
         self.resolving = []         # commands being sent or resolved now
         self._abort_serials = []    # our aborts not yet echoed by task
+        self._aborts_sending = 0    # aborts whose send has not returned a serial yet
         self._aborted_at = None     # serial of the last abort task has taken
         self.queue = collections.deque()
         self._wake = None
@@ -328,8 +329,11 @@ class StateLayer:
         self.stat.poll()
         stat = stat_to_dict(self.stat, self.names)
         self._track_aborts(stat)
-        self._track_pending(stat, now)
-        self._track_program(stat, new_errors)
+        if not self._aborts_sending:
+            # task may already have taken an abort whose serial is not known
+            # yet: finishing commands or a run now would call them completed
+            self._track_pending(stat, now)
+            self._track_program(stat, new_errors)
         self.last_stat = stat
         new_state = self._build_state(stat)
         if not publish:
@@ -523,13 +527,17 @@ class StateLayer:
             self._run_err_seq0 = self.error_seq
             self._last_auto = (p.id, self.clock())
         self.resolving.append(p)
+        if name == "abort":
+            self._aborts_sending += 1
         try:
             p.serial, dt = await (sender or self.sender).send(name, p.args)
+            if name == "abort":
+                self._abort_serials.append(p.serial)
         finally:
             self.resolving.remove(p)
+            if name == "abort":
+                self._aborts_sending -= 1
         p.sent_at = self.clock()
-        if name == "abort":
-            self._abort_serials.append(p.serial)
         return dt
 
     async def _process(self, client, msg, sender=None):

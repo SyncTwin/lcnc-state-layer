@@ -270,12 +270,14 @@ async def main(a):
 
 
 if __name__ == "__main__":
+    # EMC2_HOME is set by scripts/rip-environment; /tmp/linuxcnc is the README clone path
+    lcnc = os.environ.get("EMC2_HOME", "/tmp/linuxcnc")
     ap = argparse.ArgumentParser()
     ap.add_argument("--url", default="ws://127.0.0.1:8791/")
     ap.add_argument("--readonly-port", type=int)
-    ap.add_argument("--long-program", default="/tmp/linuxcnc/share/axis/images/axis.ngc")
+    ap.add_argument("--long-program", default=os.path.join(lcnc, "share", "axis", "images", "axis.ngc"))
     ap.add_argument("--short-program",
-                    default="/tmp/linuxcnc/nc_files/gmoccapy_2_tools_with_cutter_radius_compensation.ngc")
+                    default=os.path.join(lcnc, "nc_files", "gmoccapy_2_tools_with_cutter_radius_compensation.ngc"))
     ap.add_argument("--error-program", default=os.path.join(ROOT, "sim", "error_test.ngc"))
     ap.add_argument("--report", default=os.path.join(ROOT, "logs", "sl4_results.md"))
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s %(message)s")
