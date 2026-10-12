@@ -1,0 +1,24 @@
+2026-10-12 03:23:30,602 lcnc_state INFO LinuxCNC 2.10.0~pre2, ini /tmp/lcnc-sim/axis_mm_headless.ini, 3 joints, period 0.100 s (--period), 91 stat fields
+2026-10-12 03:23:30,660 websockets.server INFO server listening on 127.0.0.1:8792
+2026-10-12 03:23:30,660 lcnc_state.ws INFO listening on ws://127.0.0.1:8792/ period=0.100 s commands=True epoch=4cbe25c6040847ec89afa217f0191aa8
+2026-10-12 03:23:32,165 websockets.server INFO connection open
+2026-10-12 03:23:32,166 lcnc_state.ws INFO client ('127.0.0.1', 39314) connected (encoding=json view_key=None), 1 clients
+2026-10-12 03:23:32,210 lcnc_state INFO command 53264-1 state[2] serial=1 kind=quick send=40.9 ms
+2026-10-12 03:23:32,241 lcnc_state INFO command 53264-1 state -> completed
+2026-10-12 03:23:32,263 lcnc_state INFO command 53264-2 state[4] serial=2 kind=quick send=20.4 ms
+2026-10-12 03:23:32,294 lcnc_state INFO command 53264-2 state -> completed
+2026-10-12 03:23:32,316 lcnc_state INFO command 53264-3 mode[1] serial=3 kind=quick send=20.4 ms
+2026-10-12 03:23:32,346 lcnc_state INFO command 53264-3 mode -> completed
+2026-10-12 03:23:32,369 lcnc_state INFO command 53264-4 home[-1] serial=4 kind=home send=20.4 ms
+2026-10-12 03:23:34,763 lcnc_state INFO command 53264-4 home -> completed
+2026-10-12 03:23:34,838 lcnc_state INFO command 53264-5 set_optional_stop[False] serial=5 kind=quick send=20.5 ms
+2026-10-12 03:23:34,870 lcnc_state INFO command 53264-5 set_optional_stop -> completed
+2026-10-12 03:23:34,933 lcnc_state INFO command 53264-6 mode -> completed
+2026-10-12 03:23:35,005 lcnc_state INFO command 53264-6 program_open -> completed
+2026-10-12 03:25:47,362 lcnc_state INFO command 53264-6 run -> completed
+2026-10-12 03:25:47,867 lcnc_state.ws INFO client ('127.0.0.1', 39314) gone, 0 clients
+2026-10-12 03:25:47,868 websockets.server INFO connection closed
+2026-10-12 03:25:48,902 websockets.server INFO server closing
+2026-10-12 03:25:48,903 websockets.server INFO server closed
+2026-10-12 03:25:48,904 lcnc_state INFO trace: 1383 ticks -> /home/user/lcnc-state-layer/traces/axis_100ms.jsonl.gz
+2026-10-12 03:25:48,904 lcnc_state INFO ticks=1383 empty=0 seq=1383

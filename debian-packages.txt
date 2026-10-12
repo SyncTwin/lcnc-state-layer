@@ -1,0 +1,7 @@
+# Runtime dependencies of the product (sidecar + Python client), Debian package names.
+# Tested on Ubuntu 24.04 (versions in README); same names on Debian 12/13.
+# LinuxCNC itself (package linuxcnc-uspace or a run-in-place tree) provides the linuxcnc module.
+python3-websockets        # required
+python3-jsonschema        # only for --validate
+python3-cbor2             # only for ?encoding=cbor
+python3-msgpack           # only for ?encoding=msgpack

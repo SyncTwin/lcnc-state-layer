@@ -1,0 +1,24 @@
+2026-10-12 03:14:24,218 lcnc_state INFO LinuxCNC 2.10.0~pre2, ini /tmp/lcnc-sim/axis_mm_headless.ini, 3 joints, period 0.100 s ([DISPLAY]CYCLE_TIME = 0.100 in /tmp/lcnc-sim/axis_mm_headless.ini), 91 stat fields
+2026-10-12 03:14:24,304 lcnc_state INFO schema check of first snapshot: ok
+2026-10-12 03:14:24,352 websockets.server INFO server listening on 127.0.0.1:8791
+2026-10-12 03:14:24,352 lcnc_state.ws INFO listening on ws://127.0.0.1:8791/ period=0.100 s commands=True
+2026-10-12 03:14:26,259 websockets.server INFO connection open
+2026-10-12 03:14:26,259 lcnc_state.ws INFO client ('127.0.0.1', 44968) connected (encoding=json view_key=None), 1 clients
+2026-10-12 03:14:26,265 websockets.server INFO connection open
+2026-10-12 03:14:26,265 lcnc_state.ws INFO client ('127.0.0.1', 44974) connected (encoding=json view_key=None), 2 clients
+2026-10-12 03:14:27,283 websockets.server INFO connection open
+2026-10-12 03:14:27,283 lcnc_state.ws INFO client ('127.0.0.1', 44986) connected (encoding=json view_key=None), 3 clients
+2026-10-12 03:14:27,316 lcnc_state INFO command 4448-1 state[2] serial=14 send=30.4 ms
+2026-10-12 03:14:27,377 lcnc_state INFO command 4448-2 state[4] serial=15 send=20.5 ms
+2026-10-12 03:14:27,486 lcnc_state INFO command 4448-3 mode[1] serial=16 send=30.6 ms
+2026-10-12 03:14:27,576 lcnc_state INFO command 4448-4 home[-1] serial=17 send=21.0 ms
+2026-10-12 03:14:27,676 lcnc_state INFO command 4448-5 set_optional_stop[False] serial=18 send=20.3 ms
+2026-10-12 03:17:21,158 lcnc_state.ws INFO client ('127.0.0.1', 44986) gone, 2 clients
+2026-10-12 03:17:21,158 websockets.server INFO connection closed
+2026-10-12 03:17:47,632 lcnc_state.ws INFO client ('127.0.0.1', 44968) gone, 1 clients
+2026-10-12 03:17:47,633 websockets.server INFO connection closed
+2026-10-12 03:17:47,660 lcnc_state.ws INFO client ('127.0.0.1', 44974) gone, 0 clients
+2026-10-12 03:17:47,660 websockets.server INFO connection closed
+2026-10-12 03:17:47,685 websockets.server INFO server closing
+2026-10-12 03:17:47,685 websockets.server INFO server closed
+2026-10-12 03:17:47,686 lcnc_state INFO ticks=2034 empty=0 seq=2034

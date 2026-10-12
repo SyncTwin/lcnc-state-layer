@@ -1,0 +1,575 @@
+2026-10-12 08:38:00,373 lcnc_state INFO LinuxCNC 2.10.0~pre2, ini run/cfg/machine.ini, 6 joints, period 0.100 s ([DISPLAY]CYCLE_TIME = 0.100 in run/cfg/machine.ini), 88 stat fields
+2026-10-12 08:38:00,374 asyncio DEBUG Using selector: EpollSelector
+2026-10-12 08:38:00,429 websockets.server INFO server listening on 127.0.0.1:8791
+2026-10-12 08:38:00,430 lcnc_state.ws INFO listening on ws://127.0.0.1:8791/ period=0.100 s commands=True epoch=883b98e5060a48369ae807b059a776c8
+2026-10-12 08:38:03,471 websockets.server DEBUG = connection is CONNECTING
+2026-10-12 08:38:03,473 websockets.server DEBUG < GET / HTTP/1.1
+2026-10-12 08:38:03,473 websockets.server DEBUG < Host: 127.0.0.1:8791
+2026-10-12 08:38:03,473 websockets.server DEBUG < Upgrade: websocket
+2026-10-12 08:38:03,473 websockets.server DEBUG < Connection: Upgrade
+2026-10-12 08:38:03,473 websockets.server DEBUG < Sec-WebSocket-Key: wrtISbcpt+0sZy3b3HsPHw==
+2026-10-12 08:38:03,473 websockets.server DEBUG < Sec-WebSocket-Version: 13
+2026-10-12 08:38:03,473 websockets.server DEBUG < Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2026-10-12 08:38:03,473 websockets.server DEBUG < User-Agent: Python/3.13 websockets/13.1
+2026-10-12 08:38:03,474 websockets.server DEBUG > HTTP/1.1 101 Switching Protocols
+2026-10-12 08:38:03,474 websockets.server DEBUG > Upgrade: websocket
+2026-10-12 08:38:03,474 websockets.server DEBUG > Connection: Upgrade
+2026-10-12 08:38:03,474 websockets.server DEBUG > Sec-WebSocket-Accept: 9DxeNN0lzJMnM2bLqIHj/PQRy+s=
+2026-10-12 08:38:03,474 websockets.server DEBUG > Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12; client_max_window_bits=12
+2026-10-12 08:38:03,474 websockets.server DEBUG > Date: Mon, 12 Oct 2026 08:38:03 GMT
+2026-10-12 08:38:03,474 websockets.server DEBUG > Server: Python/3.13 websockets/13.1
+2026-10-12 08:38:03,474 websockets.server INFO connection open
+2026-10-12 08:38:03,474 websockets.server DEBUG = connection is OPEN
+2026-10-12 08:38:03,474 lcnc_state.ws INFO client ('127.0.0.1', 37742) connected (encoding=json view_key=None), 1 clients
+2026-10-12 08:38:03,475 websockets.server DEBUG > TEXT '{"type":"snapshot","seq":31,"epoch":"883b98e506...{"seq":0,"recent":[]}}}' [12604 bytes]
+2026-10-12 08:38:03,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":32,"patch":{"stat":{"hear....0],"taskbeat":32196}}}' [6317 bytes]
+2026-10-12 08:38:03,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":33,"patch":{"stat":{"hear...0}],"taskbeat":32289}}}' [6021 bytes]
+2026-10-12 08:38:03,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":34,"patch":{"stat":{"hear....0],"taskbeat":32382}}}' [6317 bytes]
+2026-10-12 08:38:03,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":35,"patch":{"stat":{"hear....0],"taskbeat":32474}}}' [6314 bytes]
+2026-10-12 08:38:03,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":36,"patch":{"stat":{"hear....0],"taskbeat":32567}}}' [6281 bytes]
+2026-10-12 08:38:04,033 websockets.server DEBUG > TEXT '{"type":"patch","seq":37,"patch":{"stat":{"hear....0],"taskbeat":32661}}}' [6300 bytes]
+2026-10-12 08:38:04,132 websockets.server DEBUG > TEXT '{"type":"patch","seq":38,"patch":{"stat":{"hear....0],"taskbeat":32753}}}' [6300 bytes]
+2026-10-12 08:38:04,232 websockets.server DEBUG > TEXT '{"type":"patch","seq":39,"patch":{"stat":{"hear....0],"taskbeat":32845}}}' [6322 bytes]
+2026-10-12 08:38:04,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":40,"patch":{"stat":{"hear....0],"taskbeat":32937}}}' [6281 bytes]
+2026-10-12 08:38:04,432 websockets.server DEBUG > TEXT '{"type":"patch","seq":41,"patch":{"stat":{"hear....0],"taskbeat":33030}}}' [6295 bytes]
+2026-10-12 08:38:04,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":42,"patch":{"stat":{"hear....0],"taskbeat":33122}}}' [6319 bytes]
+2026-10-12 08:38:04,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":43,"patch":{"stat":{"hear....0],"taskbeat":33214}}}' [6282 bytes]
+2026-10-12 08:38:04,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":44,"patch":{"stat":{"hear....0],"taskbeat":33307}}}' [6300 bytes]
+2026-10-12 08:38:04,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":45,"patch":{"stat":{"hear....0],"taskbeat":33400}}}' [6267 bytes]
+2026-10-12 08:38:04,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":46,"patch":{"stat":{"hear....0],"taskbeat":33494}}}' [6320 bytes]
+2026-10-12 08:38:05,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":47,"patch":{"stat":{"hear....0],"taskbeat":33587}}}' [6296 bytes]
+2026-10-12 08:38:05,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":48,"patch":{"stat":{"hear....0],"taskbeat":33680}}}' [6300 bytes]
+2026-10-12 08:38:05,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":49,"patch":{"stat":{"hear....0],"taskbeat":33772}}}' [6300 bytes]
+2026-10-12 08:38:05,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":50,"patch":{"stat":{"hear....0],"taskbeat":33864}}}' [6318 bytes]
+2026-10-12 08:38:05,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":51,"patch":{"stat":{"hear....0],"taskbeat":33956}}}' [6319 bytes]
+2026-10-12 08:38:05,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":52,"patch":{"stat":{"hear....0],"taskbeat":34049}}}' [6301 bytes]
+2026-10-12 08:38:05,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":53,"patch":{"stat":{"hear....0],"taskbeat":34142}}}' [6277 bytes]
+2026-10-12 08:38:05,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":54,"patch":{"stat":{"hear....0],"taskbeat":34235}}}' [6301 bytes]
+2026-10-12 08:38:05,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":55,"patch":{"stat":{"hear....0],"taskbeat":34327}}}' [6300 bytes]
+2026-10-12 08:38:05,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":56,"patch":{"stat":{"hear....0],"taskbeat":34420}}}' [6285 bytes]
+2026-10-12 08:38:06,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":57,"patch":{"stat":{"hear....0],"taskbeat":34512}}}' [6299 bytes]
+2026-10-12 08:38:06,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":58,"patch":{"stat":{"hear....0],"taskbeat":34603}}}' [6285 bytes]
+2026-10-12 08:38:06,232 websockets.server DEBUG > TEXT '{"type":"patch","seq":59,"patch":{"stat":{"hear....0],"taskbeat":34697}}}' [6318 bytes]
+2026-10-12 08:38:06,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":60,"patch":{"stat":{"hear....0],"taskbeat":34789}}}' [6302 bytes]
+2026-10-12 08:38:06,432 websockets.server DEBUG > TEXT '{"type":"patch","seq":61,"patch":{"stat":{"hear....0],"taskbeat":34883}}}' [6281 bytes]
+2026-10-12 08:38:06,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":62,"patch":{"stat":{"hear....0],"taskbeat":34975}}}' [6267 bytes]
+2026-10-12 08:38:06,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":63,"patch":{"stat":{"hear....0],"taskbeat":35068}}}' [6299 bytes]
+2026-10-12 08:38:06,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":64,"patch":{"stat":{"hear....0],"taskbeat":35161}}}' [6316 bytes]
+2026-10-12 08:38:06,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":65,"patch":{"stat":{"hear....0],"taskbeat":35254}}}' [6281 bytes]
+2026-10-12 08:38:06,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":66,"patch":{"stat":{"hear....0],"taskbeat":35347}}}' [6263 bytes]
+2026-10-12 08:38:07,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":67,"patch":{"stat":{"hear....0],"taskbeat":35440}}}' [6263 bytes]
+2026-10-12 08:38:07,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":68,"patch":{"stat":{"hear....0],"taskbeat":35531}}}' [6285 bytes]
+2026-10-12 08:38:07,232 websockets.server DEBUG > TEXT '{"type":"patch","seq":69,"patch":{"stat":{"hear....0],"taskbeat":35624}}}' [6300 bytes]
+2026-10-12 08:38:07,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":70,"patch":{"stat":{"hear....0],"taskbeat":35716}}}' [6304 bytes]
+2026-10-12 08:38:07,432 websockets.server DEBUG > TEXT '{"type":"patch","seq":71,"patch":{"stat":{"hear....0],"taskbeat":35809}}}' [6301 bytes]
+2026-10-12 08:38:07,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":72,"patch":{"stat":{"hear....0],"taskbeat":35902}}}' [6304 bytes]
+2026-10-12 08:38:07,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":73,"patch":{"stat":{"hear....0],"taskbeat":35995}}}' [6282 bytes]
+2026-10-12 08:38:07,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":74,"patch":{"stat":{"hear....0],"taskbeat":36088}}}' [6321 bytes]
+2026-10-12 08:38:07,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":75,"patch":{"stat":{"hear....0],"taskbeat":36181}}}' [6281 bytes]
+2026-10-12 08:38:07,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":76,"patch":{"stat":{"hear....0],"taskbeat":36274}}}' [6276 bytes]
+2026-10-12 08:38:08,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":77,"patch":{"stat":{"hear....0],"taskbeat":36367}}}' [6285 bytes]
+2026-10-12 08:38:08,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":78,"patch":{"stat":{"hear....0],"taskbeat":36459}}}' [6299 bytes]
+2026-10-12 08:38:08,232 websockets.server DEBUG > TEXT '{"type":"patch","seq":79,"patch":{"stat":{"hear....0],"taskbeat":36553}}}' [6303 bytes]
+2026-10-12 08:38:08,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":80,"patch":{"stat":{"hear....0],"taskbeat":36644}}}' [6316 bytes]
+2026-10-12 08:38:08,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":81,"patch":{"stat":{"hear....0],"taskbeat":36736}}}' [6321 bytes]
+2026-10-12 08:38:08,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":82,"patch":{"stat":{"hear....0],"taskbeat":36829}}}' [6319 bytes]
+2026-10-12 08:38:08,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":83,"patch":{"stat":{"hear....0],"taskbeat":36922}}}' [6298 bytes]
+2026-10-12 08:38:08,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":84,"patch":{"stat":{"hear....0],"taskbeat":37016}}}' [6317 bytes]
+2026-10-12 08:38:08,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":85,"patch":{"stat":{"hear....0],"taskbeat":37107}}}' [6295 bytes]
+2026-10-12 08:38:08,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":86,"patch":{"stat":{"hear....0],"taskbeat":37201}}}' [6318 bytes]
+2026-10-12 08:38:09,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":87,"patch":{"stat":{"hear....0],"taskbeat":37294}}}' [6263 bytes]
+2026-10-12 08:38:09,132 websockets.server DEBUG > TEXT '{"type":"patch","seq":88,"patch":{"stat":{"hear....0],"taskbeat":37386}}}' [6303 bytes]
+2026-10-12 08:38:09,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":89,"patch":{"stat":{"hear....0],"taskbeat":37478}}}' [6296 bytes]
+2026-10-12 08:38:09,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":90,"patch":{"stat":{"hear....0],"taskbeat":37572}}}' [6295 bytes]
+2026-10-12 08:38:09,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":91,"patch":{"stat":{"hear....0],"taskbeat":37664}}}' [6314 bytes]
+2026-10-12 08:38:09,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":92,"patch":{"stat":{"hear....0],"taskbeat":37757}}}' [6302 bytes]
+2026-10-12 08:38:09,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":93,"patch":{"stat":{"hear....0],"taskbeat":37849}}}' [6299 bytes]
+2026-10-12 08:38:09,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":94,"patch":{"stat":{"hear....0],"taskbeat":37942}}}' [6304 bytes]
+2026-10-12 08:38:09,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":95,"patch":{"stat":{"hear....0],"taskbeat":38035}}}' [6303 bytes]
+2026-10-12 08:38:09,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":96,"patch":{"stat":{"hear....0],"taskbeat":38128}}}' [6319 bytes]
+2026-10-12 08:38:10,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":97,"patch":{"stat":{"hear....0],"taskbeat":38220}}}' [6297 bytes]
+2026-10-12 08:38:10,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":98,"patch":{"stat":{"hear....0],"taskbeat":38313}}}' [6267 bytes]
+2026-10-12 08:38:10,232 websockets.server DEBUG > TEXT '{"type":"patch","seq":99,"patch":{"stat":{"hear....0],"taskbeat":38406}}}' [6319 bytes]
+2026-10-12 08:38:10,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":100,"patch":{"stat":{"hea....0],"taskbeat":38498}}}' [6302 bytes]
+2026-10-12 08:38:10,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":101,"patch":{"stat":{"hea....0],"taskbeat":38591}}}' [6286 bytes]
+2026-10-12 08:38:10,532 websockets.server DEBUG > TEXT '{"type":"patch","seq":102,"patch":{"stat":{"hea....0],"taskbeat":38683}}}' [6268 bytes]
+2026-10-12 08:38:10,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":103,"patch":{"stat":{"hea....0],"taskbeat":38775}}}' [6301 bytes]
+2026-10-12 08:38:10,732 websockets.server DEBUG > TEXT '{"type":"patch","seq":104,"patch":{"stat":{"hea....0],"taskbeat":38868}}}' [6300 bytes]
+2026-10-12 08:38:10,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":105,"patch":{"stat":{"hea....0],"taskbeat":38959}}}' [6283 bytes]
+2026-10-12 08:38:10,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":106,"patch":{"stat":{"hea....0],"taskbeat":39052}}}' [6300 bytes]
+2026-10-12 08:38:11,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":107,"patch":{"stat":{"hea....0],"taskbeat":39144}}}' [6304 bytes]
+2026-10-12 08:38:11,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":108,"patch":{"stat":{"hea....0],"taskbeat":39236}}}' [6317 bytes]
+2026-10-12 08:38:11,232 websockets.server DEBUG > TEXT '{"type":"patch","seq":109,"patch":{"stat":{"hea....0],"taskbeat":39329}}}' [6301 bytes]
+2026-10-12 08:38:11,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":110,"patch":{"stat":{"hea....0],"taskbeat":39422}}}' [6299 bytes]
+2026-10-12 08:38:11,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":111,"patch":{"stat":{"hea....0],"taskbeat":39515}}}' [6300 bytes]
+2026-10-12 08:38:11,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":112,"patch":{"stat":{"hea....0],"taskbeat":39606}}}' [6301 bytes]
+2026-10-12 08:38:11,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":113,"patch":{"stat":{"hea....0],"taskbeat":39699}}}' [6319 bytes]
+2026-10-12 08:38:11,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":114,"patch":{"stat":{"hea....0],"taskbeat":39791}}}' [6297 bytes]
+2026-10-12 08:38:11,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":115,"patch":{"stat":{"hea....0],"taskbeat":39883}}}' [6281 bytes]
+2026-10-12 08:38:11,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":116,"patch":{"stat":{"hea....0],"taskbeat":39975}}}' [6302 bytes]
+2026-10-12 08:38:12,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":117,"patch":{"stat":{"hea....0],"taskbeat":40068}}}' [6278 bytes]
+2026-10-12 08:38:12,132 websockets.server DEBUG > TEXT '{"type":"patch","seq":118,"patch":{"stat":{"hea....0],"taskbeat":40160}}}' [6297 bytes]
+2026-10-12 08:38:12,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":119,"patch":{"stat":{"hea....0],"taskbeat":40252}}}' [6299 bytes]
+2026-10-12 08:38:12,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":120,"patch":{"stat":{"hea....0],"taskbeat":40345}}}' [6305 bytes]
+2026-10-12 08:38:12,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":121,"patch":{"stat":{"hea....0],"taskbeat":40438}}}' [6323 bytes]
+2026-10-12 08:38:12,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":122,"patch":{"stat":{"hea....0],"taskbeat":40531}}}' [6268 bytes]
+2026-10-12 08:38:12,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":123,"patch":{"stat":{"hea....0],"taskbeat":40624}}}' [6298 bytes]
+2026-10-12 08:38:12,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":124,"patch":{"stat":{"hea....0],"taskbeat":40717}}}' [6300 bytes]
+2026-10-12 08:38:12,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":125,"patch":{"stat":{"hea....0],"taskbeat":40810}}}' [6297 bytes]
+2026-10-12 08:38:12,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":126,"patch":{"stat":{"hea....0],"taskbeat":40902}}}' [6282 bytes]
+2026-10-12 08:38:13,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":127,"patch":{"stat":{"hea....0],"taskbeat":40995}}}' [6320 bytes]
+2026-10-12 08:38:13,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":128,"patch":{"stat":{"hea....0],"taskbeat":41087}}}' [6282 bytes]
+2026-10-12 08:38:13,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":129,"patch":{"stat":{"hea....0],"taskbeat":41179}}}' [6319 bytes]
+2026-10-12 08:38:13,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":130,"patch":{"stat":{"hea....0],"taskbeat":41272}}}' [6283 bytes]
+2026-10-12 08:38:13,432 websockets.server DEBUG > TEXT '{"type":"patch","seq":131,"patch":{"stat":{"hea....0],"taskbeat":41365}}}' [6305 bytes]
+2026-10-12 08:38:13,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":132,"patch":{"stat":{"hea....0],"taskbeat":41458}}}' [6300 bytes]
+2026-10-12 08:38:13,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":133,"patch":{"stat":{"hea....0],"taskbeat":41552}}}' [6285 bytes]
+2026-10-12 08:38:13,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":134,"patch":{"stat":{"hea....0],"taskbeat":41644}}}' [6318 bytes]
+2026-10-12 08:38:13,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":135,"patch":{"stat":{"hea....0],"taskbeat":41736}}}' [6304 bytes]
+2026-10-12 08:38:13,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":136,"patch":{"stat":{"hea....0],"taskbeat":41829}}}' [6305 bytes]
+2026-10-12 08:38:14,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":137,"patch":{"stat":{"hea....0],"taskbeat":41922}}}' [6300 bytes]
+2026-10-12 08:38:14,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":138,"patch":{"stat":{"hea....0],"taskbeat":42014}}}' [6300 bytes]
+2026-10-12 08:38:14,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":139,"patch":{"stat":{"hea....0],"taskbeat":42106}}}' [6301 bytes]
+2026-10-12 08:38:14,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":140,"patch":{"stat":{"hea....0],"taskbeat":42198}}}' [6318 bytes]
+2026-10-12 08:38:14,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":141,"patch":{"stat":{"hea....0],"taskbeat":42290}}}' [6318 bytes]
+2026-10-12 08:38:14,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":142,"patch":{"stat":{"hea....0],"taskbeat":42383}}}' [6286 bytes]
+2026-10-12 08:38:14,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":143,"patch":{"stat":{"hea....0],"taskbeat":42474}}}' [6300 bytes]
+2026-10-12 08:38:14,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":144,"patch":{"stat":{"hea....0],"taskbeat":42567}}}' [6300 bytes]
+2026-10-12 08:38:14,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":145,"patch":{"stat":{"hea....0],"taskbeat":42659}}}' [6301 bytes]
+2026-10-12 08:38:14,932 websockets.server DEBUG > TEXT '{"type":"patch","seq":146,"patch":{"stat":{"hea....0],"taskbeat":42752}}}' [6318 bytes]
+2026-10-12 08:38:15,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":147,"patch":{"stat":{"hea....0],"taskbeat":42845}}}' [6304 bytes]
+2026-10-12 08:38:15,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":148,"patch":{"stat":{"hea....0],"taskbeat":42937}}}' [6300 bytes]
+2026-10-12 08:38:15,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":149,"patch":{"stat":{"hea....0],"taskbeat":43030}}}' [6299 bytes]
+2026-10-12 08:38:15,332 websockets.server DEBUG > TEXT '{"type":"patch","seq":150,"patch":{"stat":{"hea....0],"taskbeat":43123}}}' [6283 bytes]
+2026-10-12 08:38:15,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":151,"patch":{"stat":{"hea....0],"taskbeat":43215}}}' [6281 bytes]
+2026-10-12 08:38:15,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":152,"patch":{"stat":{"hea....0],"taskbeat":43308}}}' [6287 bytes]
+2026-10-12 08:38:15,633 websockets.server DEBUG > TEXT '{"type":"patch","seq":153,"patch":{"stat":{"hea....0],"taskbeat":43400}}}' [6301 bytes]
+2026-10-12 08:38:15,732 websockets.server DEBUG > TEXT '{"type":"patch","seq":154,"patch":{"stat":{"hea....0],"taskbeat":43494}}}' [6264 bytes]
+2026-10-12 08:38:15,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":155,"patch":{"stat":{"hea....0],"taskbeat":43585}}}' [6304 bytes]
+2026-10-12 08:38:15,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":156,"patch":{"stat":{"hea....0],"taskbeat":43678}}}' [6321 bytes]
+2026-10-12 08:38:16,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":157,"patch":{"stat":{"hea....0],"taskbeat":43771}}}' [6306 bytes]
+2026-10-12 08:38:16,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":158,"patch":{"stat":{"hea....0],"taskbeat":43865}}}' [6302 bytes]
+2026-10-12 08:38:16,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":159,"patch":{"stat":{"hea....0],"taskbeat":43958}}}' [6282 bytes]
+2026-10-12 08:38:16,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":160,"patch":{"stat":{"hea....0],"taskbeat":44052}}}' [6305 bytes]
+2026-10-12 08:38:16,432 websockets.server DEBUG > TEXT '{"type":"patch","seq":161,"patch":{"stat":{"hea....0],"taskbeat":44145}}}' [6287 bytes]
+2026-10-12 08:38:16,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":162,"patch":{"stat":{"hea....0],"taskbeat":44238}}}' [6318 bytes]
+2026-10-12 08:38:16,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":163,"patch":{"stat":{"hea....0],"taskbeat":44331}}}' [6319 bytes]
+2026-10-12 08:38:16,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":164,"patch":{"stat":{"hea....0],"taskbeat":44425}}}' [6319 bytes]
+2026-10-12 08:38:16,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":165,"patch":{"stat":{"hea....0],"taskbeat":44517}}}' [6297 bytes]
+2026-10-12 08:38:16,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":166,"patch":{"stat":{"hea....0],"taskbeat":44611}}}' [6282 bytes]
+2026-10-12 08:38:17,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":167,"patch":{"stat":{"hea....0],"taskbeat":44705}}}' [6297 bytes]
+2026-10-12 08:38:17,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":168,"patch":{"stat":{"hea....0],"taskbeat":44798}}}' [6287 bytes]
+2026-10-12 08:38:17,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":169,"patch":{"stat":{"hea....0],"taskbeat":44891}}}' [6320 bytes]
+2026-10-12 08:38:17,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":170,"patch":{"stat":{"hea....0],"taskbeat":44984}}}' [6287 bytes]
+2026-10-12 08:38:17,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":171,"patch":{"stat":{"hea....0],"taskbeat":45078}}}' [6286 bytes]
+2026-10-12 08:38:17,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":172,"patch":{"stat":{"hea....0],"taskbeat":45172}}}' [6320 bytes]
+2026-10-12 08:38:17,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":173,"patch":{"stat":{"hea....0],"taskbeat":45266}}}' [6300 bytes]
+2026-10-12 08:38:17,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":174,"patch":{"stat":{"hea....0],"taskbeat":45359}}}' [6301 bytes]
+2026-10-12 08:38:17,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":175,"patch":{"stat":{"hea....0],"taskbeat":45452}}}' [6282 bytes]
+2026-10-12 08:38:17,932 websockets.server DEBUG > TEXT '{"type":"patch","seq":176,"patch":{"stat":{"hea....0],"taskbeat":45546}}}' [6287 bytes]
+2026-10-12 08:38:18,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":177,"patch":{"stat":{"hea....0],"taskbeat":45639}}}' [6321 bytes]
+2026-10-12 08:38:18,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":178,"patch":{"stat":{"hea....0],"taskbeat":45733}}}' [6321 bytes]
+2026-10-12 08:38:18,232 websockets.server DEBUG > TEXT '{"type":"patch","seq":179,"patch":{"stat":{"hea....0],"taskbeat":45825}}}' [6318 bytes]
+2026-10-12 08:38:18,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":180,"patch":{"stat":{"hea....0],"taskbeat":45918}}}' [6301 bytes]
+2026-10-12 08:38:18,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":181,"patch":{"stat":{"hea....0],"taskbeat":46010}}}' [6320 bytes]
+2026-10-12 08:38:18,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":182,"patch":{"stat":{"hea....0],"taskbeat":46102}}}' [6300 bytes]
+2026-10-12 08:38:18,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":183,"patch":{"stat":{"hea....0],"taskbeat":46195}}}' [6300 bytes]
+2026-10-12 08:38:18,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":184,"patch":{"stat":{"hea....0],"taskbeat":46287}}}' [6285 bytes]
+2026-10-12 08:38:18,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":185,"patch":{"stat":{"hea....0],"taskbeat":46380}}}' [6320 bytes]
+2026-10-12 08:38:18,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":186,"patch":{"stat":{"hea....0],"taskbeat":46474}}}' [6283 bytes]
+2026-10-12 08:38:19,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":187,"patch":{"stat":{"hea....0],"taskbeat":46567}}}' [6281 bytes]
+2026-10-12 08:38:19,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":188,"patch":{"stat":{"hea....0],"taskbeat":46659}}}' [6268 bytes]
+2026-10-12 08:38:19,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":189,"patch":{"stat":{"hea....0],"taskbeat":46752}}}' [6285 bytes]
+2026-10-12 08:38:19,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":190,"patch":{"stat":{"hea....0],"taskbeat":46845}}}' [6320 bytes]
+2026-10-12 08:38:19,432 websockets.server DEBUG > TEXT '{"type":"patch","seq":191,"patch":{"stat":{"hea....0],"taskbeat":46937}}}' [6268 bytes]
+2026-10-12 08:38:19,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":192,"patch":{"stat":{"hea....0],"taskbeat":47029}}}' [6319 bytes]
+2026-10-12 08:38:19,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":193,"patch":{"stat":{"hea....0],"taskbeat":47122}}}' [6299 bytes]
+2026-10-12 08:38:19,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":194,"patch":{"stat":{"hea....0],"taskbeat":47215}}}' [6301 bytes]
+2026-10-12 08:38:19,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":195,"patch":{"stat":{"hea....0],"taskbeat":47308}}}' [6304 bytes]
+2026-10-12 08:38:19,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":196,"patch":{"stat":{"hea....0],"taskbeat":47400}}}' [6304 bytes]
+2026-10-12 08:38:20,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":197,"patch":{"stat":{"hea....0],"taskbeat":47493}}}' [6318 bytes]
+2026-10-12 08:38:20,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":198,"patch":{"stat":{"hea....0],"taskbeat":47586}}}' [6318 bytes]
+2026-10-12 08:38:20,232 websockets.server DEBUG > TEXT '{"type":"patch","seq":199,"patch":{"stat":{"hea....0],"taskbeat":47679}}}' [6296 bytes]
+2026-10-12 08:38:20,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":200,"patch":{"stat":{"hea....0],"taskbeat":47771}}}' [6319 bytes]
+2026-10-12 08:38:20,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":201,"patch":{"stat":{"hea....0],"taskbeat":47864}}}' [6324 bytes]
+2026-10-12 08:38:20,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":202,"patch":{"stat":{"hea....0],"taskbeat":47958}}}' [6300 bytes]
+2026-10-12 08:38:20,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":203,"patch":{"stat":{"hea....0],"taskbeat":48051}}}' [6286 bytes]
+2026-10-12 08:38:20,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":204,"patch":{"stat":{"hea....0],"taskbeat":48144}}}' [6282 bytes]
+2026-10-12 08:38:20,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":205,"patch":{"stat":{"hea....0],"taskbeat":48236}}}' [6319 bytes]
+2026-10-12 08:38:20,932 websockets.server DEBUG > TEXT '{"type":"patch","seq":206,"patch":{"stat":{"hea....0],"taskbeat":48327}}}' [6302 bytes]
+2026-10-12 08:38:21,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":207,"patch":{"stat":{"hea....0],"taskbeat":48419}}}' [6302 bytes]
+2026-10-12 08:38:21,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":208,"patch":{"stat":{"hea....0],"taskbeat":48511}}}' [6320 bytes]
+2026-10-12 08:38:21,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":209,"patch":{"stat":{"hea....0],"taskbeat":48603}}}' [6319 bytes]
+2026-10-12 08:38:21,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":210,"patch":{"stat":{"hea....0],"taskbeat":48696}}}' [6286 bytes]
+2026-10-12 08:38:21,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":211,"patch":{"stat":{"hea....0],"taskbeat":48789}}}' [6296 bytes]
+2026-10-12 08:38:21,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":212,"patch":{"stat":{"hea....0],"taskbeat":48882}}}' [6319 bytes]
+2026-10-12 08:38:21,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":213,"patch":{"stat":{"hea....0],"taskbeat":48974}}}' [6301 bytes]
+2026-10-12 08:38:21,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":214,"patch":{"stat":{"hea....0],"taskbeat":49068}}}' [6320 bytes]
+2026-10-12 08:38:21,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":215,"patch":{"stat":{"hea....0],"taskbeat":49161}}}' [6282 bytes]
+2026-10-12 08:38:21,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":216,"patch":{"stat":{"hea....0],"taskbeat":49252}}}' [6282 bytes]
+2026-10-12 08:38:22,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":217,"patch":{"stat":{"hea....0],"taskbeat":49344}}}' [6295 bytes]
+2026-10-12 08:38:22,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":218,"patch":{"stat":{"hea....0],"taskbeat":49436}}}' [6283 bytes]
+2026-10-12 08:38:22,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":219,"patch":{"stat":{"hea....0],"taskbeat":49528}}}' [6286 bytes]
+2026-10-12 08:38:22,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":220,"patch":{"stat":{"hea....0],"taskbeat":49621}}}' [6317 bytes]
+2026-10-12 08:38:22,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":221,"patch":{"stat":{"hea....0],"taskbeat":49714}}}' [6283 bytes]
+2026-10-12 08:38:22,532 websockets.server DEBUG > TEXT '{"type":"patch","seq":222,"patch":{"stat":{"hea....0],"taskbeat":49807}}}' [6319 bytes]
+2026-10-12 08:38:22,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":223,"patch":{"stat":{"hea....0],"taskbeat":49898}}}' [6304 bytes]
+2026-10-12 08:38:22,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":224,"patch":{"stat":{"hea....0],"taskbeat":49990}}}' [6304 bytes]
+2026-10-12 08:38:22,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":225,"patch":{"stat":{"hea....0],"taskbeat":50084}}}' [6319 bytes]
+2026-10-12 08:38:22,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":226,"patch":{"stat":{"hea....0],"taskbeat":50176}}}' [6320 bytes]
+2026-10-12 08:38:23,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":227,"patch":{"stat":{"hea....0],"taskbeat":50269}}}' [6282 bytes]
+2026-10-12 08:38:23,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":228,"patch":{"stat":{"hea....0],"taskbeat":50361}}}' [6285 bytes]
+2026-10-12 08:38:23,232 websockets.server DEBUG > TEXT '{"type":"patch","seq":229,"patch":{"stat":{"hea....0],"taskbeat":50455}}}' [6300 bytes]
+2026-10-12 08:38:23,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":230,"patch":{"stat":{"hea....0],"taskbeat":50547}}}' [6304 bytes]
+2026-10-12 08:38:23,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":231,"patch":{"stat":{"hea....0],"taskbeat":50640}}}' [6282 bytes]
+2026-10-12 08:38:23,475 websockets.server DEBUG < PING 4d e5 16 7c [binary, 4 bytes]
+2026-10-12 08:38:23,475 websockets.server DEBUG > PONG 4d e5 16 7c [binary, 4 bytes]
+2026-10-12 08:38:23,476 websockets.server DEBUG % sending keepalive ping
+2026-10-12 08:38:23,476 websockets.server DEBUG > PING 94 70 89 b1 [binary, 4 bytes]
+2026-10-12 08:38:23,476 websockets.server DEBUG < PONG 94 70 89 b1 [binary, 4 bytes]
+2026-10-12 08:38:23,476 websockets.server DEBUG % received keepalive pong
+2026-10-12 08:38:23,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":232,"patch":{"stat":{"hea....0],"taskbeat":50732}}}' [6282 bytes]
+2026-10-12 08:38:23,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":233,"patch":{"stat":{"hea...0}],"taskbeat":50825}}}' [6020 bytes]
+2026-10-12 08:38:23,732 websockets.server DEBUG > TEXT '{"type":"patch","seq":234,"patch":{"stat":{"hea....0],"taskbeat":50919}}}' [6297 bytes]
+2026-10-12 08:38:23,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":235,"patch":{"stat":{"hea....0],"taskbeat":51011}}}' [6317 bytes]
+2026-10-12 08:38:23,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":236,"patch":{"stat":{"hea....0],"taskbeat":51104}}}' [6264 bytes]
+2026-10-12 08:38:24,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":237,"patch":{"stat":{"hea....0],"taskbeat":51197}}}' [6281 bytes]
+2026-10-12 08:38:24,132 websockets.server DEBUG > TEXT '{"type":"patch","seq":238,"patch":{"stat":{"hea....0],"taskbeat":51288}}}' [6301 bytes]
+2026-10-12 08:38:24,232 websockets.server DEBUG > TEXT '{"type":"patch","seq":239,"patch":{"stat":{"hea....0],"taskbeat":51380}}}' [6285 bytes]
+2026-10-12 08:38:24,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":240,"patch":{"stat":{"hea...0}],"taskbeat":51471}}}' [6059 bytes]
+2026-10-12 08:38:24,432 websockets.server DEBUG > TEXT '{"type":"patch","seq":241,"patch":{"stat":{"hea....0],"taskbeat":51565}}}' [6321 bytes]
+2026-10-12 08:38:24,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":242,"patch":{"stat":{"hea....0],"taskbeat":51656}}}' [6283 bytes]
+2026-10-12 08:38:24,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":243,"patch":{"stat":{"hea....0],"taskbeat":51749}}}' [6301 bytes]
+2026-10-12 08:38:24,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":244,"patch":{"stat":{"hea....0],"taskbeat":51840}}}' [6286 bytes]
+2026-10-12 08:38:24,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":245,"patch":{"stat":{"hea....0],"taskbeat":51932}}}' [6318 bytes]
+2026-10-12 08:38:24,932 websockets.server DEBUG > TEXT '{"type":"patch","seq":246,"patch":{"stat":{"hea....0],"taskbeat":52024}}}' [6320 bytes]
+2026-10-12 08:38:25,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":247,"patch":{"stat":{"hea....0],"taskbeat":52117}}}' [6299 bytes]
+2026-10-12 08:38:25,132 websockets.server DEBUG > TEXT '{"type":"patch","seq":248,"patch":{"stat":{"hea....0],"taskbeat":52207}}}' [6281 bytes]
+2026-10-12 08:38:25,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":249,"patch":{"stat":{"hea....0],"taskbeat":52300}}}' [6317 bytes]
+2026-10-12 08:38:25,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":250,"patch":{"stat":{"hea....0],"taskbeat":52393}}}' [6300 bytes]
+2026-10-12 08:38:25,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":251,"patch":{"stat":{"hea....0],"taskbeat":52486}}}' [6282 bytes]
+2026-10-12 08:38:25,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":252,"patch":{"stat":{"hea....0],"taskbeat":52579}}}' [6264 bytes]
+2026-10-12 08:38:25,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":253,"patch":{"stat":{"hea....0],"taskbeat":52671}}}' [6321 bytes]
+2026-10-12 08:38:25,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":254,"patch":{"stat":{"hea....0],"taskbeat":52763}}}' [6301 bytes]
+2026-10-12 08:38:25,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":255,"patch":{"stat":{"hea....0],"taskbeat":52856}}}' [6299 bytes]
+2026-10-12 08:38:25,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":256,"patch":{"stat":{"hea....0],"taskbeat":52945}}}' [6278 bytes]
+2026-10-12 08:38:26,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":257,"patch":{"stat":{"hea....0],"taskbeat":53036}}}' [6302 bytes]
+2026-10-12 08:38:26,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":258,"patch":{"stat":{"hea....0],"taskbeat":53129}}}' [6282 bytes]
+2026-10-12 08:38:26,232 websockets.server DEBUG > TEXT '{"type":"patch","seq":259,"patch":{"stat":{"hea....0],"taskbeat":53222}}}' [6320 bytes]
+2026-10-12 08:38:26,332 websockets.server DEBUG > TEXT '{"type":"patch","seq":260,"patch":{"stat":{"hea....0],"taskbeat":53315}}}' [6300 bytes]
+2026-10-12 08:38:26,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":261,"patch":{"stat":{"hea....0],"taskbeat":53406}}}' [6304 bytes]
+2026-10-12 08:38:26,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":262,"patch":{"stat":{"hea....0],"taskbeat":53499}}}' [6286 bytes]
+2026-10-12 08:38:26,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":263,"patch":{"stat":{"hea....0],"taskbeat":53593}}}' [6319 bytes]
+2026-10-12 08:38:26,732 websockets.server DEBUG > TEXT '{"type":"patch","seq":264,"patch":{"stat":{"hea....0],"taskbeat":53686}}}' [6283 bytes]
+2026-10-12 08:38:26,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":265,"patch":{"stat":{"hea....0],"taskbeat":53778}}}' [6282 bytes]
+2026-10-12 08:38:26,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":266,"patch":{"stat":{"hea....0],"taskbeat":53870}}}' [6283 bytes]
+2026-10-12 08:38:27,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":267,"patch":{"stat":{"hea....0],"taskbeat":53963}}}' [6303 bytes]
+2026-10-12 08:38:27,132 websockets.server DEBUG > TEXT '{"type":"patch","seq":268,"patch":{"stat":{"hea....0],"taskbeat":54056}}}' [6282 bytes]
+2026-10-12 08:38:27,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":269,"patch":{"stat":{"hea....0],"taskbeat":54147}}}' [6320 bytes]
+2026-10-12 08:38:27,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":270,"patch":{"stat":{"hea....0],"taskbeat":54240}}}' [6323 bytes]
+2026-10-12 08:38:27,432 websockets.server DEBUG > TEXT '{"type":"patch","seq":271,"patch":{"stat":{"hea....0],"taskbeat":54333}}}' [6281 bytes]
+2026-10-12 08:38:27,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":272,"patch":{"stat":{"hea....0],"taskbeat":54424}}}' [6300 bytes]
+2026-10-12 08:38:27,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":273,"patch":{"stat":{"hea....0],"taskbeat":54517}}}' [6324 bytes]
+2026-10-12 08:38:27,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":274,"patch":{"stat":{"hea....0],"taskbeat":54610}}}' [6287 bytes]
+2026-10-12 08:38:27,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":275,"patch":{"stat":{"hea....0],"taskbeat":54701}}}' [6282 bytes]
+2026-10-12 08:38:27,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":276,"patch":{"stat":{"hea....0],"taskbeat":54794}}}' [6306 bytes]
+2026-10-12 08:38:28,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":277,"patch":{"stat":{"hea....0],"taskbeat":54886}}}' [6283 bytes]
+2026-10-12 08:38:28,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":278,"patch":{"stat":{"hea....0],"taskbeat":54979}}}' [6298 bytes]
+2026-10-12 08:38:28,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":279,"patch":{"stat":{"hea....0],"taskbeat":55071}}}' [6319 bytes]
+2026-10-12 08:38:28,332 websockets.server DEBUG > TEXT '{"type":"patch","seq":280,"patch":{"stat":{"hea....0],"taskbeat":55165}}}' [6299 bytes]
+2026-10-12 08:38:28,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":281,"patch":{"stat":{"hea....0],"taskbeat":55257}}}' [6297 bytes]
+2026-10-12 08:38:28,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":282,"patch":{"stat":{"hea....0],"taskbeat":55351}}}' [6279 bytes]
+2026-10-12 08:38:28,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":283,"patch":{"stat":{"hea....0],"taskbeat":55443}}}' [6321 bytes]
+2026-10-12 08:38:28,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":284,"patch":{"stat":{"hea....0],"taskbeat":55536}}}' [6318 bytes]
+2026-10-12 08:38:28,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":285,"patch":{"stat":{"hea....0],"taskbeat":55630}}}' [6298 bytes]
+2026-10-12 08:38:28,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":286,"patch":{"stat":{"hea....0],"taskbeat":55722}}}' [6279 bytes]
+2026-10-12 08:38:29,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":287,"patch":{"stat":{"hea....0],"taskbeat":55815}}}' [6268 bytes]
+2026-10-12 08:38:29,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":288,"patch":{"stat":{"hea....0],"taskbeat":55909}}}' [6283 bytes]
+2026-10-12 08:38:29,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":289,"patch":{"stat":{"hea....0],"taskbeat":56001}}}' [6300 bytes]
+2026-10-12 08:38:29,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":290,"patch":{"stat":{"hea...0}],"taskbeat":56095}}}' [6039 bytes]
+2026-10-12 08:38:29,432 websockets.server DEBUG > TEXT '{"type":"patch","seq":291,"patch":{"stat":{"hea....0],"taskbeat":56187}}}' [6321 bytes]
+2026-10-12 08:38:29,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":292,"patch":{"stat":{"hea....0],"taskbeat":56280}}}' [6300 bytes]
+2026-10-12 08:38:29,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":293,"patch":{"stat":{"hea....0],"taskbeat":56372}}}' [6286 bytes]
+2026-10-12 08:38:29,730 websockets.server DEBUG > TEXT '{"type":"patch","seq":294,"patch":{"stat":{"hea....0],"taskbeat":56464}}}' [6268 bytes]
+2026-10-12 08:38:29,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":295,"patch":{"stat":{"hea....0],"taskbeat":56557}}}' [6314 bytes]
+2026-10-12 08:38:29,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":296,"patch":{"stat":{"hea....0],"taskbeat":56650}}}' [6281 bytes]
+2026-10-12 08:38:30,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":297,"patch":{"stat":{"hea....0],"taskbeat":56743}}}' [6320 bytes]
+2026-10-12 08:38:30,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":298,"patch":{"stat":{"hea....0],"taskbeat":56835}}}' [6300 bytes]
+2026-10-12 08:38:30,232 websockets.server DEBUG > TEXT '{"type":"patch","seq":299,"patch":{"stat":{"hea....0],"taskbeat":56928}}}' [6300 bytes]
+2026-10-12 08:38:30,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":300,"patch":{"stat":{"hea...0}],"taskbeat":57020}}}' [6058 bytes]
+2026-10-12 08:38:30,432 websockets.server DEBUG > TEXT '{"type":"patch","seq":301,"patch":{"stat":{"hea....0],"taskbeat":57112}}}' [6299 bytes]
+2026-10-12 08:38:30,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":302,"patch":{"stat":{"hea....0],"taskbeat":57205}}}' [6318 bytes]
+2026-10-12 08:38:30,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":303,"patch":{"stat":{"hea....0],"taskbeat":57299}}}' [6300 bytes]
+2026-10-12 08:38:30,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":304,"patch":{"stat":{"hea....0],"taskbeat":57391}}}' [6301 bytes]
+2026-10-12 08:38:30,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":305,"patch":{"stat":{"hea....0],"taskbeat":57484}}}' [6298 bytes]
+2026-10-12 08:38:30,932 websockets.server DEBUG > TEXT '{"type":"patch","seq":306,"patch":{"stat":{"hea....0],"taskbeat":57574}}}' [6306 bytes]
+2026-10-12 08:38:31,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":307,"patch":{"stat":{"hea....0],"taskbeat":57667}}}' [6299 bytes]
+2026-10-12 08:38:31,132 websockets.server DEBUG > TEXT '{"type":"patch","seq":308,"patch":{"stat":{"hea....0],"taskbeat":57760}}}' [6319 bytes]
+2026-10-12 08:38:31,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":309,"patch":{"stat":{"hea....0],"taskbeat":57852}}}' [6318 bytes]
+2026-10-12 08:38:31,332 websockets.server DEBUG > TEXT '{"type":"patch","seq":310,"patch":{"stat":{"hea....0],"taskbeat":57946}}}' [6305 bytes]
+2026-10-12 08:38:31,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":311,"patch":{"stat":{"hea....0],"taskbeat":58039}}}' [6282 bytes]
+2026-10-12 08:38:31,532 websockets.server DEBUG > TEXT '{"type":"patch","seq":312,"patch":{"stat":{"hea....0],"taskbeat":58132}}}' [6300 bytes]
+2026-10-12 08:38:31,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":313,"patch":{"stat":{"hea....0],"taskbeat":58224}}}' [6318 bytes]
+2026-10-12 08:38:31,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":314,"patch":{"stat":{"hea....0],"taskbeat":58317}}}' [6322 bytes]
+2026-10-12 08:38:31,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":315,"patch":{"stat":{"hea....0],"taskbeat":58410}}}' [6305 bytes]
+2026-10-12 08:38:31,932 websockets.server DEBUG > TEXT '{"type":"patch","seq":316,"patch":{"stat":{"hea....0],"taskbeat":58504}}}' [6279 bytes]
+2026-10-12 08:38:32,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":317,"patch":{"stat":{"hea....0],"taskbeat":58596}}}' [6318 bytes]
+2026-10-12 08:38:32,132 websockets.server DEBUG > TEXT '{"type":"patch","seq":318,"patch":{"stat":{"hea....0],"taskbeat":58690}}}' [6302 bytes]
+2026-10-12 08:38:32,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":319,"patch":{"stat":{"hea....0],"taskbeat":58782}}}' [6305 bytes]
+2026-10-12 08:38:32,332 websockets.server DEBUG > TEXT '{"type":"patch","seq":320,"patch":{"stat":{"hea....0],"taskbeat":58875}}}' [6260 bytes]
+2026-10-12 08:38:32,432 websockets.server DEBUG > TEXT '{"type":"patch","seq":321,"patch":{"stat":{"hea....0],"taskbeat":58968}}}' [6281 bytes]
+2026-10-12 08:38:32,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":322,"patch":{"stat":{"hea....0],"taskbeat":59060}}}' [6303 bytes]
+2026-10-12 08:38:32,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":323,"patch":{"stat":{"hea....0],"taskbeat":59153}}}' [6318 bytes]
+2026-10-12 08:38:32,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":324,"patch":{"stat":{"hea....0],"taskbeat":59245}}}' [6324 bytes]
+2026-10-12 08:38:32,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":325,"patch":{"stat":{"hea....0],"taskbeat":59338}}}' [6298 bytes]
+2026-10-12 08:38:32,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":326,"patch":{"stat":{"hea....0],"taskbeat":59431}}}' [6320 bytes]
+2026-10-12 08:38:33,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":327,"patch":{"stat":{"hea....0],"taskbeat":59523}}}' [6300 bytes]
+2026-10-12 08:38:33,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":328,"patch":{"stat":{"hea....0],"taskbeat":59614}}}' [6300 bytes]
+2026-10-12 08:38:33,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":329,"patch":{"stat":{"hea....0],"taskbeat":59707}}}' [6300 bytes]
+2026-10-12 08:38:33,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":330,"patch":{"stat":{"hea....0],"taskbeat":59799}}}' [6282 bytes]
+2026-10-12 08:38:33,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":331,"patch":{"stat":{"hea....0],"taskbeat":59891}}}' [6300 bytes]
+2026-10-12 08:38:33,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":332,"patch":{"stat":{"hea....0],"taskbeat":59982}}}' [6315 bytes]
+2026-10-12 08:38:33,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":333,"patch":{"stat":{"hea....0],"taskbeat":60074}}}' [6303 bytes]
+2026-10-12 08:38:33,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":334,"patch":{"stat":{"hea....0],"taskbeat":60165}}}' [6303 bytes]
+2026-10-12 08:38:33,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":335,"patch":{"stat":{"hea....0],"taskbeat":60256}}}' [6278 bytes]
+2026-10-12 08:38:33,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":336,"patch":{"stat":{"hea....0],"taskbeat":60347}}}' [6318 bytes]
+2026-10-12 08:38:34,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":337,"patch":{"stat":{"hea....0],"taskbeat":60439}}}' [6301 bytes]
+2026-10-12 08:38:34,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":338,"patch":{"stat":{"hea....0],"taskbeat":60529}}}' [6286 bytes]
+2026-10-12 08:38:34,232 websockets.server DEBUG > TEXT '{"type":"patch","seq":339,"patch":{"stat":{"hea....0],"taskbeat":60620}}}' [6278 bytes]
+2026-10-12 08:38:34,332 websockets.server DEBUG > TEXT '{"type":"patch","seq":340,"patch":{"stat":{"hea....0],"taskbeat":60711}}}' [6278 bytes]
+2026-10-12 08:38:34,432 websockets.server DEBUG > TEXT '{"type":"patch","seq":341,"patch":{"stat":{"hea....0],"taskbeat":60802}}}' [6320 bytes]
+2026-10-12 08:38:34,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":342,"patch":{"stat":{"hea....0],"taskbeat":60894}}}' [6287 bytes]
+2026-10-12 08:38:34,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":343,"patch":{"stat":{"hea....0],"taskbeat":60988}}}' [6285 bytes]
+2026-10-12 08:38:34,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":344,"patch":{"stat":{"hea....0],"taskbeat":61080}}}' [6320 bytes]
+2026-10-12 08:38:34,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":345,"patch":{"stat":{"hea....0],"taskbeat":61172}}}' [6320 bytes]
+2026-10-12 08:38:34,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":346,"patch":{"stat":{"hea....0],"taskbeat":61263}}}' [6264 bytes]
+2026-10-12 08:38:35,021 websockets.server DEBUG < CLOSE 1000 (OK) [2 bytes]
+2026-10-12 08:38:35,021 websockets.server DEBUG = connection is CLOSING
+2026-10-12 08:38:35,021 websockets.server DEBUG > CLOSE 1000 (OK) [2 bytes]
+2026-10-12 08:38:35,021 websockets.server DEBUG x half-closing TCP connection
+2026-10-12 08:38:35,021 websockets.server DEBUG = connection is CLOSED
+2026-10-12 08:38:35,022 lcnc_state.ws INFO client ('127.0.0.1', 37742) gone, 0 clients
+2026-10-12 08:38:35,022 websockets.server INFO connection closed
+2026-10-12 08:38:45,216 websockets.server DEBUG = connection is CONNECTING
+2026-10-12 08:38:45,216 websockets.server DEBUG < GET / HTTP/1.1
+2026-10-12 08:38:45,216 websockets.server DEBUG < Host: 127.0.0.1:8791
+2026-10-12 08:38:45,216 websockets.server DEBUG < Upgrade: websocket
+2026-10-12 08:38:45,216 websockets.server DEBUG < Connection: Upgrade
+2026-10-12 08:38:45,216 websockets.server DEBUG < Sec-WebSocket-Key: H8MI3ZOKHUHCTvLm8yRglw==
+2026-10-12 08:38:45,216 websockets.server DEBUG < Sec-WebSocket-Version: 13
+2026-10-12 08:38:45,216 websockets.server DEBUG < Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2026-10-12 08:38:45,216 websockets.server DEBUG < User-Agent: Python/3.13 websockets/13.1
+2026-10-12 08:38:45,217 websockets.server DEBUG > HTTP/1.1 101 Switching Protocols
+2026-10-12 08:38:45,217 websockets.server DEBUG > Upgrade: websocket
+2026-10-12 08:38:45,217 websockets.server DEBUG > Connection: Upgrade
+2026-10-12 08:38:45,217 websockets.server DEBUG > Sec-WebSocket-Accept: wC/UPgvqLBS8aGE1Fdq8l9PMTcA=
+2026-10-12 08:38:45,217 websockets.server DEBUG > Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12; client_max_window_bits=12
+2026-10-12 08:38:45,217 websockets.server DEBUG > Date: Mon, 12 Oct 2026 08:38:45 GMT
+2026-10-12 08:38:45,217 websockets.server DEBUG > Server: Python/3.13 websockets/13.1
+2026-10-12 08:38:45,217 websockets.server INFO connection open
+2026-10-12 08:38:45,217 websockets.server DEBUG = connection is OPEN
+2026-10-12 08:38:45,217 lcnc_state.ws INFO client ('127.0.0.1', 53952) connected (encoding=json view_key=None), 1 clients
+2026-10-12 08:38:45,217 websockets.server DEBUG > TEXT '{"type":"snapshot","seq":448,"epoch":"883b98e50...{"seq":0,"recent":[]}}}' [12591 bytes]
+2026-10-12 08:38:45,233 websockets.server DEBUG > TEXT '{"type":"patch","seq":449,"patch":{"stat":{"hea....0],"taskbeat":70814}}}' [6301 bytes]
+2026-10-12 08:38:45,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":450,"patch":{"stat":{"hea....0],"taskbeat":70906}}}' [6304 bytes]
+2026-10-12 08:38:45,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":451,"patch":{"stat":{"hea....0],"taskbeat":70999}}}' [6319 bytes]
+2026-10-12 08:38:45,532 websockets.server DEBUG > TEXT '{"type":"patch","seq":452,"patch":{"stat":{"hea....0],"taskbeat":71092}}}' [6322 bytes]
+2026-10-12 08:38:45,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":453,"patch":{"stat":{"hea....0],"taskbeat":71185}}}' [6282 bytes]
+2026-10-12 08:38:45,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":454,"patch":{"stat":{"hea....0],"taskbeat":71277}}}' [6301 bytes]
+2026-10-12 08:38:45,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":455,"patch":{"stat":{"hea....0],"taskbeat":71370}}}' [6301 bytes]
+2026-10-12 08:38:45,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":456,"patch":{"stat":{"hea....0],"taskbeat":71461}}}' [6300 bytes]
+2026-10-12 08:38:46,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":457,"patch":{"stat":{"hea....0],"taskbeat":71554}}}' [6279 bytes]
+2026-10-12 08:38:46,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":458,"patch":{"stat":{"hea....0],"taskbeat":71648}}}' [6316 bytes]
+2026-10-12 08:38:46,225 websockets.server DEBUG < TEXT '{"type": "command", "id": "c1", "name": "state"... ["STATE_ESTOP_RESET"]}' [79 bytes]
+2026-10-12 08:38:46,255 lcnc_state INFO command c1 state[2] serial=1 kind=quick send=30.3 ms
+2026-10-12 08:38:46,256 websockets.server DEBUG > TEXT '{"type":"patch","seq":459,"patch":{"stat":{"ech...":2,"taskbeat":71749}}}' [6351 bytes]
+2026-10-12 08:38:46,286 lcnc_state INFO command c1 state -> completed
+2026-10-12 08:38:46,286 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c1","outcome":"completed"}' [57 bytes]
+2026-10-12 08:38:46,288 websockets.server DEBUG < TEXT '{"type": "command", "id": "c2", "name": "state", "args": ["STATE_ON"]}' [70 bytes]
+2026-10-12 08:38:46,308 lcnc_state INFO command c2 state[4] serial=2 kind=quick send=20.2 ms
+2026-10-12 08:38:46,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":460,"patch":{"stat":{"ech...":4,"taskbeat":71817}}}' [6372 bytes]
+2026-10-12 08:38:46,338 lcnc_state INFO command c2 state -> completed
+2026-10-12 08:38:46,338 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c2","outcome":"completed"}' [57 bytes]
+2026-10-12 08:38:46,339 websockets.server DEBUG < TEXT '{"type": "command", "id": "c3", "name": "mode", "args": ["MODE_MANUAL"]}' [72 bytes]
+2026-10-12 08:38:46,359 lcnc_state INFO command c3 mode[1] serial=3 kind=quick send=20.2 ms
+2026-10-12 08:38:46,390 lcnc_state INFO command c3 mode -> completed
+2026-10-12 08:38:46,390 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c3","outcome":"completed"}' [57 bytes]
+2026-10-12 08:38:46,391 websockets.server DEBUG < TEXT '{"type": "command", "id": "c4", "name": "jog", ...T", true, 0, 5.0, 2.0]}' [92 bytes]
+2026-10-12 08:38:46,411 lcnc_state INFO command c4 jog[2, True, 0, 5.0, 2.0] serial=4 kind=quick send=20.2 ms
+2026-10-12 08:38:46,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":461,"patch":{"stat":{"cur...":2,"taskbeat":71906}}}' [6382 bytes]
+2026-10-12 08:38:46,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":462,"patch":{"stat":{"hea....0],"taskbeat":72000}}}' [6319 bytes]
+2026-10-12 08:38:46,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":463,"patch":{"stat":{"hea....0],"taskbeat":72093}}}' [6318 bytes]
+2026-10-12 08:38:46,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":464,"patch":{"stat":{"hea....0],"taskbeat":72185}}}' [6314 bytes]
+2026-10-12 08:38:46,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":465,"patch":{"stat":{"cur...":1,"taskbeat":72278}}}' [6355 bytes]
+2026-10-12 08:38:46,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":466,"patch":{"stat":{"hea....0],"taskbeat":72371}}}' [6193 bytes]
+2026-10-12 08:38:46,949 lcnc_state INFO command c4 jog -> accepted (RCS_DONE; effect not checkable in stat for jog)
+2026-10-12 08:38:46,949 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c4","outcome":"a...kable in stat for jog"}' [113 bytes]
+2026-10-12 08:38:47,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":467,"patch":{"stat":{"hea....0],"taskbeat":72464}}}' [6191 bytes]
+2026-10-12 08:38:47,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":468,"patch":{"stat":{"hea....0],"taskbeat":72554}}}' [6192 bytes]
+2026-10-12 08:38:47,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":469,"patch":{"stat":{"hea....0],"taskbeat":72646}}}' [6191 bytes]
+2026-10-12 08:38:47,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":470,"patch":{"stat":{"hea....0],"taskbeat":72738}}}' [6196 bytes]
+2026-10-12 08:38:47,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":471,"patch":{"stat":{"hea....0],"taskbeat":72829}}}' [6193 bytes]
+2026-10-12 08:38:47,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":472,"patch":{"stat":{"hea....0],"taskbeat":72922}}}' [6194 bytes]
+2026-10-12 08:38:47,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":473,"patch":{"stat":{"hea....0],"taskbeat":73015}}}' [6195 bytes]
+2026-10-12 08:38:47,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":474,"patch":{"stat":{"hea....0],"taskbeat":73107}}}' [6193 bytes]
+2026-10-12 08:38:47,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":475,"patch":{"stat":{"hea....0],"taskbeat":73201}}}' [6191 bytes]
+2026-10-12 08:38:47,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":476,"patch":{"stat":{"hea....0],"taskbeat":73294}}}' [6194 bytes]
+2026-10-12 08:38:48,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":477,"patch":{"stat":{"hea....0],"taskbeat":73388}}}' [6194 bytes]
+2026-10-12 08:38:48,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":478,"patch":{"stat":{"hea....0],"taskbeat":73480}}}' [6196 bytes]
+2026-10-12 08:38:48,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":479,"patch":{"stat":{"hea....0],"taskbeat":73574}}}' [6194 bytes]
+2026-10-12 08:38:48,288 websockets.server DEBUG < TEXT '{"type": "command", "id": "c5", "name": "jog", ...", true, 0, 5.0, -2.0]}' [93 bytes]
+2026-10-12 08:38:48,309 lcnc_state INFO command c5 jog[2, True, 0, 5.0, -2.0] serial=5 kind=quick send=20.2 ms
+2026-10-12 08:38:48,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":480,"patch":{"stat":{"cur...":2,"taskbeat":73666}}}' [6380 bytes]
+2026-10-12 08:38:48,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":481,"patch":{"stat":{"hea....0],"taskbeat":73758}}}' [6297 bytes]
+2026-10-12 08:38:48,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":482,"patch":{"stat":{"hea....0],"taskbeat":73851}}}' [6319 bytes]
+2026-10-12 08:38:48,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":483,"patch":{"stat":{"hea....0],"taskbeat":73943}}}' [6316 bytes]
+2026-10-12 08:38:48,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":484,"patch":{"stat":{"cur...":1,"taskbeat":74036}}}' [6358 bytes]
+2026-10-12 08:38:48,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":485,"patch":{"stat":{"hea....0],"taskbeat":74129}}}' [6188 bytes]
+2026-10-12 08:38:48,844 lcnc_state INFO command c5 jog -> accepted (RCS_DONE; effect not checkable in stat for jog)
+2026-10-12 08:38:48,844 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c5","outcome":"a...kable in stat for jog"}' [113 bytes]
+2026-10-12 08:38:48,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":486,"patch":{"stat":{"hea....0],"taskbeat":74222}}}' [6190 bytes]
+2026-10-12 08:38:49,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":487,"patch":{"stat":{"hea....0],"taskbeat":74315}}}' [6194 bytes]
+2026-10-12 08:38:49,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":488,"patch":{"stat":{"hea....0],"taskbeat":74408}}}' [6173 bytes]
+2026-10-12 08:38:49,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":489,"patch":{"stat":{"hea....0],"taskbeat":74501}}}' [6189 bytes]
+2026-10-12 08:38:49,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":490,"patch":{"stat":{"hea....0],"taskbeat":74593}}}' [6172 bytes]
+2026-10-12 08:38:49,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":491,"patch":{"stat":{"hea....0],"taskbeat":74686}}}' [6188 bytes]
+2026-10-12 08:38:49,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":492,"patch":{"stat":{"hea....0],"taskbeat":74779}}}' [6192 bytes]
+2026-10-12 08:38:49,632 websockets.server DEBUG > TEXT '{"type":"patch","seq":493,"patch":{"stat":{"hea....0],"taskbeat":74873}}}' [6188 bytes]
+2026-10-12 08:38:49,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":494,"patch":{"stat":{"hea....0],"taskbeat":74964}}}' [6191 bytes]
+2026-10-12 08:38:49,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":495,"patch":{"stat":{"hea....0],"taskbeat":75056}}}' [6191 bytes]
+2026-10-12 08:38:49,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":496,"patch":{"stat":{"hea....0],"taskbeat":75149}}}' [6189 bytes]
+2026-10-12 08:38:50,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":497,"patch":{"stat":{"hea....0],"taskbeat":75243}}}' [6191 bytes]
+2026-10-12 08:38:50,054 websockets.server DEBUG < TEXT '{"type": "command", "id": "c6", "name": "state", "args": ["STATE_OFF"]}' [71 bytes]
+2026-10-12 08:38:50,125 lcnc_state INFO command c6 state[3] serial=6 kind=quick send=70.5 ms
+2026-10-12 08:38:50,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":498,"patch":{"stat":{"ech...":2,"taskbeat":75287}}}' [6354 bytes]
+2026-10-12 08:38:50,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":499,"patch":{"stat":{"hea....0],"taskbeat":75379}}}' [6283 bytes]
+2026-10-12 08:38:50,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":500,"patch":{"stat":{"hea....0],"taskbeat":75472}}}' [6264 bytes]
+2026-10-12 08:38:50,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":501,"patch":{"stat":{"hea....0],"taskbeat":75565}}}' [6320 bytes]
+2026-10-12 08:38:50,530 websockets.server DEBUG > TEXT '{"type":"patch","seq":502,"patch":{"stat":{"hea....0],"taskbeat":75657}}}' [6264 bytes]
+2026-10-12 08:38:50,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":503,"patch":{"stat":{"hea....0],"taskbeat":75751}}}' [6301 bytes]
+2026-10-12 08:38:50,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":504,"patch":{"stat":{"hea....0],"taskbeat":75843}}}' [6277 bytes]
+2026-10-12 08:38:50,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":505,"patch":{"stat":{"hea....0],"taskbeat":75936}}}' [6314 bytes]
+2026-10-12 08:38:50,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":506,"patch":{"stat":{"hea....0],"taskbeat":76028}}}' [6301 bytes]
+2026-10-12 08:38:51,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":507,"patch":{"stat":{"hea....0],"taskbeat":76118}}}' [6264 bytes]
+2026-10-12 08:38:51,126 lcnc_state INFO command c6 state -> failed (RCS_DONE but stat does not show the effect within 1.0 s)
+2026-10-12 08:38:51,126 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c6","outcome":"f...e effect within 1.0 s"}' [120 bytes]
+2026-10-12 08:38:51,127 websockets.server DEBUG < TEXT '{"type": "command", "id": "c7", "name": "state", "args": ["STATE_ESTOP"]}' [73 bytes]
+2026-10-12 08:38:51,218 lcnc_state INFO command c7 state[1] serial=7 kind=quick send=90.7 ms
+2026-10-12 08:38:51,219 websockets.server DEBUG > TEXT '{"type":"patch","seq":508,"patch":{"stat":{"ech...":1,"taskbeat":76231}}}' [6365 bytes]
+2026-10-12 08:38:51,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":509,"patch":{"stat":{"hea....0],"taskbeat":76242}}}' [6314 bytes]
+2026-10-12 08:38:51,248 lcnc_state INFO command c7 state -> completed
+2026-10-12 08:38:51,248 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c7","outcome":"completed"}' [57 bytes]
+2026-10-12 08:38:51,330 websockets.server DEBUG > TEXT '{"type":"patch","seq":510,"patch":{"stat":{"hea....0],"taskbeat":76335}}}' [6317 bytes]
+2026-10-12 08:38:51,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":511,"patch":{"stat":{"hea....0],"taskbeat":76428}}}' [6282 bytes]
+2026-10-12 08:38:51,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":512,"patch":{"stat":{"hea....0],"taskbeat":76522}}}' [6301 bytes]
+2026-10-12 08:38:51,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":513,"patch":{"stat":{"hea....0],"taskbeat":76613}}}' [6283 bytes]
+2026-10-12 08:38:51,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":514,"patch":{"stat":{"hea....0],"taskbeat":76705}}}' [6314 bytes]
+2026-10-12 08:38:51,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":515,"patch":{"stat":{"hea....0],"taskbeat":76798}}}' [6281 bytes]
+2026-10-12 08:38:51,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":516,"patch":{"stat":{"hea....0],"taskbeat":76890}}}' [6316 bytes]
+2026-10-12 08:38:52,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":517,"patch":{"stat":{"hea....0],"taskbeat":76984}}}' [6278 bytes]
+2026-10-12 08:38:52,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":518,"patch":{"stat":{"hea....0],"taskbeat":77076}}}' [6299 bytes]
+2026-10-12 08:38:52,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":519,"patch":{"stat":{"hea....0],"taskbeat":77170}}}' [6282 bytes]
+2026-10-12 08:38:52,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":520,"patch":{"stat":{"hea....0],"taskbeat":77201}}}' [6299 bytes]
+2026-10-12 08:38:52,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":521,"patch":{"stat":{"ech....0],"taskbeat":77263}}}' [6325 bytes]
+2026-10-12 08:38:52,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":522,"patch":{"stat":{"hea....0],"taskbeat":77356}}}' [6314 bytes]
+2026-10-12 08:38:52,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":523,"patch":{"stat":{"hea....0],"taskbeat":77448}}}' [6281 bytes]
+2026-10-12 08:38:52,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":524,"patch":{"stat":{"hea....0],"taskbeat":77540}}}' [6283 bytes]
+2026-10-12 08:38:52,832 websockets.server DEBUG > TEXT '{"type":"patch","seq":525,"patch":{"stat":{"hea....0],"taskbeat":77633}}}' [6301 bytes]
+2026-10-12 08:38:52,906 websockets.server DEBUG < CLOSE 1000 (OK) [2 bytes]
+2026-10-12 08:38:52,906 websockets.server DEBUG = connection is CLOSING
+2026-10-12 08:38:52,906 websockets.server DEBUG > CLOSE 1000 (OK) [2 bytes]
+2026-10-12 08:38:52,906 websockets.server DEBUG x half-closing TCP connection
+2026-10-12 08:38:52,907 websockets.server DEBUG = connection is CLOSED
+2026-10-12 08:38:52,907 lcnc_state.ws INFO client ('127.0.0.1', 53952) gone, 0 clients
+2026-10-12 08:38:52,907 websockets.server INFO connection closed
+2026-10-12 08:39:08,440 websockets.server DEBUG = connection is CONNECTING
+2026-10-12 08:39:08,441 websockets.server DEBUG < GET / HTTP/1.1
+2026-10-12 08:39:08,441 websockets.server DEBUG < Host: 127.0.0.1:8791
+2026-10-12 08:39:08,441 websockets.server DEBUG < Upgrade: websocket
+2026-10-12 08:39:08,441 websockets.server DEBUG < Connection: Upgrade
+2026-10-12 08:39:08,441 websockets.server DEBUG < Sec-WebSocket-Key: 32AgMlcjB/Pv9KntONXpqg==
+2026-10-12 08:39:08,441 websockets.server DEBUG < Sec-WebSocket-Version: 13
+2026-10-12 08:39:08,441 websockets.server DEBUG < Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2026-10-12 08:39:08,441 websockets.server DEBUG < User-Agent: Python/3.13 websockets/13.1
+2026-10-12 08:39:08,441 websockets.server DEBUG > HTTP/1.1 101 Switching Protocols
+2026-10-12 08:39:08,441 websockets.server DEBUG > Upgrade: websocket
+2026-10-12 08:39:08,441 websockets.server DEBUG > Connection: Upgrade
+2026-10-12 08:39:08,441 websockets.server DEBUG > Sec-WebSocket-Accept: IE1CNIG9jacgnO4JIxtuEQxVncs=
+2026-10-12 08:39:08,441 websockets.server DEBUG > Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12; client_max_window_bits=12
+2026-10-12 08:39:08,441 websockets.server DEBUG > Date: Mon, 12 Oct 2026 08:39:08 GMT
+2026-10-12 08:39:08,441 websockets.server DEBUG > Server: Python/3.13 websockets/13.1
+2026-10-12 08:39:08,442 websockets.server INFO connection open
+2026-10-12 08:39:08,442 websockets.server DEBUG = connection is OPEN
+2026-10-12 08:39:08,442 lcnc_state.ws INFO client ('127.0.0.1', 36226) connected (encoding=json view_key=None), 1 clients
+2026-10-12 08:39:08,442 websockets.server DEBUG > TEXT '{"type":"snapshot","seq":681,"epoch":"883b98e50...{"seq":0,"recent":[]}}}' [12588 bytes]
+2026-10-12 08:39:08,532 websockets.server DEBUG > TEXT '{"type":"patch","seq":682,"patch":{"stat":{"hea....0],"taskbeat":92096}}}' [6283 bytes]
+2026-10-12 08:39:08,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":683,"patch":{"stat":{"hea....0],"taskbeat":92189}}}' [6318 bytes]
+2026-10-12 08:39:08,731 websockets.server DEBUG > TEXT '{"type":"patch","seq":684,"patch":{"stat":{"hea....0],"taskbeat":92281}}}' [6303 bytes]
+2026-10-12 08:39:08,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":685,"patch":{"stat":{"hea....0],"taskbeat":92374}}}' [6295 bytes]
+2026-10-12 08:39:08,932 websockets.server DEBUG > TEXT '{"type":"patch","seq":686,"patch":{"stat":{"hea....0],"taskbeat":92468}}}' [6275 bytes]
+2026-10-12 08:39:09,031 websockets.server DEBUG > TEXT '{"type":"patch","seq":687,"patch":{"stat":{"hea....0],"taskbeat":92561}}}' [6283 bytes]
+2026-10-12 08:39:09,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":688,"patch":{"stat":{"hea....0],"taskbeat":92654}}}' [6303 bytes]
+2026-10-12 08:39:09,232 websockets.server DEBUG > TEXT '{"type":"patch","seq":689,"patch":{"stat":{"hea....0],"taskbeat":92747}}}' [6300 bytes]
+2026-10-12 08:39:09,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":690,"patch":{"stat":{"hea....0],"taskbeat":92840}}}' [6302 bytes]
+2026-10-12 08:39:09,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":691,"patch":{"stat":{"hea....0],"taskbeat":92934}}}' [6302 bytes]
+2026-10-12 08:39:09,442 websockets.server DEBUG < TEXT '{"type": "command", "id": "c1", "name": "set_bl...elete", "args": [true]}' [75 bytes]
+2026-10-12 08:39:09,463 lcnc_state INFO command c1 set_block_delete[True] serial=12 kind=quick send=21.0 ms
+2026-10-12 08:39:09,493 lcnc_state INFO command c1 set_block_delete -> completed
+2026-10-12 08:39:09,494 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c1","outcome":"completed"}' [57 bytes]
+2026-10-12 08:39:09,494 websockets.server DEBUG < TEXT '{"type": "command", "id": "c2", "name": "set_bl...lete", "args": [false]}' [76 bytes]
+2026-10-12 08:39:09,515 lcnc_state INFO command c2 set_block_delete[False] serial=13 kind=quick send=20.7 ms
+2026-10-12 08:39:09,531 websockets.server DEBUG > TEXT '{"type":"patch","seq":692,"patch":{"stat":{"blo....0],"taskbeat":93027}}}' [6345 bytes]
+2026-10-12 08:39:09,545 lcnc_state INFO command c2 set_block_delete -> completed
+2026-10-12 08:39:09,545 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c2","outcome":"completed"}' [57 bytes]
+2026-10-12 08:39:09,546 websockets.server DEBUG < TEXT '{"type": "command", "id": "c3", "name": "set_bl...elete", "args": [true]}' [75 bytes]
+2026-10-12 08:39:09,567 lcnc_state INFO command c3 set_block_delete[True] serial=14 kind=quick send=21.0 ms
+2026-10-12 08:39:09,597 lcnc_state INFO command c3 set_block_delete -> completed
+2026-10-12 08:39:09,598 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c3","outcome":"completed"}' [57 bytes]
+2026-10-12 08:39:09,598 websockets.server DEBUG < TEXT '{"type": "command", "id": "c4", "name": "set_bl...lete", "args": [false]}' [76 bytes]
+2026-10-12 08:39:09,619 lcnc_state INFO command c4 set_block_delete[False] serial=15 kind=quick send=20.7 ms
+2026-10-12 08:39:09,631 websockets.server DEBUG > TEXT '{"type":"patch","seq":693,"patch":{"stat":{"ech....0],"taskbeat":93120}}}' [6346 bytes]
+2026-10-12 08:39:09,650 lcnc_state INFO command c4 set_block_delete -> completed
+2026-10-12 08:39:09,650 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c4","outcome":"completed"}' [57 bytes]
+2026-10-12 08:39:09,651 websockets.server DEBUG < TEXT '{"type": "command", "id": "c5", "name": "set_bl...elete", "args": [true]}' [75 bytes]
+2026-10-12 08:39:09,671 lcnc_state INFO command c5 set_block_delete[True] serial=16 kind=quick send=20.2 ms
+2026-10-12 08:39:09,701 lcnc_state INFO command c5 set_block_delete -> completed
+2026-10-12 08:39:09,702 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c5","outcome":"completed"}' [57 bytes]
+2026-10-12 08:39:09,702 websockets.server DEBUG < TEXT '{"type": "command", "id": "c6", "name": "set_bl...lete", "args": [false]}' [76 bytes]
+2026-10-12 08:39:09,722 lcnc_state INFO command c6 set_block_delete[False] serial=17 kind=quick send=20.2 ms
+2026-10-12 08:39:09,730 websockets.server DEBUG > TEXT '{"type":"patch","seq":694,"patch":{"stat":{"ech....0],"taskbeat":93212}}}' [6324 bytes]
+2026-10-12 08:39:09,753 lcnc_state INFO command c6 set_block_delete -> completed
+2026-10-12 08:39:09,753 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c6","outcome":"completed"}' [57 bytes]
+2026-10-12 08:39:09,753 websockets.server DEBUG < TEXT '{"type": "command", "id": "c7", "name": "set_bl...elete", "args": [true]}' [75 bytes]
+2026-10-12 08:39:09,774 lcnc_state INFO command c7 set_block_delete[True] serial=18 kind=quick send=20.2 ms
+2026-10-12 08:39:09,804 lcnc_state INFO command c7 set_block_delete -> completed
+2026-10-12 08:39:09,804 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c7","outcome":"completed"}' [57 bytes]
+2026-10-12 08:39:09,805 websockets.server DEBUG < TEXT '{"type": "command", "id": "c8", "name": "set_bl...lete", "args": [false]}' [76 bytes]
+2026-10-12 08:39:09,825 lcnc_state INFO command c8 set_block_delete[False] serial=19 kind=quick send=20.2 ms
+2026-10-12 08:39:09,831 websockets.server DEBUG > TEXT '{"type":"patch","seq":695,"patch":{"stat":{"ech....0],"taskbeat":93306}}}' [6307 bytes]
+2026-10-12 08:39:09,855 lcnc_state INFO command c8 set_block_delete -> completed
+2026-10-12 08:39:09,855 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c8","outcome":"completed"}' [57 bytes]
+2026-10-12 08:39:09,856 websockets.server DEBUG < TEXT '{"type": "command", "id": "c9", "name": "set_bl...elete", "args": [true]}' [75 bytes]
+2026-10-12 08:39:09,876 lcnc_state INFO command c9 set_block_delete[True] serial=20 kind=quick send=20.5 ms
+2026-10-12 08:39:09,906 lcnc_state INFO command c9 set_block_delete -> completed
+2026-10-12 08:39:09,907 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c9","outcome":"completed"}' [57 bytes]
+2026-10-12 08:39:09,907 websockets.server DEBUG < TEXT '{"type": "command", "id": "c10", "name": "set_b...lete", "args": [false]}' [77 bytes]
+2026-10-12 08:39:09,927 lcnc_state INFO command c10 set_block_delete[False] serial=21 kind=quick send=20.2 ms
+2026-10-12 08:39:09,931 websockets.server DEBUG > TEXT '{"type":"patch","seq":696,"patch":{"stat":{"ech....0],"taskbeat":93400}}}' [6318 bytes]
+2026-10-12 08:39:09,959 lcnc_state INFO command c10 set_block_delete -> completed
+2026-10-12 08:39:09,959 websockets.server DEBUG > TEXT '{"type":"command_result","id":"c10","outcome":"completed"}' [58 bytes]
+2026-10-12 08:39:10,032 websockets.server DEBUG > TEXT '{"type":"patch","seq":697,"patch":{"stat":{"hea....0],"taskbeat":93494}}}' [6276 bytes]
+2026-10-12 08:39:10,131 websockets.server DEBUG > TEXT '{"type":"patch","seq":698,"patch":{"stat":{"hea....0],"taskbeat":93585}}}' [6300 bytes]
+2026-10-12 08:39:10,231 websockets.server DEBUG > TEXT '{"type":"patch","seq":699,"patch":{"stat":{"hea....0],"taskbeat":93678}}}' [6282 bytes]
+2026-10-12 08:39:10,331 websockets.server DEBUG > TEXT '{"type":"patch","seq":700,"patch":{"stat":{"hea....0],"taskbeat":93772}}}' [6275 bytes]
+2026-10-12 08:39:10,431 websockets.server DEBUG > TEXT '{"type":"patch","seq":701,"patch":{"stat":{"hea....0],"taskbeat":93864}}}' [6276 bytes]
+2026-10-12 08:39:10,461 websockets.server DEBUG < CLOSE 1000 (OK) [2 bytes]
+2026-10-12 08:39:10,461 websockets.server DEBUG = connection is CLOSING
+2026-10-12 08:39:10,461 websockets.server DEBUG > CLOSE 1000 (OK) [2 bytes]
+2026-10-12 08:39:10,461 websockets.server DEBUG x half-closing TCP connection
+2026-10-12 08:39:10,462 websockets.server DEBUG = connection is CLOSED
+2026-10-12 08:39:10,462 lcnc_state.ws INFO client ('127.0.0.1', 36226) gone, 0 clients
+2026-10-12 08:39:10,462 websockets.server INFO connection closed
+2026-10-12 08:39:10,498 websockets.server INFO server closing
+2026-10-12 08:39:10,498 websockets.server INFO server closed
+2026-10-12 08:39:10,499 lcnc_state INFO trace: 701 ticks -> run/trace_live_100ms.jsonl.gz
+2026-10-12 08:39:10,499 lcnc_state INFO ticks=701 empty=0 seq=701

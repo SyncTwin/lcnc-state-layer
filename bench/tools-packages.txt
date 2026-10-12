@@ -1,0 +1,8 @@
+# Benchmark/test tooling only (not part of the product).
+# Debian packages:
+build-essential nlohmann-json3-dev libflatbuffers-dev flatbuffers-compiler
+protobuf-compiler python3-protobuf python3-flatbuffers python3-numpy python3-pytest nodejs
+python3-zmq               # ZMQ_WS probe only
+# Not in Debian, installed separately for the benchmark only:
+# pip: orjson==3.10.12 (Apache-2.0 OR MIT)
+# npm (bench/node/package.json): cbor-x 1.6.0 (MIT), @msgpack/msgpack 2.8.0 (ISC)

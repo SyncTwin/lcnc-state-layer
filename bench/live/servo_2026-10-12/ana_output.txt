@@ -1,0 +1,26 @@
+== rec_idle: patches 315 snapshot 12604 B
+  client dt ms: mean 100.00 sd 0.69 p50 100.06 p99 101.70 min 97.73 max 102.41
+  patch B mean 6295 p95 6320 | full B mean 12403 | deflate patch mean 115 p95 138 | deflate full mean 205
+== rec_jog: patches 77 snapshot 12591 B
+  client dt ms: mean 99.99 sd 19.08 p50 100.14 p99 173.50 min 12.08 max 188.03
+  patch B mean 6268 p95 6358 | full B mean 12410 | deflate patch mean 139 p95 194 | deflate full mean 232
+== trace ticks 701: dt ms mean 100.00 sd 4.91 p50 100.00 p99 101.15 max 188.08
+  changed: heartbeat 100%, joint 100%, taskbeat 100%, joint_actual_position 99%, joint_position 95%, echo_serial_number 2%, task_state 1%, current_vel 1%, inpos 1%, state 1%, estop 0%, enabled 0%
+  t=685944.249 task_state=1 mode=1 estop=1 enabled=False
+  t=685990.074 task_state=2 mode=1 estop=0 enabled=False
+  t=685990.149 task_state=4 mode=1 estop=0 enabled=True
+  t=685993.949 task_state=2 mode=1 estop=0 enabled=False
+  t=685995.037 task_state=1 mode=1 estop=1 enabled=False
+  before    seq 458 hal_enc→mm 1049.3789 hal_fb 1049.379 stream 1049.3790 Δ +0.0 µm
+  fwd0      seq 466 hal_enc→mm 1051.3779 hal_fb 1051.378 stream 1051.3744 Δ -3.5 µm
+  fwd1      seq 467 hal_enc→mm 1051.3789 hal_fb 1051.379 stream 1051.3778 Δ -1.0 µm
+  fwd2      seq 468 hal_enc→mm 1051.3792 hal_fb 1051.379 stream 1051.3789 Δ -0.3 µm
+  fwd3      seq 469 hal_enc→mm 1051.3793 hal_fb 1051.379 stream 1051.3792 Δ -0.1 µm
+  fwd4      seq 470 hal_enc→mm 1051.3794 hal_fb 1051.379 stream 1051.3794 Δ +0.0 µm
+  fwd5      seq 471 hal_enc→mm 1051.3794 hal_fb 1051.379 stream 1051.3794 Δ +0.0 µm
+  fwd_end   seq 479 hal_enc→mm 1051.3793 hal_fb 1051.379 stream 1051.3793 Δ -0.0 µm
+  back_end  seq 497 hal_enc→mm 1049.3786 hal_fb 1049.379 stream 1049.3786 Δ -0.0 µm
+  after_off seq 519 hal_enc→mm 1049.3809 hal_fb 1049.381 stream 1049.3809 Δ -0.0 µm
+  idle0     seq 41 hal_enc→mm 1049.3789 hal_fb 1049.379 stream 1049.3790 Δ +0.0 µm
+  idle1     seq 101 hal_enc→mm 1049.3789 hal_fb 1049.379 stream 1049.3789 Δ +0.0 µm
+[{'name': 'set_block_delete', 'args': [True], 'outcome': 'completed', 'error': None, 'ms': 52.2}, {'name': 'set_block_delete', 'args': [False], 'outcome': 'completed', 'error': None, 'ms': 51.7}, {'name': 'set_block_delete', 'args': [True], 'outcome': 'completed', 'error': None, 'ms': 52.0}, {'name': 'set_block_delete', 'args': [False], 'outcome': 'completed', 'error': None, 'ms': 52.8}, {'name': 'set_block_delete', 'args': [True], 'outcome': 'completed', 'error': None, 'ms': 51.1}, {'name': 'set_block_delete', 'args': [False], 'outcome': 'completed', 'error': None, 'ms': 51.2}, {'name': 'set_block_delete', 'args': [True], 'outcome': 'completed', 'error': None, 'ms': 51.0}, {'name': 'set_block_delete', 'args': [False], 'outcome': 'completed', 'error': None, 'ms': 51.1}, {'name': 'set_block_delete', 'args': [True], 'outcome': 'completed', 'error': None, 'ms': 51.3}, {'name': 'set_block_delete', 'args': [False], 'outcome': 'completed', 'error': None, 'ms': 52.6}]

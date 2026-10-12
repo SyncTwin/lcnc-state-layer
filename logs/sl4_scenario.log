@@ -1,0 +1,35 @@
+2026-10-12 03:42:09,307 sl4 INFO OK  1 invalid | A | fly() -> failed (expect failed) unknown command 'fly'
+2026-10-12 03:42:09,308 sl4 INFO OK  1 invalid | B | mode('MODE_BOGUS') -> failed (expect failed) CommandError: unknown constant 'MODE_BOGUS' (expected MODE_*)
+2026-10-12 03:42:09,309 sl4 INFO OK  1 invalid | B | mdi() without argument -> failed (expect failed) TypeError: function takes exactly 1 argument (0 given)
+2026-10-12 03:42:09,361 sl4 INFO OK  2 wrong state | B | unhome(0) in teleop mode -> failed (expect failed) must be in joint mode or disabled to unhome
+2026-10-12 03:42:09,662 sl4 INFO OK  2 wrong state | A+B | error entry seen by both clients -> 1/1 (expect both ≥1) must be in joint mode or disabled to unhome
+2026-10-12 03:42:09,715 sl4 INFO OK  2 wrong state | A | mdi('G0 X10') in MODE_MANUAL -> failed (expect failed) RCS_ERROR: Must be in MDI mode to issue MDI command
+2026-10-12 03:42:10,755 sl4 INFO OK  3 concurrent | A | 10× set_block_delete -> ['completed'] (expect ['completed']) own ids only: True
+2026-10-12 03:42:10,755 sl4 INFO OK  3 concurrent | B | 10× set_block_delete -> ['completed'] (expect ['completed']) interleaved with A's in one sidecar queue
+2026-10-12 03:42:12,061 sl4 INFO OK  4 mdi | A | mdi('G90 G0 X20 Y15') -> completed (expect completed) after 1.24 s
+2026-10-12 03:42:12,062 sl4 INFO OK  4 mdi | raw stat | machine stopped at the moment of completed -> vel=0 dtg=0 inpos=True interp=1 (expect vel=0 dtg=0 inpos interp=IDLE) position [20.0, 15.0] = 20,15 + g5x_offset [0.0, 0.0]
+2026-10-12 03:42:15,361 sl4 INFO OK  5 abort | B | abort() during run -> completed (expect completed) 
+2026-10-12 03:42:15,361 sl4 INFO OK  5 abort | A | run(axis.ngc) aborted by B -> aborted (expect aborted) 
+2026-10-12 03:42:15,412 sl4 INFO OK  5 abort | A | program_end.reason -> aborted (expect aborted) 
+2026-10-12 03:42:52,760 sl4 INFO OK  6 completed | A | run(gmoccapy_2_tools_with_cutter_radius_compensation.ngc) -> completed (expect completed) 
+2026-10-12 03:42:53,061 sl4 INFO OK  6 completed | B | program_end.reason seen by B -> completed (expect completed) 
+2026-10-12 03:42:53,196 sl4 INFO OK  7 error | A | run(error_test.ngc) -> failed (expect failed) RCS_ERROR: invalid params in linear command
+2026-10-12 03:42:53,497 sl4 INFO OK  7 error | B | program_end.reason seen by B -> error (expect error) Linear move on line 5 would exceed X's positive limit; Linear move on line 5 would exceed joint 0's positive limit max:[254.000000]; invalid params in linear command
+2026-10-12 03:42:53,499 sl4 INFO OK  8 expect_file | A | run(expect_file=other) -> failed (expect failed) loaded program '/home/user/lcnc-state-layer/sim/error_test.ngc' is not the expected '/nonexistent/other.ngc'
+2026-10-12 03:42:59,646 sl4 INFO foreign writer output:
+writer: sent 266 commands in 6.0 s
+writer: mine demo: task_mode=1, c1.mdi() serial=1908, c2 serial=1909, echo=1909, c1.wait_complete() -> 1 (RCS_DONE=1, RCS_ERROR=3)
+
+2026-10-12 03:42:59,646 sl4 INFO OK  9 foreign writer | B | 58× program_open(nonexistent) while another client writes -> {'failed': 58} (expect no completed) accepted = echo moved past our serial before its status was seen
+2026-10-12 03:42:59,646 sl4 INFO OK  9 foreign writer | raw emcmodule | c1.mdi() in MANUAL (fails), c2 command, c1.wait_complete() -> 1 (expect 1 (=RCS_DONE: the mine)) writer: mine demo: task_mode=1, c1.mdi() serial=1908, c2 serial=1909, echo=1909, c1.wait_complete() -> 1 (RCS_DONE=1, RCS_ERROR=3)
+2026-10-12 03:43:05,982 sl4 INFO OK  10 second reader | sidecar vs reader | 20 failing program_open, other reader polls every 0.2 s -> sidecar 40, other reader 0 (expect sum = all errors) error_channel is a single-consumer queue (cms_in.cc:817-828): an entry goes to whichever reader polls first
+2026-10-12 03:43:12,310 sl4 INFO OK  10 second reader | sidecar vs reader | 20 failing program_open, other reader polls every 0.005 s -> sidecar 0, other reader 40 (expect sum = all errors) error_channel is a single-consumer queue (cms_in.cc:817-828): an entry goes to whichever reader polls first
+2026-10-12 03:43:12,315 sl4 INFO OK  11 view state | A2 (key A) | snapshot.view_state on connect -> {'tab': 'auto', 'zoom': 1.5} (expect {'tab': 'auto', 'zoom': 1.5}) 
+2026-10-12 03:43:12,616 sl4 INFO OK  11 view state | A2 (key A) | view_state pushed when A changes it -> {'tab': 'auto', 'zoom': 2.0} (expect {'tab': 'auto', 'zoom': 2.0}) 
+2026-10-12 03:43:12,824 sl4 INFO OK  11 view state | A (reconnect) | own blob back -> {'tab': 'auto', 'zoom': 2.0} (expect {'tab': 'auto', 'zoom': 2.0}) 
+2026-10-12 03:43:12,824 sl4 INFO OK  11 view state | B (reconnect) | own blob back -> {'tab': 'mdi', 'dro': 'machine'} (expect {'tab': 'mdi', 'dro': 'machine'}) 
+2026-10-12 03:43:12,826 lcnc_state_client WARNING server error: view_state_put: blob of 71725 bytes exceeds 65536
+2026-10-12 03:43:13,130 sl4 INFO OK  11 view state | B | 70 KiB blob refused, old blob kept -> {'tab': 'mdi', 'dro': 'machine'} (expect {'tab': 'mdi', 'dro': 'machine'}) limit 64 KiB (ASSUMPTION, not measured)
+2026-10-12 03:43:15,140 sl4 INFO OK  12 read-only | R | command to a sidecar without --allow-commands -> failed (expect failed) commands disabled: sidecar runs read-only, start it with --allow-commands
+2026-10-12 03:43:30,141 sl4 WARNING read-only sidecar did not stop on SIGTERM within 15 s
+2026-10-12 03:43:30,143 sl4 INFO 28 checks, 0 failed

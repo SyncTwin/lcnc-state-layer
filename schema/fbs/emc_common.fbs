@@ -1,0 +1,21 @@
+// Copied verbatim from https://github.com/rmu75/linuxcnc/blob/07c35ceb762f83492b95ad5aab5673910072833a/src/emc/flatbuf/emc_common.fbs
+// (rmu75, branch rs/zmq-experiments; LinuxCNC tree, GPL-2.0). See PROVENANCE.md.
+namespace EMC;
+
+struct Pose {
+  x: double;
+  y: double;
+  z: double;
+  a: double;
+  b: double;
+  c: double;
+  u: double;
+  v: double;
+  w: double;
+}
+
+struct Cartesian {
+  x: double;
+  y: double;
+  z: double;
+}

@@ -1,0 +1,98 @@
+generated 91 fields into /home/user/lcnc-state-layer/bench/build/gen
+== axis_100ms: period 0.1 s, C++ x20, python3.12 x5, node x20
+cpp bench: 1383 ticks, 20 repeats
+json_full 
+json_merge_patch 
+cbor_full 
+cbor_merge_patch 
+msgpack_full 
+msgpack_merge_patch 
+json_merge_patch_objidx_structs 
+json_merge_patch_objidx_all 
+fb_full 
+fb_delta EmcStatDelta: changed fields only (optional scalars), arrays whole
+json_full_read5 decode = parse to DOM + read the same 5 fields
+fb_full_read5 decode = verify + read task_state, interp_state, motion_line, current_vel, position
+py bench: axis_100ms, 1383 ticks, period 0.1 s, 5 repeats
+  json json_full 
+  json json_merge_patch 
+  json+zlib json_full_deflate permessage-deflate simulated: raw deflate, context takeover, level 6
+  json+zlib json_merge_patch_deflate permessage-deflate simulated (RFC 7692)
+  json json_merge_patch_no_beats heartbeat, taskbeat dropped (sidecar --drop-fields)
+  json json_merge_patch_no_beats_deadband + float deadband 1e-4 (mkwrapper threshold)
+  json json_merge_patch_objidx_structs arrays of objects as {index: obj}
+  json json_merge_patch_objidx_all all arrays as {index: value}
+  orjson json_full 
+  orjson json_merge_patch 
+  cbor2 cbor_full 
+  cbor2 cbor_merge_patch 
+  msgpack msgpack_full 
+  msgpack msgpack_merge_patch 
+  flatbuffers fb_full 
+  flatbuffers fb_delta EmcStatDelta: changed fields only, arrays whole
+  protobuf pb_machinetalk_full Machinetalk status.proto, motion+io+task+interp
+  protobuf pb_machinetalk_incremental mkwrapper style: changed fields, repeated by index, float threshold 1e-4
+  JSON json_full 
+  JSON json_merge_patch 
+  cbor-x cbor_full 
+  cbor-x cbor_merge_patch 
+  @msgpack/msgpack msgpack_full 
+  @msgpack/msgpack msgpack_merge_patch 
+== wrote /home/user/lcnc-state-layer/bench/results/axis_100ms.csv and axis_100ms.md
+generated 91 fields into /home/user/lcnc-state-layer/bench/build/gen
+== gmoccapy_2_tools_with_cutter_radius_compensation_100ms: period 0.1 s, C++ x20, python3.12 x5, node x20
+cpp bench: 431 ticks, 20 repeats
+json_full 
+json_merge_patch 
+cbor_full 
+cbor_merge_patch 
+msgpack_full 
+msgpack_merge_patch 
+json_merge_patch_objidx_structs 
+json_merge_patch_objidx_all 
+fb_full 
+fb_delta EmcStatDelta: changed fields only (optional scalars), arrays whole
+json_full_read5 decode = parse to DOM + read the same 5 fields
+fb_full_read5 decode = verify + read task_state, interp_state, motion_line, current_vel, position
+py bench: gmoccapy_2_tools_with_cutter_radius_compensation_100ms, 431 ticks, period 0.1 s, 5 repeats
+  json json_full 
+  json json_merge_patch 
+  json+zlib json_full_deflate permessage-deflate simulated: raw deflate, context takeover, level 6
+  json+zlib json_merge_patch_deflate permessage-deflate simulated (RFC 7692)
+  json json_merge_patch_no_beats heartbeat, taskbeat dropped (sidecar --drop-fields)
+  json json_merge_patch_no_beats_deadband + float deadband 1e-4 (mkwrapper threshold)
+  json json_merge_patch_objidx_structs arrays of objects as {index: obj}
+  json json_merge_patch_objidx_all all arrays as {index: value}
+  orjson json_full 
+  orjson json_merge_patch 
+  cbor2 cbor_full 
+  cbor2 cbor_merge_patch 
+  msgpack msgpack_full 
+  msgpack msgpack_merge_patch 
+  flatbuffers fb_full 
+  flatbuffers fb_delta EmcStatDelta: changed fields only, arrays whole
+  protobuf pb_machinetalk_full Machinetalk status.proto, motion+io+task+interp
+  protobuf pb_machinetalk_incremental mkwrapper style: changed fields, repeated by index, float threshold 1e-4
+  JSON json_full 
+  JSON json_merge_patch 
+  cbor-x cbor_full 
+  cbor-x cbor_merge_patch 
+  @msgpack/msgpack msgpack_full 
+  @msgpack/msgpack msgpack_merge_patch 
+== wrote /home/user/lcnc-state-layer/bench/results/gmoccapy_2_tools_with_cutter_radius_compensation_100ms.csv and gmoccapy_2_tools_with_cutter_radius_compensation_100ms.md
+generated 91 fields into /home/user/lcnc-state-layer/bench/build/gen
+== axis_20ms: period 0.02 s, C++ x5, python3.12 x2, node x10
+cpp bench: 6825 ticks, 5 repeats
+json_full 
+json_merge_patch 
+cbor_full 
+cbor_merge_patch 
+msgpack_full 
+msgpack_merge_patch 
+json_merge_patch_objidx_structs 
+json_merge_patch_objidx_all 
+fb_full 
+fb_delta EmcStatDelta: changed fields only (optional scalars), arrays whole
+json_full_read5 decode = parse to DOM + read the same 5 fields
+fb_full_read5 decode = verify + read task_state, interp_state, motion_line, current_vel, position
+py bench: axis_20ms, 6825 ticks, period 0.02 s, 2 repeats

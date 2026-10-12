@@ -1,0 +1,310 @@
+:lang: en
+:toc:
+
+= REQUIREMENTS: inventory of the upstream discussion and what the prototype covers
+
+Sources: LinuxCNC/linuxcnc discussions and PRs #4571, #4615, #4613, #3580, #3836, #4616,
+#4627, #4644, #4653 (read 2026-10-12; links in the table). Code: rmu75 `rs/zmq-experiments` @ `07c35ceb762f`
+(`src/emc/flatbuf/*.fbs`), LinuxCNC `master` @ `2655e62fe6aa` (`VERSION` = `2.10.0~pre2`).
+
+Status: ✅ shown (log) · ◐ partly · ✗ not done, with the reason · ⬜ not done yet.
+"CC-n" is a row of `CORE_CHANGES.adoc`. State of the code: this repository.
+
+== A. Chris's list (issuecomment-6104978584 in #4613) and grandixximo's breakdown (discussioncomment-18871710 in #4571)
+
+[cols="1,3,4,6,4",options="header"]
+|===
+| # | Requirement | Said by (URL) | How the prototype covers it / why not | Status
+
+| A1
+| Jog rate / selected axis / increment out of sync between halui and the GUI; panel pre-checks (cycle start through the GUI)
+| c-morley https://github.com/LinuxCNC/linuxcnc/pull/4613#issuecomment-6104978584 , https://github.com/LinuxCNC/linuxcnc/pull/4613#issuecomment-5946042186 ; grandixximo https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18848558
+| **Not implemented.** There is no `operating` state and no `set_operating` command in the sidecar, the client or the message schema (an earlier plan for them was dropped). halui would not see such values anyway (halui is a separate NML client with its own pins), so the desync with halui would remain. Panel pre-checks (the core asks the client in focus): not possible, NML has no "core to one client" channel (CC-8).
+| ✗ operating state not done (CC-12); pre-checks ✗ (CC-8)
+
+| A2
+| One GUI or a panel with switches owns its state
+| c-morley (same); rmu75 https://github.com/LinuxCNC/linuxcnc/pull/4613#issuecomment-6113393443
+| The sidecar imposes nothing: it holds no machine state of its own, it only reads. Read-only by default.
+| ✅ the sidecar keeps no machine state; read-only by default (`logs/sl4_results.md` #12)
+
+| A3
+| "Three modes" and direct commands (setting an origin without a mode change)
+| c-morley (same); zz912 https://github.com/LinuxCNC/linuxcnc/pull/3580#issuecomment-3765382672
+| No. Any G-code command goes through `mode(MDI)` + `mdi()`; the sidecar can hide this behind one command, but the `task_mode` change is still visible to all clients in the stat stream -- exactly the "blinking" Chris complains about. A core command is needed (CC-9).
+| ✗ CC-9
+
+| A4
+| Read the program from LinuxCNC, not from a file (desync)
+| c-morley (same); alex-pres https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18801482 , https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18835736
+| stat has only `file` (the path); the program text is not in NML. The sidecar could only read the same file from disk, with the same desync risk. Not done (CC-10).
+| ✗ CC-10
+
+| A5
+| Errors eaten by the first poller
+| c-morley (same); BsAtHome https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18515435 ; grandixximo https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18521152 ; rmu75 https://github.com/LinuxCNC/linuxcnc/pull/3580#issuecomment-3422052670
+| The sidecar is the only reader of `linuxcnc.error_channel` and hands every error to ALL its clients (an `errors` entry with its own `seq`, a ring of the last N in the snapshot). **This holds only if no other process reads the channel.** AXIS or another GUI next to the sidecar shares the queue with it (a property of NML, `cms_in.cc`, CC-2) and each takes entries away from the other. Option `--no-error-channel`: the sidecar does not read the channel at all and leaves every error to the GUI; its clients then get no error text and command outcomes rest on RCS status and stat only.
+| ✗ next to a GUI that reads the error channel, sidecar started without the option (`sl4_results.md` #10: 40 of 40 taken by the other reader, CC-2); ◐ with `--no-error-channel` (the GUI keeps its errors, the sidecar's clients lose the texts); ✅ only when the sidecar is the sole reader (`sl4_results.md` #2)
+
+| A6
+| Command outcome: finished / failed / aborted
+| c-morley (same); grandixximo https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18849954
+| `command{id}` gives `command_result{id, outcome}` to exactly that client. The outcome is derived from the RCS status of the sidecar's own serial plus, for long commands (MDI, AUTO_RUN), from the transition of `exec_state` / `interp_state` to IDLE and from errors in the command's window -- a **heuristic** (CC-1, CC-3). Values: `completed`, `failed`, `aborted`, `accepted`, `unknown` (see `state-layer.adoc`).
+| ◐ completed / failed / aborted / accepted to each client -- ✅ (`sl4_results.md` #1-9); error binding is a heuristic (CC-1, CC-3)
+
+| A7
+| Tool table and offsets edited outside the controller through the var file
+| c-morley (same)
+| Read: `tool_table`, `g5x_offset` (active coordinate system only), `g92_offset`, `tool_offset` are in the snapshot. The other coordinate systems (G54..G59.3) are not in stat. Writing through the sidecar is possible only as G10 through MDI (mode change, A3). CC-11.
+| ◐ tool table / active coordinate system readable; editing ✗ (CC-11)
+
+| A8
+| End of program, for a part counter
+| c-morley (same); grandixximo discussioncomment-18871710
+| `program_end{reason: completed\|aborted\|error, seq}` in the state; derived from `interp_state` / `exec_state` transitions, channel errors and who sent the abort -- a **heuristic** (CC-4).
+| ◐ completed / aborted / error ✅ (`sl4_results.md` #5-7); an abort from AXIS is not distinguished (CC-4)
+
+| A9
+| halui inside task limits the alternatives (panelui)
+| c-morley (same); rene-dev https://github.com/LinuxCNC/linuxcnc/pull/4644
+| The sidecar is an external client of a public protocol; a replacement panel can be one more websocket client. The sidecar exposes no HAL pins (out of scope).
+| ◐ a replacement panel = a websocket client; no HAL pins
+|===
+
+== B. Requirements 1-4 of the meeting summary (grandixximo discussioncomment-18871710)
+
+[cols="1,3,4,6,4",options="header"]
+|===
+| # | Requirement | Said by (URL) | How the prototype covers it | Status
+
+| B1
+| Full snapshot on connect, then JSON Merge Patch (named "RFC 7386" in the thread; the current RFC is 7396) with `seq`; a gap leads to a snapshot request
+| https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18871710
+| `snapshot{seq,state}` then `patch{seq,patch}`; no change, no message; a client that sees a gap sends `resync_request` and gets a `snapshot`.
+| ✅ `logs/sl2_*.log`: 41/41 comparisons, 54 gaps led to 54 resyncs, 0 mismatches
+
+| B2
+| Commands answered to EVERY client with completed / failed / aborted; errors not eaten
+| same; = A5, A6
+| See A5, A6.
+| ◐ see A5, A6
+
+| B3
+| View state is an opaque block, the core does not parse it
+| alex-pres https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18868495 ; grandixximo discussioncomment-18871710
+| `view_state_put{key,blob}`; the sidecar stores it per key and returns it in `snapshot.view_state` on a connection with the same key; other connections with that key get it pushed (like alex-pres's "UI session data", discussioncomment-18801482).
+| ✅ `sl4_results.md` #11
+
+| B4
+| Reason a program ended, in the state
+| = A8
+| See A8.
+| ◐ see A8
+
+| B5
+| Measure the encodings on the same EMC_STAT messages: bytes and CPU per update on each side
+| grandixximo discussioncomment-18871710
+| `bench/run.sh` on traces of live program runs: JSON / CBOR / MsgPack full and Merge Patch, flatbuffers full (+ delta), C++ / Python / node.
+| ✅ `BENCH.adoc`, `bench/results/*.csv` (sim on stock upstream `2655e62fe`, repeated on a second stock build; one live run on a downstream build, see BENCH)
+
+| B6
+| One schema for C++, Python and the browser (JSON alone has no schema)
+| same
+| `schema/emc_stat.schema.json` + `schema/messages.schema.json` (draft 2020-12); traces and messages are checked with `jsonschema`. For flatbuffers a separate `.fbs` is needed (the second schema is a drawback of that variant); here it is generated from the same JSON Schema. **The schema describes one build:** 91 `linuxcnc.stat` fields, taken from the sim build. The live stand reports 88 fields (another build of 2.10), the schema has `additionalProperties: false` and the same `SCHEMA_VERSION = 1`, and the live trace was not validated against it. There is no per-build schema and no rule yet for fields that appear or disappear between builds.
+| ◐ 0 of 10 790 ticks outside the schema (`logs/sl3_trace_summary.md`) -- for the 91-field sim build only; the `.fbs` is generated from the same JSON Schema
+|===
+
+== C. Other points from the threads
+
+[cols="1,3,4,6,4",options="header"]
+|===
+| # | Requirement | Said by (URL) | How the prototype covers it | Status
+
+| C1
+| Transport: websocket, the browser is first class, no bridge
+| rene-dev https://github.com/LinuxCNC/linuxcnc/discussions/4571 (first post), https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18777792 ; rmu75 https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18778022 ; alex-pres https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18791278
+| Websocket server in the sidecar; a browser client without a bridge.
+| ✅ browser client `clients/web/` (patch-apply code checked in node: `logs/sl5_web_node_check.log`; not run in a real browser)
+
+| C2
+| Evaluate ZMQ over websocket
+| rmu75 https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18759818 , https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18771230 ; meeting summary by andypugh https://github.com/LinuxCNC/linuxcnc/discussions/4615#discussioncomment-18861086
+| `ZMQ_WS.md` (SL-6)
+| ✅ `ZMQ_WS.md` (probe `logs/sl6_zmq_ws_probe.log`)
+
+| C3
+| The transport must be replaceable; the interface must not depend on it
+| BsAtHome https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18777650 ; rmu75 https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18778096
+| The protocol is defined by the message schema, websocket is one transport; the sidecar core (state, seq, patches, commands) is separate from the transport in the code. No second transport was built.
+| ◐ protocol in a schema, one transport (websocket); CBOR / MsgPack by the `encoding=` parameter
+
+| C4
+| A client can vanish unnoticed: ping / timeout needed
+| rmu75 https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18517121 , https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18529557 ; alex-pres https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18759651
+| Websocket ping/pong with a timeout (server parameters).
+| ✅ websocket ping 20 s + application `ping` / `keepalive`; the client has `down/trying/up`
+
+| C5
+| Do not buffer forever for stuck clients; do not replay everything on reconnect
+| rmu75 https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18771183
+| The per-client queue is bounded; on overflow the client is disconnected or gets a snapshot instead of the patch history.
+| ✅ bounded queue + snapshot on overflow (`server.py Client.push`); overflow was not triggered by a run
+
+| C6
+| Versioning: today a UI/task build mismatch is not detected (memcpy of `sizeof(EMC_STAT)`)
+| grandixximo https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18521152
+| `snapshot.schema_version` + the field list in the schema; the client compares. A mismatch between the sidecar and LinuxCNC is invisible to the sidecar (it sits on the same emcmodule, CC-7). **`schema_version` is a single constant (1) for a schema that describes one build** (91 fields vs 88 on the live stand), so it does not tell two real builds apart.
+| ◐ `schema_version` and `epoch` in the snapshot; LinuxCNC vs emcmodule mismatch (CC-7); no way to tell builds apart (see B6)
+
+| C7
+| XDR: task marshals the whole EMC_STAT every cycle, every UI parses it
+| grandixximo discussioncomment-18521152 (`emctaskmain.cc:3779`, `linuxcnc.nml` `xdr`)
+| For reference in BENCH: the NML status buffer size from `linuxcnc.nml` and the sidecar's full snapshot.
+| ✅ sizes in BENCH (full EMC_STAT via NML is for reference, from `linuxcnc.nml`)
+
+| C8
+| UI status polling is 20 ms, errors 200 ms (`axis.py:789,834`)
+| grandixximo discussioncomment-18521152
+| The poll rate of the measurement follows `axis_mm.ini` `[DISPLAY]CYCLE_TIME` and `axis.py` (file:line in BENCH); 20 ms is an additional trace.
+| ◐ period from `[DISPLAY]CYCLE_TIME` = 0.100 s (`axis.py:3663-3667`) ✅; the 20 ms trace was recorded but not benchmarked (see BENCH)
+
+| C9
+| Websocket for local clients on loopback too, one code path
+| grandixximo discussioncomment-18521152 ; alex-pres (AF_UNIX) https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18810027
+| Listens on 127.0.0.1 by default.
+| ✅ `--host 127.0.0.1` by default
+
+| C10
+| Transmit only the full state; the client derives events and edges itself
+| rmu75 https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18849353 ; grandixximo https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18849954
+| A patch is a difference of states, not events; `program_end` and errors are state fields (with `seq`), not one-shot events.
+| ✅ patch = difference of states; errors and `program_end` are state fields with `seq`
+
+| C11
+| Run names the program it expects; the core refuses if another one is loaded
+| grandixximo https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18848558 , discussioncomment-18849954
+| Command `run{expect_file}`: the sidecar compares `stat.file` and refuses (`failed`). The race window between the check and AUTO_RUN remains (CC-6).
+| ◐ `run{expect_file}` ✅ (`sl4_results.md` #8); race window (CC-6)
+
+| C12
+| Focus / arbitration between several UIs, request-response core to client
+| grandixximo discussioncomment-18848558
+| No: outside requirements 1-4; NML has no "core to client" channel (CC-8).
+| ✗ CC-8
+
+| C13
+| Feed hold / stop / abort must not depend on the liveness of the GUI
+| grandixximo discussioncomment-18848558
+| The sidecar intercepts nothing; LinuxCNC runs without it as before. A sidecar crash does not touch task. (With `--allow-commands` abort and estop are sent by a second process at once, without waiting in the command queue.)
+| ✅ the sidecar intercepts nothing (LinuxCNC works without it)
+
+| C14
+| Several UIs at once (phone, tablet pendant, DRO)
+| rmu75 https://github.com/LinuxCNC/linuxcnc/pull/4613#issuecomment-6113349087 , https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18763139
+| N clients on one sidecar. Checked: two Python clients + node connected and receiving state at once, `seq` without gaps. **Several clients sending commands at the same time was not tested** (the queue serialises them by design; no run shows how outcomes behave with concurrent senders).
+| ◐ simultaneous readers checked (2 Python + node; the browser code only in node); simultaneous command senders not checked
+
+| C15
+| A hello with the machine configuration (axes / joints, limits, spindles, units)
+| alex-pres https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18801482
+| The snapshot has what is in stat (`axis`, `joint`, `joints`, `spindles`, `axis_mask`, `linear_units`, `max_velocity` ...); INI-only fields (is_lathe, min overrides) are not there.
+| ◐ what is in stat
+
+| C16
+| A separate channel for big data (/preview) so status is not delayed
+| alex-pres https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18835736
+| No (preview and program text are out of scope).
+| ✗ out of scope
+
+| C17
+| Central preview/backplot, tool table editor, remote HAL
+| rene-dev (first post of #4571); rmu75 https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18801888
+| No (out of scope). The tool table is read-only (A7).
+| ✗ out of scope
+
+| C18
+| TCP delayed ACK can slow a one-directional stream
+| rmu75 discussioncomment-18517121
+| Websocket over TCP; Nagle / ACK settings of the library are not measured separately.
+| ◐ not measured; websocket over TCP
+
+| C19
+| Error: a ring with a monotonic seq, source, command serial, replay of missed entries on reconnect
+| grandixximo discussioncomment-18521152
+| On the sidecar side: a ring of the last N errors with `seq`; a client gets the ring in its snapshot on connect. NML gives no source (task / interp / motion / io) and no command serial (CC-2, CC-3).
+| ◐ ring with `seq` in the snapshot; source and command serial: CC-2, CC-3
+
+| C20
+| Read-only by default (live servos)
+| safety: the sidecar may run next to live servos
+| `--allow-commands` is off by default.
+| ✅ `sl4_results.md` #12
+|===
+
+== What was taken from other people's code
+
+* rmu75 `rs/zmq-experiments` `src/emc/flatbuf/emc_stat.fbs`, `emc_common.fbs` (GPL-2.0, like
+  LinuxCNC) -- the basis of `schema/fbs/emc_stat.fbs` of the flatbuffers variant. His IDL
+  describes the C structure `EMC_STAT`, not what the Python `linuxcnc.stat` returns; fields
+  added here (present in stat and absent in the IDL) are marked in the file. The author says
+  himself that the IDL is outdated and incomplete
+  (https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18778096).
+* rmu75's `emc_error.fbs` -- the three NML operator messages one to one; not used in the
+  prototype (errors go in a JSON envelope with a `seq`), as grandixximo noted
+  (discussioncomment-18521152).
+* `zmq-halui-gui` (#4613), `halui-gui-proto` (#4616), `gui-panel-pins` (#4653), `halui-task`
+  (#4644) are the HAL-pin layer of halui / the GUI; there is no state-layer code in them to
+  reuse. Descriptions and discussions were read (sources above), the branch code was not
+  opened.
+
+== Client side
+
+How each LinuxCNC client would connect to the state layer and what stops it. "Facade" is
+`clients/python/lcnc_state_client.py` `RemoteStat` / `RemoteCommand` / `RemoteErrorChannel`:
+the same calls as `linuxcnc.stat/command/error_channel`.
+
+[cols="2,5,5,6",options="header"]
+|===
+| Client | Where it polls today (clone @ `2655e62fe6aa`) | How it would connect | What stops it
+
+| AXIS
+| `axis.py:3670` `s = linuxcnc.stat()`, `:4002-4003` `command()`, `error_channel()`, `:746` a second `stat()` in `LivePlotter`
+| 3 lines: replace the constructors by the facade (`RemoteStat(url)` ...) + import; `s.poll()` once per `CYCLE_TIME` stays as is
+| the preview reads the program file locally (`gcode` module, CC-10); `positionlogger` (`axis.py:756`) is C code on top of `linuxcnc.stat`, the facade does not replace it; the facade has no `stat.toolinfo()`; `hal_manualtoolchange` is HAL, not NML
+
+| Gmoccapy
+| `gmoccapy.py:221-224` own `command/stat/error_channel` + `hal_glib.GStat` (`lib/python/common/hal_glib.py:320-321`)
+| the same 3 constructors in `gmoccapy.py` + 2 in `GStat`
+| GStat calls `stat.poll()` often (own timer): the facade returns the last snapshot, the rate is set by the sidecar; many GUI HAL pins (outside the layer)
+
+| QtVCP / qtdragon
+| `hal_glib.GStat` (shared with Gmoccapy) + `lib/python/qtvcp/core.py:95` `error_channel()`
+| replacement in `GStat` and one line of `core.py` -- one change for all QtVCP screens
+| as Gmoccapy; ZMQ messages between QtVCP screens are a separate channel
+
+| panelui (pyui)
+| `src/emc/usr_intf/pyui/commands.py:106-107` `stat()`, `command()`
+| 2 lines to the facade
+| it is a HAL component: buttons are HAL pins; the layer gives only the NML part
+
+| halui
+| C++ NML client, inside task after #4644
+| does not connect: needs a C++ websocket client (or halui stays in task and does not need the layer)
+| there is no C++ client in the prototype
+
+| Browser
+| --
+| `clients/web/index.html` + `merge_patch.js` (~150 lines, no framework), or any JS: `new WebSocket(url)`, `snapshot`, `applyMergePatch`
+| the page must be opened over http (ES module): `python3 -m http.server -d clients/web`
+
+| Python script / agent
+| `linuxcnc.stat()`
+| `StateClient` (asyncio) or the facade; see `docs/python_client.md`
+| --
+|===
+
+Common to all: state arrives as a full snapshot plus patches, so a GUI does not need to change
+its polling logic; it receives the same set of fields under the same names
+(`linuxcnc.stat`). Errors come from the shared ring: the facade `RemoteErrorChannel` hands every
+instance every entry (no "first poller") -- as long as no other process reads the NML error
+channel (A5).

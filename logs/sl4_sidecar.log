@@ -1,0 +1,292 @@
+2026-10-12 03:42:07,104 lcnc_state INFO LinuxCNC 2.10.0~pre2, ini /tmp/lcnc-sim/axis_mm_headless.ini, 3 joints, period 0.100 s ([DISPLAY]CYCLE_TIME = 0.100 in /tmp/lcnc-sim/axis_mm_headless.ini), 91 stat fields
+2026-10-12 03:42:07,192 lcnc_state INFO schema check of first snapshot: ok
+2026-10-12 03:42:07,257 websockets.server INFO server listening on 127.0.0.1:8791
+2026-10-12 03:42:07,257 lcnc_state.ws INFO listening on ws://127.0.0.1:8791/ period=0.100 s commands=True epoch=e9eb95e2d70c42dca92a6846d3abbe2c
+2026-10-12 03:42:09,133 websockets.server INFO connection open
+2026-10-12 03:42:09,134 lcnc_state.ws INFO client ('127.0.0.1', 46382) connected (encoding=json view_key=A), 1 clients
+2026-10-12 03:42:09,136 websockets.server INFO connection open
+2026-10-12 03:42:09,136 lcnc_state.ws INFO client ('127.0.0.1', 46386) connected (encoding=json view_key=B), 2 clients
+2026-10-12 03:42:09,169 lcnc_state INFO command 36880-1 state[2] serial=1487 kind=quick send=30.5 ms
+2026-10-12 03:42:09,199 lcnc_state INFO command 36880-1 state -> completed
+2026-10-12 03:42:09,222 lcnc_state INFO command 36880-2 state[4] serial=1488 kind=quick send=20.4 ms
+2026-10-12 03:42:09,252 lcnc_state INFO command 36880-2 state -> completed
+2026-10-12 03:42:09,274 lcnc_state INFO command 36880-3 mode[1] serial=1489 kind=quick send=20.4 ms
+2026-10-12 03:42:09,305 lcnc_state INFO command 36880-3 mode -> completed
+2026-10-12 03:42:09,330 lcnc_state INFO command 53712-3 unhome[0] serial=1490 kind=quick send=20.8 ms
+2026-10-12 03:42:09,359 lcnc_state INFO command 53712-3 unhome -> failed (must be in joint mode or disabled to unhome)
+2026-10-12 03:42:09,683 lcnc_state INFO command 36880-5 mdi['G0 X10'] serial=1491 kind=long send=20.5 ms
+2026-10-12 03:42:09,714 lcnc_state INFO command 36880-5 mdi -> failed (RCS_ERROR: Must be in MDI mode to issue MDI command)
+2026-10-12 03:42:09,737 lcnc_state INFO command 36880-6 set_block_delete[True] serial=1492 kind=quick send=20.4 ms
+2026-10-12 03:42:09,769 lcnc_state INFO command 36880-6 set_block_delete -> completed
+2026-10-12 03:42:09,790 lcnc_state INFO command 53712-4 set_block_delete[True] serial=1493 kind=quick send=20.4 ms
+2026-10-12 03:42:09,821 lcnc_state INFO command 53712-4 set_block_delete -> completed
+2026-10-12 03:42:09,842 lcnc_state INFO command 36880-7 set_block_delete[False] serial=1494 kind=quick send=20.3 ms
+2026-10-12 03:42:09,872 lcnc_state INFO command 36880-7 set_block_delete -> completed
+2026-10-12 03:42:09,893 lcnc_state INFO command 53712-5 set_block_delete[False] serial=1495 kind=quick send=20.4 ms
+2026-10-12 03:42:09,924 lcnc_state INFO command 53712-5 set_block_delete -> completed
+2026-10-12 03:42:09,946 lcnc_state INFO command 36880-8 set_block_delete[True] serial=1496 kind=quick send=20.3 ms
+2026-10-12 03:42:09,976 lcnc_state INFO command 36880-8 set_block_delete -> completed
+2026-10-12 03:42:09,997 lcnc_state INFO command 53712-6 set_block_delete[True] serial=1497 kind=quick send=20.3 ms
+2026-10-12 03:42:10,028 lcnc_state INFO command 53712-6 set_block_delete -> completed
+2026-10-12 03:42:10,049 lcnc_state INFO command 36880-9 set_block_delete[False] serial=1498 kind=quick send=20.4 ms
+2026-10-12 03:42:10,080 lcnc_state INFO command 36880-9 set_block_delete -> completed
+2026-10-12 03:42:10,100 lcnc_state INFO command 53712-7 set_block_delete[False] serial=1499 kind=quick send=20.4 ms
+2026-10-12 03:42:10,131 lcnc_state INFO command 53712-7 set_block_delete -> completed
+2026-10-12 03:42:10,152 lcnc_state INFO command 36880-10 set_block_delete[True] serial=1500 kind=quick send=20.3 ms
+2026-10-12 03:42:10,183 lcnc_state INFO command 36880-10 set_block_delete -> completed
+2026-10-12 03:42:10,203 lcnc_state INFO command 53712-8 set_block_delete[True] serial=1501 kind=quick send=20.3 ms
+2026-10-12 03:42:10,234 lcnc_state INFO command 53712-8 set_block_delete -> completed
+2026-10-12 03:42:10,255 lcnc_state INFO command 36880-11 set_block_delete[False] serial=1502 kind=quick send=20.4 ms
+2026-10-12 03:42:10,287 lcnc_state INFO command 36880-11 set_block_delete -> completed
+2026-10-12 03:42:10,308 lcnc_state INFO command 53712-9 set_block_delete[False] serial=1503 kind=quick send=20.6 ms
+2026-10-12 03:42:10,339 lcnc_state INFO command 53712-9 set_block_delete -> completed
+2026-10-12 03:42:10,360 lcnc_state INFO command 36880-12 set_block_delete[True] serial=1504 kind=quick send=20.4 ms
+2026-10-12 03:42:10,390 lcnc_state INFO command 36880-12 set_block_delete -> completed
+2026-10-12 03:42:10,411 lcnc_state INFO command 53712-10 set_block_delete[True] serial=1505 kind=quick send=20.4 ms
+2026-10-12 03:42:10,442 lcnc_state INFO command 53712-10 set_block_delete -> completed
+2026-10-12 03:42:10,463 lcnc_state INFO command 36880-13 set_block_delete[False] serial=1506 kind=quick send=20.9 ms
+2026-10-12 03:42:10,494 lcnc_state INFO command 36880-13 set_block_delete -> completed
+2026-10-12 03:42:10,515 lcnc_state INFO command 53712-11 set_block_delete[False] serial=1507 kind=quick send=20.4 ms
+2026-10-12 03:42:10,546 lcnc_state INFO command 53712-11 set_block_delete -> completed
+2026-10-12 03:42:10,567 lcnc_state INFO command 36880-14 set_block_delete[True] serial=1508 kind=quick send=20.3 ms
+2026-10-12 03:42:10,598 lcnc_state INFO command 36880-14 set_block_delete -> completed
+2026-10-12 03:42:10,619 lcnc_state INFO command 53712-12 set_block_delete[True] serial=1509 kind=quick send=20.4 ms
+2026-10-12 03:42:10,650 lcnc_state INFO command 53712-12 set_block_delete -> completed
+2026-10-12 03:42:10,670 lcnc_state INFO command 36880-15 set_block_delete[False] serial=1510 kind=quick send=20.5 ms
+2026-10-12 03:42:10,702 lcnc_state INFO command 36880-15 set_block_delete -> completed
+2026-10-12 03:42:10,723 lcnc_state INFO command 53712-13 set_block_delete[False] serial=1511 kind=quick send=20.4 ms
+2026-10-12 03:42:10,754 lcnc_state INFO command 53712-13 set_block_delete -> completed
+2026-10-12 03:42:10,786 lcnc_state INFO command 36880-16 mode[3] serial=1512 kind=quick send=30.5 ms
+2026-10-12 03:42:10,818 lcnc_state INFO command 36880-16 mode -> completed
+2026-10-12 03:42:10,840 lcnc_state INFO command 36880-17 mdi['G90 G0 X20 Y15'] serial=1513 kind=long send=20.4 ms
+2026-10-12 03:42:12,059 lcnc_state INFO command 36880-17 mdi -> completed
+2026-10-12 03:42:12,134 lcnc_state INFO command 36880-18 mode -> completed
+2026-10-12 03:42:12,206 lcnc_state INFO command 36880-18 program_open -> completed
+2026-10-12 03:42:15,318 lcnc_state INFO command 53712-14 abort[] serial=1518 kind=quick send=50.9 ms
+2026-10-12 03:42:15,349 lcnc_state INFO command 53712-14 abort -> completed
+2026-10-12 03:42:15,360 lcnc_state INFO command 36880-18 run -> aborted
+2026-10-12 03:42:15,485 lcnc_state INFO command 36880-19 program_open -> completed
+2026-10-12 03:42:52,758 lcnc_state INFO command 36880-19 run -> completed
+2026-10-12 03:42:53,133 lcnc_state INFO command 36880-20 program_open -> completed
+2026-10-12 03:42:53,195 lcnc_state INFO command 36880-20 run -> failed (RCS_ERROR: invalid params in linear command)
+2026-10-12 03:42:53,530 lcnc_state INFO command 36880-22 mode[1] serial=1525 kind=quick send=30.5 ms
+2026-10-12 03:42:53,562 lcnc_state INFO command 36880-22 mode -> completed
+2026-10-12 03:42:53,906 lcnc_state INFO command 53712-15 program_open['/nonexistent/sl4.ngc'] serial=1541 kind=quick send=41.0 ms
+2026-10-12 03:42:53,960 lcnc_state INFO command 53712-15 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:54,002 lcnc_state INFO command 53712-16 program_open['/nonexistent/sl4.ngc'] serial=1547 kind=quick send=40.7 ms
+2026-10-12 03:42:54,061 lcnc_state INFO command 53712-16 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:54,103 lcnc_state INFO command 53712-17 program_open['/nonexistent/sl4.ngc'] serial=1554 kind=quick send=40.5 ms
+2026-10-12 03:42:54,162 lcnc_state INFO command 53712-17 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:54,205 lcnc_state INFO command 53712-18 program_open['/nonexistent/sl4.ngc'] serial=1560 kind=quick send=40.7 ms
+2026-10-12 03:42:54,260 lcnc_state INFO command 53712-18 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:54,303 lcnc_state INFO command 53712-19 program_open['/nonexistent/sl4.ngc'] serial=1567 kind=quick send=40.9 ms
+2026-10-12 03:42:54,334 lcnc_state INFO command 53712-19 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:54,377 lcnc_state INFO command 53712-20 program_open['/nonexistent/sl4.ngc'] serial=1572 kind=quick send=40.7 ms
+2026-10-12 03:42:54,383 lcnc_state INFO command 53712-20 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:54,425 lcnc_state INFO command 53712-21 program_open['/nonexistent/sl4.ngc'] serial=1576 kind=quick send=40.9 ms
+2026-10-12 03:42:54,464 lcnc_state INFO command 53712-21 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:54,507 lcnc_state INFO command 53712-22 program_open['/nonexistent/sl4.ngc'] serial=1581 kind=quick send=40.8 ms
+2026-10-12 03:42:54,561 lcnc_state INFO command 53712-22 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:54,604 lcnc_state INFO command 53712-23 program_open['/nonexistent/sl4.ngc'] serial=1588 kind=quick send=40.7 ms
+2026-10-12 03:42:54,663 lcnc_state INFO command 53712-23 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:54,705 lcnc_state INFO command 53712-24 program_open['/nonexistent/sl4.ngc'] serial=1594 kind=quick send=40.6 ms
+2026-10-12 03:42:54,760 lcnc_state INFO command 53712-24 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:54,802 lcnc_state INFO command 53712-25 program_open['/nonexistent/sl4.ngc'] serial=1600 kind=quick send=40.8 ms
+2026-10-12 03:42:54,861 lcnc_state INFO command 53712-25 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:54,903 lcnc_state INFO command 53712-26 program_open['/nonexistent/sl4.ngc'] serial=1607 kind=quick send=40.7 ms
+2026-10-12 03:42:54,962 lcnc_state INFO command 53712-26 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:55,005 lcnc_state INFO command 53712-27 program_open['/nonexistent/sl4.ngc'] serial=1613 kind=quick send=40.7 ms
+2026-10-12 03:42:55,059 lcnc_state INFO command 53712-27 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:55,102 lcnc_state INFO command 53712-28 program_open['/nonexistent/sl4.ngc'] serial=1620 kind=quick send=40.7 ms
+2026-10-12 03:42:55,161 lcnc_state INFO command 53712-28 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:55,204 lcnc_state INFO command 53712-29 program_open['/nonexistent/sl4.ngc'] serial=1626 kind=quick send=40.8 ms
+2026-10-12 03:42:55,264 lcnc_state INFO command 53712-29 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:55,307 lcnc_state INFO command 53712-30 program_open['/nonexistent/sl4.ngc'] serial=1633 kind=quick send=40.7 ms
+2026-10-12 03:42:55,360 lcnc_state INFO command 53712-30 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:55,402 lcnc_state INFO command 53712-31 program_open['/nonexistent/sl4.ngc'] serial=1639 kind=quick send=40.7 ms
+2026-10-12 03:42:55,461 lcnc_state INFO command 53712-31 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:55,503 lcnc_state INFO command 53712-32 program_open['/nonexistent/sl4.ngc'] serial=1646 kind=quick send=40.7 ms
+2026-10-12 03:42:55,534 lcnc_state INFO command 53712-32 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:55,576 lcnc_state INFO command 53712-33 program_open['/nonexistent/sl4.ngc'] serial=1651 kind=quick send=40.5 ms
+2026-10-12 03:42:55,582 lcnc_state INFO command 53712-33 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:55,624 lcnc_state INFO command 53712-34 program_open['/nonexistent/sl4.ngc'] serial=1655 kind=quick send=40.6 ms
+2026-10-12 03:42:55,661 lcnc_state INFO command 53712-34 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:55,703 lcnc_state INFO command 53712-35 program_open['/nonexistent/sl4.ngc'] serial=1660 kind=quick send=40.7 ms
+2026-10-12 03:42:55,761 lcnc_state INFO command 53712-35 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:55,804 lcnc_state INFO command 53712-36 program_open['/nonexistent/sl4.ngc'] serial=1667 kind=quick send=40.8 ms
+2026-10-12 03:42:55,865 lcnc_state INFO command 53712-36 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:55,908 lcnc_state INFO command 53712-37 program_open['/nonexistent/sl4.ngc'] serial=1674 kind=quick send=40.7 ms
+2026-10-12 03:42:55,939 lcnc_state INFO command 53712-37 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:55,982 lcnc_state INFO command 53712-38 program_open['/nonexistent/sl4.ngc'] serial=1679 kind=quick send=40.9 ms
+2026-10-12 03:42:55,987 lcnc_state INFO command 53712-38 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:56,030 lcnc_state INFO command 53712-39 program_open['/nonexistent/sl4.ngc'] serial=1683 kind=quick send=40.9 ms
+2026-10-12 03:42:56,062 lcnc_state INFO command 53712-39 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:56,104 lcnc_state INFO command 53712-40 program_open['/nonexistent/sl4.ngc'] serial=1688 kind=quick send=40.6 ms
+2026-10-12 03:42:56,159 lcnc_state INFO command 53712-40 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:56,201 lcnc_state INFO command 53712-41 program_open['/nonexistent/sl4.ngc'] serial=1695 kind=quick send=40.6 ms
+2026-10-12 03:42:56,232 lcnc_state INFO command 53712-41 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:56,275 lcnc_state INFO command 53712-42 program_open['/nonexistent/sl4.ngc'] serial=1700 kind=quick send=40.7 ms
+2026-10-12 03:42:56,281 lcnc_state INFO command 53712-42 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:56,324 lcnc_state INFO command 53712-43 program_open['/nonexistent/sl4.ngc'] serial=1704 kind=quick send=40.8 ms
+2026-10-12 03:42:56,362 lcnc_state INFO command 53712-43 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:56,404 lcnc_state INFO command 53712-44 program_open['/nonexistent/sl4.ngc'] serial=1710 kind=quick send=40.8 ms
+2026-10-12 03:42:56,435 lcnc_state INFO command 53712-44 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:56,477 lcnc_state INFO command 53712-45 program_open['/nonexistent/sl4.ngc'] serial=1715 kind=quick send=40.7 ms
+2026-10-12 03:42:56,483 lcnc_state INFO command 53712-45 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:56,525 lcnc_state INFO command 53712-46 program_open['/nonexistent/sl4.ngc'] serial=1719 kind=quick send=40.6 ms
+2026-10-12 03:42:56,563 lcnc_state INFO command 53712-46 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:56,606 lcnc_state INFO command 53712-47 program_open['/nonexistent/sl4.ngc'] serial=1724 kind=quick send=40.8 ms
+2026-10-12 03:42:56,660 lcnc_state INFO command 53712-47 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:56,708 lcnc_state INFO command 53712-48 program_open['/nonexistent/sl4.ngc'] serial=1731 kind=quick send=47.1 ms
+2026-10-12 03:42:56,764 lcnc_state INFO command 53712-48 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:56,806 lcnc_state INFO command 53712-49 program_open['/nonexistent/sl4.ngc'] serial=1737 kind=quick send=40.8 ms
+2026-10-12 03:42:56,861 lcnc_state INFO command 53712-49 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:56,904 lcnc_state INFO command 53712-50 program_open['/nonexistent/sl4.ngc'] serial=1744 kind=quick send=40.8 ms
+2026-10-12 03:42:56,935 lcnc_state INFO command 53712-50 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:56,979 lcnc_state INFO command 53712-51 program_open['/nonexistent/sl4.ngc'] serial=1749 kind=quick send=40.6 ms
+2026-10-12 03:42:56,985 lcnc_state INFO command 53712-51 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:57,028 lcnc_state INFO command 53712-52 program_open['/nonexistent/sl4.ngc'] serial=1753 kind=quick send=41.0 ms
+2026-10-12 03:42:57,060 lcnc_state INFO command 53712-52 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:57,104 lcnc_state INFO command 53712-53 program_open['/nonexistent/sl4.ngc'] serial=1758 kind=quick send=42.4 ms
+2026-10-12 03:42:57,160 lcnc_state INFO command 53712-53 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:57,203 lcnc_state INFO command 53712-54 program_open['/nonexistent/sl4.ngc'] serial=1765 kind=quick send=41.0 ms
+2026-10-12 03:42:57,259 lcnc_state INFO command 53712-54 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:57,303 lcnc_state INFO command 53712-55 program_open['/nonexistent/sl4.ngc'] serial=1771 kind=quick send=40.6 ms
+2026-10-12 03:42:57,362 lcnc_state INFO command 53712-55 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:57,404 lcnc_state INFO command 53712-56 program_open['/nonexistent/sl4.ngc'] serial=1778 kind=quick send=40.6 ms
+2026-10-12 03:42:57,462 lcnc_state INFO command 53712-56 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:57,505 lcnc_state INFO command 53712-57 program_open['/nonexistent/sl4.ngc'] serial=1784 kind=quick send=40.6 ms
+2026-10-12 03:42:57,559 lcnc_state INFO command 53712-57 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:57,602 lcnc_state INFO command 53712-58 program_open['/nonexistent/sl4.ngc'] serial=1790 kind=quick send=40.7 ms
+2026-10-12 03:42:57,662 lcnc_state INFO command 53712-58 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:57,705 lcnc_state INFO command 53712-59 program_open['/nonexistent/sl4.ngc'] serial=1797 kind=quick send=41.0 ms
+2026-10-12 03:42:57,760 lcnc_state INFO command 53712-59 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:57,803 lcnc_state INFO command 53712-60 program_open['/nonexistent/sl4.ngc'] serial=1803 kind=quick send=40.8 ms
+2026-10-12 03:42:57,863 lcnc_state INFO command 53712-60 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:57,905 lcnc_state INFO command 53712-61 program_open['/nonexistent/sl4.ngc'] serial=1810 kind=quick send=40.6 ms
+2026-10-12 03:42:57,959 lcnc_state INFO command 53712-61 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:58,001 lcnc_state INFO command 53712-62 program_open['/nonexistent/sl4.ngc'] serial=1816 kind=quick send=40.8 ms
+2026-10-12 03:42:58,063 lcnc_state INFO command 53712-62 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:58,106 lcnc_state INFO command 53712-63 program_open['/nonexistent/sl4.ngc'] serial=1823 kind=quick send=40.7 ms
+2026-10-12 03:42:58,136 lcnc_state INFO command 53712-63 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:58,179 lcnc_state INFO command 53712-64 program_open['/nonexistent/sl4.ngc'] serial=1828 kind=quick send=40.8 ms
+2026-10-12 03:42:58,184 lcnc_state INFO command 53712-64 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:58,227 lcnc_state INFO command 53712-65 program_open['/nonexistent/sl4.ngc'] serial=1832 kind=quick send=40.8 ms
+2026-10-12 03:42:58,259 lcnc_state INFO command 53712-65 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:58,301 lcnc_state INFO command 53712-66 program_open['/nonexistent/sl4.ngc'] serial=1837 kind=quick send=40.8 ms
+2026-10-12 03:42:58,360 lcnc_state INFO command 53712-66 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:58,402 lcnc_state INFO command 53712-67 program_open['/nonexistent/sl4.ngc'] serial=1844 kind=quick send=40.9 ms
+2026-10-12 03:42:58,461 lcnc_state INFO command 53712-67 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:58,503 lcnc_state INFO command 53712-68 program_open['/nonexistent/sl4.ngc'] serial=1850 kind=quick send=40.6 ms
+2026-10-12 03:42:58,563 lcnc_state INFO command 53712-68 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:58,606 lcnc_state INFO command 53712-69 program_open['/nonexistent/sl4.ngc'] serial=1857 kind=quick send=40.9 ms
+2026-10-12 03:42:58,660 lcnc_state INFO command 53712-69 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:58,704 lcnc_state INFO command 53712-70 program_open['/nonexistent/sl4.ngc'] serial=1863 kind=quick send=41.5 ms
+2026-10-12 03:42:58,763 lcnc_state INFO command 53712-70 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:58,807 lcnc_state INFO command 53712-71 program_open['/nonexistent/sl4.ngc'] serial=1870 kind=quick send=41.5 ms
+2026-10-12 03:42:58,862 lcnc_state INFO command 53712-71 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:42:58,908 lcnc_state INFO command 53712-72 program_open['/nonexistent/sl4.ngc'] serial=1876 kind=quick send=44.4 ms
+2026-10-12 03:42:58,962 lcnc_state INFO command 53712-72 program_open -> failed (can't open /nonexistent/sl4.ngc)
+2026-10-12 03:43:00,190 lcnc_state INFO command 53712-73 program_open['/nonexistent/sl4_0.ngc'] serial=1911 kind=quick send=40.6 ms
+2026-10-12 03:43:00,221 lcnc_state INFO command 53712-73 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_0.ngc)
+2026-10-12 03:43:00,416 lcnc_state INFO command 53712-74 program_open['/nonexistent/sl4_1.ngc'] serial=1913 kind=quick send=40.9 ms
+2026-10-12 03:43:00,447 lcnc_state INFO command 53712-74 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_1.ngc)
+2026-10-12 03:43:00,640 lcnc_state INFO command 53712-75 program_open['/nonexistent/sl4_2.ngc'] serial=1915 kind=quick send=40.8 ms
+2026-10-12 03:43:00,672 lcnc_state INFO command 53712-75 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_2.ngc)
+2026-10-12 03:43:00,866 lcnc_state INFO command 53712-76 program_open['/nonexistent/sl4_3.ngc'] serial=1917 kind=quick send=40.6 ms
+2026-10-12 03:43:00,896 lcnc_state INFO command 53712-76 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_3.ngc)
+2026-10-12 03:43:01,091 lcnc_state INFO command 53712-77 program_open['/nonexistent/sl4_4.ngc'] serial=1919 kind=quick send=41.2 ms
+2026-10-12 03:43:01,121 lcnc_state INFO command 53712-77 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_4.ngc)
+2026-10-12 03:43:01,316 lcnc_state INFO command 53712-78 program_open['/nonexistent/sl4_5.ngc'] serial=1921 kind=quick send=40.8 ms
+2026-10-12 03:43:01,346 lcnc_state INFO command 53712-78 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_5.ngc)
+2026-10-12 03:43:01,540 lcnc_state INFO command 53712-79 program_open['/nonexistent/sl4_6.ngc'] serial=1923 kind=quick send=40.7 ms
+2026-10-12 03:43:01,572 lcnc_state INFO command 53712-79 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_6.ngc)
+2026-10-12 03:43:01,766 lcnc_state INFO command 53712-80 program_open['/nonexistent/sl4_7.ngc'] serial=1925 kind=quick send=40.7 ms
+2026-10-12 03:43:01,798 lcnc_state INFO command 53712-80 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_7.ngc)
+2026-10-12 03:43:01,991 lcnc_state INFO command 53712-81 program_open['/nonexistent/sl4_8.ngc'] serial=1927 kind=quick send=40.6 ms
+2026-10-12 03:43:02,022 lcnc_state INFO command 53712-81 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_8.ngc)
+2026-10-12 03:43:02,217 lcnc_state INFO command 53712-82 program_open['/nonexistent/sl4_9.ngc'] serial=1929 kind=quick send=40.7 ms
+2026-10-12 03:43:02,247 lcnc_state INFO command 53712-82 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_9.ngc)
+2026-10-12 03:43:02,441 lcnc_state INFO command 53712-83 program_open['/nonexistent/sl4_10.ngc'] serial=1931 kind=quick send=41.0 ms
+2026-10-12 03:43:02,472 lcnc_state INFO command 53712-83 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_10.ngc)
+2026-10-12 03:43:02,665 lcnc_state INFO command 53712-84 program_open['/nonexistent/sl4_11.ngc'] serial=1933 kind=quick send=40.8 ms
+2026-10-12 03:43:02,696 lcnc_state INFO command 53712-84 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_11.ngc)
+2026-10-12 03:43:02,890 lcnc_state INFO command 53712-85 program_open['/nonexistent/sl4_12.ngc'] serial=1935 kind=quick send=40.9 ms
+2026-10-12 03:43:02,922 lcnc_state INFO command 53712-85 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_12.ngc)
+2026-10-12 03:43:03,115 lcnc_state INFO command 53712-86 program_open['/nonexistent/sl4_13.ngc'] serial=1937 kind=quick send=40.8 ms
+2026-10-12 03:43:03,146 lcnc_state INFO command 53712-86 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_13.ngc)
+2026-10-12 03:43:03,340 lcnc_state INFO command 53712-87 program_open['/nonexistent/sl4_14.ngc'] serial=1939 kind=quick send=40.9 ms
+2026-10-12 03:43:03,371 lcnc_state INFO command 53712-87 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_14.ngc)
+2026-10-12 03:43:03,565 lcnc_state INFO command 53712-88 program_open['/nonexistent/sl4_15.ngc'] serial=1941 kind=quick send=40.9 ms
+2026-10-12 03:43:03,597 lcnc_state INFO command 53712-88 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_15.ngc)
+2026-10-12 03:43:03,792 lcnc_state INFO command 53712-89 program_open['/nonexistent/sl4_16.ngc'] serial=1943 kind=quick send=40.9 ms
+2026-10-12 03:43:03,823 lcnc_state INFO command 53712-89 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_16.ngc)
+2026-10-12 03:43:04,016 lcnc_state INFO command 53712-90 program_open['/nonexistent/sl4_17.ngc'] serial=1945 kind=quick send=40.8 ms
+2026-10-12 03:43:04,046 lcnc_state INFO command 53712-90 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_17.ngc)
+2026-10-12 03:43:04,240 lcnc_state INFO command 53712-91 program_open['/nonexistent/sl4_18.ngc'] serial=1947 kind=quick send=40.9 ms
+2026-10-12 03:43:04,271 lcnc_state INFO command 53712-91 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_18.ngc)
+2026-10-12 03:43:04,466 lcnc_state INFO command 53712-92 program_open['/nonexistent/sl4_19.ngc'] serial=1949 kind=quick send=40.9 ms
+2026-10-12 03:43:04,497 lcnc_state INFO command 53712-92 program_open -> failed (RCS_ERROR: can't open /nonexistent/sl4_19.ngc)
+2026-10-12 03:43:06,526 lcnc_state INFO command 53712-93 program_open['/nonexistent/sl4_0.ngc'] serial=1951 kind=quick send=40.8 ms
+2026-10-12 03:43:06,557 lcnc_state INFO command 53712-93 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:06,751 lcnc_state INFO command 53712-94 program_open['/nonexistent/sl4_1.ngc'] serial=1953 kind=quick send=40.6 ms
+2026-10-12 03:43:06,782 lcnc_state INFO command 53712-94 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:06,977 lcnc_state INFO command 53712-95 program_open['/nonexistent/sl4_2.ngc'] serial=1955 kind=quick send=40.6 ms
+2026-10-12 03:43:07,008 lcnc_state INFO command 53712-95 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:07,202 lcnc_state INFO command 53712-96 program_open['/nonexistent/sl4_3.ngc'] serial=1957 kind=quick send=40.8 ms
+2026-10-12 03:43:07,234 lcnc_state INFO command 53712-96 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:07,430 lcnc_state INFO command 53712-97 program_open['/nonexistent/sl4_4.ngc'] serial=1959 kind=quick send=40.7 ms
+2026-10-12 03:43:07,461 lcnc_state INFO command 53712-97 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:07,668 lcnc_state INFO command 53712-98 program_open['/nonexistent/sl4_5.ngc'] serial=1961 kind=quick send=45.5 ms
+2026-10-12 03:43:07,699 lcnc_state INFO command 53712-98 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:07,892 lcnc_state INFO command 53712-99 program_open['/nonexistent/sl4_6.ngc'] serial=1963 kind=quick send=40.7 ms
+2026-10-12 03:43:07,923 lcnc_state INFO command 53712-99 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:08,117 lcnc_state INFO command 53712-100 program_open['/nonexistent/sl4_7.ngc'] serial=1965 kind=quick send=40.6 ms
+2026-10-12 03:43:08,147 lcnc_state INFO command 53712-100 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:08,341 lcnc_state INFO command 53712-101 program_open['/nonexistent/sl4_8.ngc'] serial=1967 kind=quick send=40.7 ms
+2026-10-12 03:43:08,372 lcnc_state INFO command 53712-101 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:08,576 lcnc_state INFO command 53712-102 program_open['/nonexistent/sl4_9.ngc'] serial=1969 kind=quick send=50.7 ms
+2026-10-12 03:43:08,607 lcnc_state INFO command 53712-102 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:08,801 lcnc_state INFO command 53712-103 program_open['/nonexistent/sl4_10.ngc'] serial=1971 kind=quick send=40.7 ms
+2026-10-12 03:43:08,832 lcnc_state INFO command 53712-103 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:09,026 lcnc_state INFO command 53712-104 program_open['/nonexistent/sl4_11.ngc'] serial=1973 kind=quick send=40.8 ms
+2026-10-12 03:43:09,056 lcnc_state INFO command 53712-104 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:09,250 lcnc_state INFO command 53712-105 program_open['/nonexistent/sl4_12.ngc'] serial=1975 kind=quick send=40.9 ms
+2026-10-12 03:43:09,281 lcnc_state INFO command 53712-105 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:09,475 lcnc_state INFO command 53712-106 program_open['/nonexistent/sl4_13.ngc'] serial=1977 kind=quick send=40.6 ms
+2026-10-12 03:43:09,506 lcnc_state INFO command 53712-106 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:09,701 lcnc_state INFO command 53712-107 program_open['/nonexistent/sl4_14.ngc'] serial=1979 kind=quick send=40.7 ms
+2026-10-12 03:43:09,732 lcnc_state INFO command 53712-107 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:09,926 lcnc_state INFO command 53712-108 program_open['/nonexistent/sl4_15.ngc'] serial=1981 kind=quick send=40.9 ms
+2026-10-12 03:43:09,957 lcnc_state INFO command 53712-108 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:10,150 lcnc_state INFO command 53712-109 program_open['/nonexistent/sl4_16.ngc'] serial=1983 kind=quick send=40.5 ms
+2026-10-12 03:43:10,181 lcnc_state INFO command 53712-109 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:10,375 lcnc_state INFO command 53712-110 program_open['/nonexistent/sl4_17.ngc'] serial=1985 kind=quick send=40.8 ms
+2026-10-12 03:43:10,406 lcnc_state INFO command 53712-110 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:10,600 lcnc_state INFO command 53712-111 program_open['/nonexistent/sl4_18.ngc'] serial=1987 kind=quick send=40.6 ms
+2026-10-12 03:43:10,631 lcnc_state INFO command 53712-111 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:10,824 lcnc_state INFO command 53712-112 program_open['/nonexistent/sl4_19.ngc'] serial=1989 kind=quick send=40.7 ms
+2026-10-12 03:43:10,855 lcnc_state INFO command 53712-112 program_open -> failed (RCS_ERROR)
+2026-10-12 03:43:12,313 websockets.server INFO connection open
+2026-10-12 03:43:12,313 lcnc_state.ws INFO client ('127.0.0.1', 57782) connected (encoding=json view_key=A), 3 clients
+2026-10-12 03:43:12,618 lcnc_state.ws INFO client ('127.0.0.1', 46382) gone, 2 clients
+2026-10-12 03:43:12,618 websockets.server INFO connection closed
+2026-10-12 03:43:12,618 lcnc_state.ws INFO client ('127.0.0.1', 46386) gone, 1 clients
+2026-10-12 03:43:12,618 websockets.server INFO connection closed
+2026-10-12 03:43:12,618 lcnc_state.ws INFO client ('127.0.0.1', 57782) gone, 0 clients
+2026-10-12 03:43:12,618 websockets.server INFO connection closed
+2026-10-12 03:43:12,818 websockets.server INFO connection open
+2026-10-12 03:43:12,819 lcnc_state.ws INFO client ('127.0.0.1', 57796) connected (encoding=json view_key=A), 1 clients
+2026-10-12 03:43:12,822 websockets.server INFO connection open
+2026-10-12 03:43:12,822 lcnc_state.ws INFO client ('127.0.0.1', 57808) connected (encoding=json view_key=B), 2 clients
+2026-10-12 03:43:13,127 websockets.server INFO connection open
+2026-10-12 03:43:13,127 lcnc_state.ws INFO client ('127.0.0.1', 57820) connected (encoding=json view_key=B), 3 clients
+2026-10-12 03:43:30,145 lcnc_state.ws INFO client ('127.0.0.1', 57796) gone, 2 clients
+2026-10-12 03:43:30,146 websockets.server INFO connection closed
+2026-10-12 03:43:30,146 lcnc_state.ws INFO client ('127.0.0.1', 57808) gone, 1 clients
+2026-10-12 03:43:30,146 websockets.server INFO connection closed
+2026-10-12 03:43:30,146 lcnc_state.ws INFO client ('127.0.0.1', 57820) gone, 0 clients
+2026-10-12 03:43:30,146 websockets.server INFO connection closed
+2026-10-12 03:43:30,175 websockets.server INFO server closing
+2026-10-12 03:43:30,176 websockets.server INFO server closed
+2026-10-12 03:43:30,177 lcnc_state INFO ticks=810 empty=0 seq=810

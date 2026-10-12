@@ -1,0 +1,5 @@
+libzmq 4.3.5 pyzmq 24.0.1 has(draft) False has(ws) False
+bind ws://127.0.0.1:5599/state: OK
+plain websocket connect OK, subprotocol ZWS2.0
+server identity frame: b'\x00'
+received 3 messages: [b'\x00{"seq":0}', b'\x00{"seq":1}', b'\x00{"seq":2}']

@@ -1,0 +1,10 @@
+{
+  "name": "lcnc-state-layer-bench",
+  "private": true,
+  "description": "Benchmark tooling only (not part of the product): node side of bench/run.sh",
+  "type": "module",
+  "dependencies": {
+    "cbor-x": "1.6.0",
+    "@msgpack/msgpack": "2.8.0"
+  }
+}

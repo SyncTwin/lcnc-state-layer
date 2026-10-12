@@ -1,0 +1,24 @@
+2026-10-12 03:25:49,074 lcnc_state INFO LinuxCNC 2.10.0~pre2, ini /tmp/lcnc-sim/axis_mm_headless.ini, 3 joints, period 0.100 s (--period), 91 stat fields
+2026-10-12 03:25:49,126 websockets.server INFO server listening on 127.0.0.1:8792
+2026-10-12 03:25:49,126 lcnc_state.ws INFO listening on ws://127.0.0.1:8792/ period=0.100 s commands=True epoch=05b97513f6e049019ee906e94714f2ae
+2026-10-12 03:25:50,625 websockets.server INFO connection open
+2026-10-12 03:25:50,626 lcnc_state.ws INFO client ('127.0.0.1', 54870) connected (encoding=json view_key=None), 1 clients
+2026-10-12 03:25:50,660 lcnc_state INFO command 20496-1 state[2] serial=10 kind=quick send=30.4 ms
+2026-10-12 03:25:50,691 lcnc_state INFO command 20496-1 state -> completed
+2026-10-12 03:25:50,713 lcnc_state INFO command 20496-2 state[4] serial=11 kind=quick send=20.4 ms
+2026-10-12 03:25:50,744 lcnc_state INFO command 20496-2 state -> completed
+2026-10-12 03:25:50,777 lcnc_state INFO command 20496-3 mode[1] serial=12 kind=quick send=30.6 ms
+2026-10-12 03:25:50,808 lcnc_state INFO command 20496-3 mode -> completed
+2026-10-12 03:25:50,830 lcnc_state INFO command 20496-4 home[-1] serial=13 kind=home send=20.3 ms
+2026-10-12 03:25:50,861 lcnc_state INFO command 20496-4 home -> failed (must be in joint mode to home)
+2026-10-12 03:25:50,883 lcnc_state INFO command 20496-5 set_optional_stop[False] serial=14 kind=quick send=20.3 ms
+2026-10-12 03:25:50,914 lcnc_state INFO command 20496-5 set_optional_stop -> completed
+2026-10-12 03:25:50,982 lcnc_state INFO command 20496-6 mode -> completed
+2026-10-12 03:25:51,054 lcnc_state INFO command 20496-6 program_open -> completed
+2026-10-12 03:26:30,628 lcnc_state INFO command 20496-6 run -> completed
+2026-10-12 03:26:31,132 lcnc_state.ws INFO client ('127.0.0.1', 54870) gone, 0 clients
+2026-10-12 03:26:31,132 websockets.server INFO connection closed
+2026-10-12 03:26:32,161 websockets.server INFO server closing
+2026-10-12 03:26:32,161 websockets.server INFO server closed
+2026-10-12 03:26:32,162 lcnc_state INFO trace: 431 ticks -> /home/user/lcnc-state-layer/traces/gmoccapy_2_tools_with_cutter_radius_compensation_100ms.jsonl.gz
+2026-10-12 03:26:32,163 lcnc_state INFO ticks=431 empty=0 seq=431

@@ -1,0 +1,47 @@
+RUN_IN_PLACE=yes
+LINUXCNC_DIR=
+LINUXCNC_BIN_DIR=/tmp/linuxcnc/bin
+LINUXCNC_TCL_DIR=/tmp/linuxcnc/tcl
+LINUXCNC_SCRIPT_DIR=
+LINUXCNC_RTLIB_DIR=/tmp/linuxcnc/rtlib
+LINUXCNC_CONFIG_DIR=
+LINUXCNC_LANG_DIR=/tmp/linuxcnc/src/objects
+INIVAR=inivar
+HALCMD=halcmd 
+LINUXCNC_EMCSH=wish
+LINUXCNC - 2.10.0~pre2
+Machine configuration directory is '/tmp/lcnc-sim'
+Machine configuration file is 'axis_mm_headless.ini'
+INIFILE=/tmp/lcnc-sim/axis_mm_headless.ini
+VERSION=1.1
+PARAMETER_FILE=sim_mm.var
+TPMOD=
+HOMEMOD=
+TASK=milltask
+HALUI=halui
+HALBRIDGE=
+DISPLAY=./headless_display
+COORDINATES=X Y Z
+KINEMATICS=trivkins
+Starting LinuxCNC...
+Starting LinuxCNC server program: linuxcncsvr
+Loading Real Time OS, RTAPI, and HAL_LIB modules
+linuxcnc TPMOD=tpmod HOMEMOD=homemod EMCMOT=motmod
+Starting TASK program: milltask
+Starting HAL User Interface program: halui
+Found file(lib): /tmp/linuxcnc/lib/hallib/core_sim.hal
+Found file(lib): /tmp/linuxcnc/lib/hallib/sim_spindle_encoder.hal
+Found file(lib): /tmp/linuxcnc/lib/hallib/simulated_home.hal
+Found file(REL): ./cooling.hal
+Starting DISPLAY program: ./headless_display
+headless_display: waiting (pid 11723) -ini /tmp/lcnc-sim/axis_mm_headless.ini
+task: main loop took 0.012857 seconds
+task: main loop took 0.010623 seconds
+task: main loop took 0.083969 seconds
+task: main loop took 0.014180 seconds
+task: main loop took 0.012991 seconds
+task: main loop took 0.010214 seconds
+task: main loop took 0.010196 seconds
+task: main loop took 0.010224 seconds
+task: main loop took 0.031103 seconds
+task: main loop took 0.020392 seconds

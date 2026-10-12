@@ -1,0 +1,417 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "urn:linuxcnc-state-layer:messages",
+ "title": "State layer websocket messages",
+ "description": "Envelopes exchanged between the state layer and its clients. Server -> client: snapshot, patch, command_result, view_state, error. Client -> server: resync_request, command, view_state_put. The same objects are carried as JSON text frames or as CBOR / MessagePack binary frames (?encoding=).",
+ "oneOf": [
+  {
+   "$ref": "#/$defs/snapshot"
+  },
+  {
+   "$ref": "#/$defs/patch"
+  },
+  {
+   "$ref": "#/$defs/command_result"
+  },
+  {
+   "$ref": "#/$defs/view_state"
+  },
+  {
+   "$ref": "#/$defs/error"
+  },
+  {
+   "$ref": "#/$defs/ping"
+  },
+  {
+   "$ref": "#/$defs/resync_request"
+  },
+  {
+   "$ref": "#/$defs/command"
+  },
+  {
+   "$ref": "#/$defs/view_state_put"
+  }
+ ],
+ "$defs": {
+  "seq": {
+   "type": "integer",
+   "minimum": 0,
+   "description": "Sequence number of the state: incremented by one for every patch. A snapshot carries the seq of the state it contains."
+  },
+  "error_entry": {
+   "type": "object",
+   "required": [
+    "seq",
+    "kind",
+    "text",
+    "time"
+   ],
+   "properties": {
+    "seq": {
+     "type": "integer",
+     "minimum": 1,
+     "description": "monotonic number of the error_channel entry"
+    },
+    "kind": {
+     "enum": [
+      "OPERATOR_ERROR",
+      "OPERATOR_TEXT",
+      "OPERATOR_DISPLAY",
+      "NML_ERROR",
+      "NML_TEXT",
+      "NML_DISPLAY"
+     ],
+     "description": "linuxcnc.error_channel message type, names as the linuxcnc module constants"
+    },
+    "text": {
+     "type": "string"
+    },
+    "time": {
+     "type": "number",
+     "description": "sidecar wall clock (s since epoch) when it read the entry"
+    },
+    "command_ids": {
+     "type": "array",
+     "description": "commands in flight when the entry was read (heuristic: NML carries no command serial with errors)"
+    },
+    "attribution": {
+     "const": "heuristic"
+    }
+   },
+   "additionalProperties": false
+  },
+  "state": {
+   "type": "object",
+   "required": [
+    "stat",
+    "errors"
+   ],
+   "properties": {
+    "stat": {
+     "$ref": "urn:linuxcnc-state-layer:emc_stat"
+    },
+    "errors": {
+     "type": "object",
+     "required": [
+      "seq",
+      "recent"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "seq": {
+       "type": "integer",
+       "minimum": 0,
+       "description": "seq of the newest error_channel entry, 0 if none yet"
+      },
+      "recent": {
+       "type": "array",
+       "maxItems": 16,
+       "items": {
+        "$ref": "#/$defs/error_entry"
+       }
+      }
+     }
+    },
+    "program_end": {
+     "type": "object",
+     "required": [
+      "seq",
+      "reason",
+      "file",
+      "line"
+     ],
+     "additionalProperties": false,
+     "description": "How the last AUTO program run ended. Absent until the first run ends.",
+     "properties": {
+      "seq": {
+       "type": "integer",
+       "minimum": 1,
+       "description": "number of program ends seen by this sidecar"
+      },
+      "reason": {
+       "enum": [
+        "completed",
+        "aborted",
+        "error"
+       ]
+      },
+      "file": {
+       "type": "string"
+      },
+      "line": {
+       "type": "integer",
+       "description": "motion_line when the run ended"
+      },
+      "command_id": {
+       "description": "id of the run/auto command that started it, if sent through this sidecar"
+      },
+      "attribution": {
+       "const": "heuristic"
+      }
+     }
+    }
+   },
+   "additionalProperties": false
+  },
+  "snapshot": {
+   "type": "object",
+   "required": [
+    "type",
+    "seq",
+    "schema_version",
+    "state"
+   ],
+   "properties": {
+    "type": {
+     "const": "snapshot"
+    },
+    "seq": {
+     "$ref": "#/$defs/seq"
+    },
+    "schema_version": {
+     "const": 1
+    },
+    "server": {
+     "type": "object",
+     "properties": {
+      "linuxcnc_version": {
+       "type": "string"
+      },
+      "allow_commands": {
+       "type": "boolean"
+      },
+      "error_channel": {
+       "type": "boolean",
+       "description": "false: started with --no-error-channel, errors.recent stays empty and errors are left to the GUI"
+      },
+      "dropped_fields": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "deadband": {
+       "type": "number",
+       "description": "floats that moved less than this are not published (0 = off)"
+      },
+      "keepalive": {
+       "type": "number",
+       "description": "seconds: the server sends at least one message (patch or ping) this often; a client may treat ~5 missed periods as a dead connection (idea: Machinekit keepalive_timer)"
+      }
+     }
+    },
+    "state": {
+     "$ref": "#/$defs/state"
+    },
+    "view_state": {
+     "type": "object",
+     "required": [
+      "key",
+      "blob"
+     ],
+     "properties": {
+      "key": {
+       "type": "string"
+      },
+      "blob": {
+       "description": "opaque, stored as sent"
+      }
+     }
+    },
+    "epoch": {
+     "type": "string",
+     "description": "random id of this sidecar process; a new epoch means the server restarted and seq started over (idea: Machinekit haltalk uuid)"
+    }
+   },
+   "additionalProperties": false
+  },
+  "patch": {
+   "type": "object",
+   "required": [
+    "type",
+    "seq",
+    "patch"
+   ],
+   "properties": {
+    "type": {
+     "const": "patch"
+    },
+    "seq": {
+     "$ref": "#/$defs/seq"
+    },
+    "patch": {
+     "type": "object",
+     "minProperties": 1,
+     "description": "RFC 7396 JSON Merge Patch from state seq-1 to state seq. Arrays are replaced as a whole."
+    }
+   },
+   "additionalProperties": false
+  },
+  "resync_request": {
+   "type": "object",
+   "required": [
+    "type"
+   ],
+   "properties": {
+    "type": {
+     "const": "resync_request"
+    },
+    "seq": {
+     "$ref": "#/$defs/seq",
+     "description": "last seq the client applied (informational)"
+    }
+   },
+   "additionalProperties": false
+  },
+  "command": {
+   "type": "object",
+   "required": [
+    "type",
+    "id",
+    "name"
+   ],
+   "properties": {
+    "type": {
+     "const": "command"
+    },
+    "id": {
+     "type": [
+      "string",
+      "integer"
+     ],
+     "description": "chosen by the client, echoed in command_result"
+    },
+    "name": {
+     "type": "string",
+     "description": "linuxcnc.command method name (state, mode, home, mdi, program_open, auto, abort, ...) or run"
+    },
+    "args": {
+     "type": "array",
+     "description": "positional arguments as for linuxcnc.command; constants by name (\"MODE_AUTO\") or value. run takes one object {file?, line?, expect_file?}"
+    }
+   },
+   "additionalProperties": false
+  },
+  "command_result": {
+   "type": "object",
+   "required": [
+    "type",
+    "id",
+    "outcome"
+   ],
+   "properties": {
+    "type": {
+     "const": "command_result"
+    },
+    "id": {
+     "type": [
+      "string",
+      "integer",
+      "null"
+     ]
+    },
+    "outcome": {
+     "enum": [
+      "completed",
+      "failed",
+      "aborted",
+      "accepted",
+      "unknown"
+     ],
+     "description": "completed: RCS_DONE for this command's own serial (for mdi/auto: motion finished, emctaskmain.cc:3720-3729; for home: joints homed). failed: RCS_ERROR for its serial, or an OPERATOR_ERROR/NML_ERROR while in flight, or rejected before sending. aborted: an abort or ESTOP/machine off ended it. accepted: task received it but a command from another NML client was processed before its status could be seen, the outcome is unknown. unknown: the sidecar cannot tell whether task got it (no echo of its serial within 5 s, or the sending process died after starting the write); it may still run later and is not sent again."
+    },
+    "error": {
+     "type": "string"
+    },
+    "errors": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/error_entry"
+     },
+     "description": "error_channel entries read while the command was in flight"
+    },
+    "attribution": {
+     "const": "heuristic"
+    }
+   },
+   "additionalProperties": false
+  },
+  "view_state_put": {
+   "type": "object",
+   "required": [
+    "type",
+    "key",
+    "blob"
+   ],
+   "properties": {
+    "type": {
+     "const": "view_state_put"
+    },
+    "key": {
+     "type": "string",
+     "minLength": 1
+    },
+    "blob": {
+     "description": "opaque to the sidecar"
+    }
+   },
+   "additionalProperties": false
+  },
+  "view_state": {
+   "type": "object",
+   "required": [
+    "type",
+    "key",
+    "blob"
+   ],
+   "properties": {
+    "type": {
+     "const": "view_state"
+    },
+    "key": {
+     "type": "string"
+    },
+    "blob": {}
+   },
+   "additionalProperties": false
+  },
+  "error": {
+   "type": "object",
+   "required": [
+    "type",
+    "message"
+   ],
+   "properties": {
+    "type": {
+     "const": "error"
+    },
+    "message": {
+     "type": "string"
+    },
+    "in_reply_to": {}
+   },
+   "additionalProperties": false
+  },
+  "ping": {
+   "type": "object",
+   "required": [
+    "type",
+    "seq",
+    "epoch"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "ping"
+    },
+    "seq": {
+     "$ref": "#/$defs/seq"
+    },
+    "epoch": {
+     "type": "string"
+    }
+   },
+   "description": "sent when no other message went out for `keepalive` seconds"
+  }
+ }
+}

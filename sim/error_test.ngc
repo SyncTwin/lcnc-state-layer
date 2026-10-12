@@ -1,0 +1,7 @@
+(state-layer SL-4: minimal program that stops with an error.)
+(No stock nc_files program fails deterministically on this config.)
+G21 G90 G17
+G0 X1 Y1
+G1 F100 X500 (beyond [AXIS_X]MAX_LIMIT = 254: soft limit error)
+G0 X0 Y0
+M2

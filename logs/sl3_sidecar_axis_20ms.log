@@ -1,0 +1,24 @@
+2026-10-12 03:26:44,995 lcnc_state INFO LinuxCNC 2.10.0~pre2, ini /tmp/lcnc-sim/axis_mm_headless.ini, 3 joints, period 0.020 s (--period), 91 stat fields
+2026-10-12 03:26:45,056 websockets.server INFO server listening on 127.0.0.1:8792
+2026-10-12 03:26:45,056 lcnc_state.ws INFO listening on ws://127.0.0.1:8792/ period=0.020 s commands=True epoch=b4546d38848841f98ace8bde8aac1208
+2026-10-12 03:26:46,511 websockets.server INFO connection open
+2026-10-12 03:26:46,511 lcnc_state.ws INFO client ('127.0.0.1', 48760) connected (encoding=json view_key=None), 1 clients
+2026-10-12 03:26:46,544 lcnc_state INFO command 36880-1 state[2] serial=19 kind=quick send=30.6 ms
+2026-10-12 03:26:46,575 lcnc_state INFO command 36880-1 state -> completed
+2026-10-12 03:26:46,597 lcnc_state INFO command 36880-2 state[4] serial=20 kind=quick send=20.4 ms
+2026-10-12 03:26:46,628 lcnc_state INFO command 36880-2 state -> completed
+2026-10-12 03:26:46,660 lcnc_state INFO command 36880-3 mode[1] serial=21 kind=quick send=30.5 ms
+2026-10-12 03:26:46,691 lcnc_state INFO command 36880-3 mode -> completed
+2026-10-12 03:26:46,713 lcnc_state INFO command 36880-4 home[-1] serial=22 kind=home send=20.3 ms
+2026-10-12 03:26:46,744 lcnc_state INFO command 36880-4 home -> failed (must be in joint mode to home)
+2026-10-12 03:26:46,766 lcnc_state INFO command 36880-5 set_optional_stop[False] serial=23 kind=quick send=20.5 ms
+2026-10-12 03:26:46,797 lcnc_state INFO command 36880-5 set_optional_stop -> completed
+2026-10-12 03:26:46,870 lcnc_state INFO command 36880-6 mode -> completed
+2026-10-12 03:26:46,943 lcnc_state INFO command 36880-6 program_open -> completed
+2026-10-12 03:29:00,069 lcnc_state INFO command 36880-6 run -> completed
+2026-10-12 03:29:00,574 lcnc_state.ws INFO client ('127.0.0.1', 48760) gone, 0 clients
+2026-10-12 03:29:00,574 websockets.server INFO connection closed
+2026-10-12 03:29:01,603 websockets.server INFO server closing
+2026-10-12 03:29:01,604 websockets.server INFO server closed
+2026-10-12 03:29:01,606 lcnc_state INFO trace: 6825 ticks -> /home/user/lcnc-state-layer/traces/axis_20ms.jsonl.gz
+2026-10-12 03:29:01,606 lcnc_state INFO ticks=6825 empty=0 seq=6825

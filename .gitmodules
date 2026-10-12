@@ -1,0 +1,15 @@
+[submodule "third_party/machinekit-hal"]
+	path = third_party/machinekit-hal
+	url = https://github.com/machinekit/machinekit-hal
+[submodule "third_party/machinekit-cnc"]
+	path = third_party/machinekit-cnc
+	url = https://github.com/machinekit/machinekit-cnc
+[submodule "third_party/machinetalk-protobuf"]
+	path = third_party/machinetalk-protobuf
+	url = https://github.com/machinekit/machinetalk-protobuf
+[submodule "third_party/QtQuickVcp"]
+	path = third_party/QtQuickVcp
+	url = https://github.com/machinekoder/QtQuickVcp
+[submodule "third_party/Machineface"]
+	path = third_party/Machineface
+	url = https://github.com/machinekit/Machineface

@@ -1,0 +1,159 @@
+#!/usr/bin/env python3
+# SPDX-License-Identifier: GPL-2.0-or-later
+"""linuxcnc-state-layer: websocket state layer next to a running LinuxCNC.
+
+Attaches to an already running LinuxCNC through the stock Python module
+(linuxcnc.stat / linuxcnc.command / linuxcnc.error_channel, i.e. the same NML
+channels a GUI uses).  Serves a full snapshot on connect, then JSON Merge
+Patch deltas with a sequence number.  Read-only unless --allow-commands.
+"""
+import argparse
+import asyncio
+import gzip
+import json
+import logging
+import os
+import signal
+import sys
+import time
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from lcnc_state.core import StateLayer          # noqa: E402
+from lcnc_state.server import Server            # noqa: E402
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+SCHEMA_DIR = os.path.join(os.path.dirname(HERE), "schema")
+
+
+def gui_period(lc, ini_path):
+    """Status poll period the way AXIS computes it (axis.py: [DISPLAY]CYCLE_TIME,
+    seconds if < 1 else milliseconds, fallback 0.020)."""
+    if not ini_path:
+        return 0.020, "fallback (no INI)"
+    ini = lc.ini(ini_path)
+    v = ini.find("DISPLAY", "CYCLE_TIME")
+    if v is None:
+        return 0.020, "fallback .020 (no [DISPLAY]CYCLE_TIME)"
+    ct = float(v)
+    return (ct if ct < 1 else ct / 1000.0), "[DISPLAY]CYCLE_TIME = %s in %s" % (v, ini_path)
+
+
+class TraceWriter:
+    """One JSON line per tick: {"t": monotonic seconds, "stat": {...}}."""
+
+    def __init__(self, path, meta):
+        self.f = gzip.open(path, "wt", compresslevel=6)
+        self.f.write(json.dumps({"meta": meta}) + "\n")
+        self.n = 0
+
+    def __call__(self, layer):
+        self.f.write(json.dumps({"t": round(time.monotonic(), 6), "stat": layer.last_stat},
+                                separators=(",", ":")) + "\n")
+        self.n += 1
+
+    def close(self):
+        self.f.close()
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--ini", help="LinuxCNC INI file (default: $INI_FILE_NAME, "
+                    "else the ini_filename LinuxCNC reports in stat)")
+    ap.add_argument("--period", type=float, help="stat poll period in seconds "
+                    "(default: as AXIS, from [DISPLAY]CYCLE_TIME)")
+    ap.add_argument("--host", default="127.0.0.1", help="listen address (default 127.0.0.1)")
+    ap.add_argument("--port", type=int, default=8791, help="listen port (default 8791)")
+    ap.add_argument("--allow-commands", action="store_true",
+                    help="accept commands from clients (moves the machine!)")
+    ap.add_argument("--no-error-channel", action="store_true",
+                    help="do not read error_channel (leave every error to the GUI); "
+                    "command outcomes then rest on RCS status and stat only")
+    ap.add_argument("--no-deflate", action="store_true",
+                    help="disable permessage-deflate")
+    ap.add_argument("--drop-fields", default="",
+                    help="comma separated stat fields not to publish (e.g. heartbeat,taskbeat)")
+    ap.add_argument("--deadband", type=float, default=0.0,
+                    help="do not publish float changes smaller than this (default 0 = off)")
+    ap.add_argument("--keepalive", type=float, default=2.0,
+                    help="send a ping when nothing else was sent for this many s (0 = off)")
+    ap.add_argument("--trace", help="record every polled stat dict to this .jsonl.gz")
+    ap.add_argument("--view-state-file", help="persist view state blobs in this JSON file")
+    ap.add_argument("--validate", action="store_true",
+                    help="validate snapshots and incoming messages against schema/")
+    ap.add_argument("--duration", type=float, help="exit after this many seconds")
+    ap.add_argument("-v", "--verbose", action="store_true")
+    args = ap.parse_args()
+
+    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
+                        format="%(asctime)s %(name)s %(levelname)s %(message)s")
+    log = logging.getLogger("lcnc_state")
+
+    import linuxcnc
+    views = {}
+    if args.view_state_file and os.path.exists(args.view_state_file):
+        with open(args.view_state_file) as f:
+            views = json.load(f)
+    drop = [x for x in args.drop_fields.split(",") if x]
+    layer = StateLayer(linuxcnc, allow_commands=args.allow_commands,
+                       view_store=views, drop_fields=drop, deadband=args.deadband,
+                       error_channel=not args.no_error_channel)
+    ini_path = args.ini or os.environ.get("INI_FILE_NAME") or layer.stat.ini_filename
+    if args.period:
+        period, why = args.period, "--period"
+    else:
+        period, why = gui_period(linuxcnc, ini_path)
+    log.info("LinuxCNC %s, ini %s, %d joints, period %.3f s (%s), %d stat fields",
+             getattr(linuxcnc, "version", "?"), ini_path, layer.stat.joints,
+             period, why, len(layer.names))
+
+    validator = None
+    if args.validate:
+        sys.path.insert(0, SCHEMA_DIR)
+        from validate import Validator
+        v = Validator(SCHEMA_DIR)
+        validator = v.client_message_error
+        snap_err = v.message_error(layer.snapshot())
+        log.info("schema check of first snapshot: %s", snap_err or "ok")
+
+    srv = Server(layer, period, args.host, args.port,
+                 compression=not args.no_deflate, validator=validator,
+                 keepalive=args.keepalive)
+    trace = None
+    if args.trace:
+        trace = TraceWriter(args.trace, {"linuxcnc_version": getattr(linuxcnc, "version", ""),
+                                         "ini": ini_path, "period": period,
+                                         "period_source": why, "fields": layer.names,
+                                         "started": time.time()})
+        srv.tick_hooks.append(trace)
+
+    async def runner():
+        task = asyncio.ensure_future(srv.run())
+        loop = asyncio.get_running_loop()
+        for sig in (signal.SIGTERM, signal.SIGINT):
+            loop.add_signal_handler(sig, task.cancel)
+        if args.duration:
+            await asyncio.sleep(args.duration)
+            task.cancel()
+        try:
+            await task
+        except asyncio.CancelledError:
+            pass
+
+    try:
+        asyncio.run(runner())
+    except KeyboardInterrupt:
+        pass
+    finally:
+        if trace:
+            trace.close()
+            log.info("trace: %d ticks -> %s", trace.n, args.trace)
+        if args.view_state_file:
+            with open(args.view_state_file, "w") as f:
+                json.dump(layer.views, f)
+        log.info("ticks=%d empty=%d seq=%d", layer.ticks, layer.empty_ticks, layer.seq)
+
+
+if __name__ == "__main__":
+    main()

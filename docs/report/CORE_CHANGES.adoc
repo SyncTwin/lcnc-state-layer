@@ -1,0 +1,180 @@
+:lang: en
+:toc:
+
+= CORE_CHANGES: what a wrapper cannot solve, and what would have to change in LinuxCNC
+
+Addresses refer to a LinuxCNC `master` clone @ `2655e62fe6aa` (`2.10.0~pre2`); `src/` is
+omitted where obvious. Each row: what gets in the way now, what the core would need, and
+what the sidecar does instead (with the cost of the workaround and how it was checked).
+Apart from the one optional patch sketched under CC-13, nothing here is a proposal to
+LinuxCNC; the rows document the limits of the sidecar approach.
+
+[cols="1,2,4,3,5",options="header"]
+|===
+| # | Topic | What gets in the way (file:line) | What the core would need | Sidecar workaround / what was checked
+
+| CC-1
+| Command outcome for every client
+| The status in EMC_STAT is one for all clients and belongs to the command named in
+  `echo_serial_number` (`emc/task/emctaskmain.cc:3708-3712` writes the echo,
+  `:3714-3733` the common `status`). `wait_complete()` treats a command as DONE when the
+  echo has moved past it (`emc/usr_intf/axis/extensions/emcmodule.cc:932-935`), so
+  another client's command can make ours look complete. The serial is the global
+  `write_id` of the buffer (`libnml/cms/cms_in.cc:1355-1371`); no outcome is stored per
+  serial.
+| An answer per command, carrying its serial and outcome (`completed` / `failed` /
+  `aborted` + text), addressed to the sender; with several commands in flight, the outcome
+  of each, not of the last one.
+| One command queue in the sidecar; the next command is sent after the previous one is
+  resolved. The outcome is taken from the sidecar's own serial through a separate
+  `linuxcnc.stat` polled every 5 ms. Echo moved past our serial: `accepted`, not
+  `completed`. `logs/sl4_results.md` case 9: 58/58 and 5+5 out of 10 in different runs
+  without a false `completed`; the `wait_complete` = 1 on RCS_ERROR trap was reproduced.
+
+| CC-2
+| Errors are eaten by the first reader
+| `emcError` is a queue with one consumer: reading pops the entry
+  (`libnml/cms/cms_in.cc:746` `queue_read_raw`, `:821` `queue_length--`); when the queue
+  is full the writer waits `DEFAULT_EMC_UI_TIMEOUT` and drops the message
+  (`emc/task/emctaskmain.cc:174-199`, calls at `:207`, `:259`, `:279`).
+| An error log with a monotonic number, delivered to all subscribers, with catch-up by
+  number (sketched in the upstream discussion).
+| The sidecar is the only reader in its setup; ring of 16 entries with `seq` in the
+  state. It does **not** solve the case of AXIS / QtVCP / a second sidecar reading the
+  same queue: `logs/sl4_results.md` case 10 -- a reader polling every 5 ms took 40 of
+  40 entries, the sidecar saw none; with AXIS's period of 0.2 s (`axis.py:794`) the
+  sidecar saw 0 and 6 of 40 in two runs. `--no-error-channel` leaves the queue to the GUI
+  (the sidecar's clients then get no error text).
+
+| CC-3
+| Binding an error to a command
+| `EMC_OPERATOR_ERROR` carries only text (`emc/nml_intf/emc_nml.hh:39-50`), no command
+  serial and no source. Motion rejects asynchronously through `reportError`
+  (`emc/motion/command.c:1556`, "must be in joint mode or disabled to unhome"); task
+  forwards the text as an operator error (`emc/task/taskintf.cc:2102-2108`) *after* it
+  has set RCS_DONE.
+| Serial of the causing command and the source (task / interp / motion / io) in the error
+  record.
+| Errors inside the "command in flight" window are attributed to it
+  (`"attribution": "heuristic"`). For motion commands `completed` is reported only when
+  stat shows the effect (`EFFECTS` in `sidecar/lcnc_state/core.py`), otherwise
+  `failed` / `accepted`. Found by a run: without the effect check there was 1 false
+  `completed` in 216 (`unhome` in teleop; the error text arrived after the window).
+
+| CC-4
+| Reason a program ended
+| EMC_STAT has no "program ended and why"; the end is only seen as `interp_state`
+  returning to IDLE. Task *has* the reasons: `enum class EMC_ABORT`
+  (`emc/nml_intf/emc.hh:235-247`: TASK_EXEC_ERROR, AUX_ESTOP, MOTION_OR_IO_RCS_ERROR,
+  TASK_ABORT, INTERPRETER_ERROR ...), calls of `emcAbortCleanup`
+  (`emc/task/emctaskmain.cc:595`, `:2200`, `:2411`, `:2723`, `:3593`, `:3687`), normal
+  end `INTERP_EXIT` / `INTERP_ENDFILE` (`:566-568`, `:597-598`) -- but none of it is
+  published.
+| A field in `EMC_TASK_STAT`: a counter of program ends plus the reason (`completed` for
+  M2 / M30 / ENDFILE, `aborted`, `error` with the `EMC_ABORT` code). That is the "parts
+  counter" asked for in the discussion.
+| `program_end` from stat transitions, errors and an abort seen by the sidecar. Checked:
+  completed / aborted / error -- `logs/sl4_results.md` cases 5-7. Limit: an abort sent by
+  another NML client (the AXIS button) is not seen by the sidecar, so such an end is
+  reported as `completed` or `error`, not `aborted` (not verified by a run).
+
+| CC-5
+| Atomic snapshot
+| Exists in part: task writes the whole EMC_STAT with one `write` every cycle
+  (`emc/task/emctaskmain.cc:3739`) and `stat.poll()` copies it whole (`emcmodule.cc:1028`
+  `memcpy ... sizeof(EMC_STAT)`). But errors, the tool table (mmap,
+  `emcmodule.cc:1001-1024`) and status are different channels with no guaranteed
+  mutual consistency.
+| One version number per snapshot, shared by status, error log and tool table.
+| A sidecar snapshot is one `poll()` plus the errors read in the same tick; the sidecar's
+  `seq`.
+
+| CC-6
+| "Changed" instead of polling; run with an expected program
+| No change notification, only polling of the buffer (GUI: `axis.py:3663-3667`, `:872`,
+  period `[DISPLAY]CYCLE_TIME`). `heartbeat` / `taskbeat` change on every poll
+  (`logs/sl3_trace_summary.md`: 100 % of ticks), so there are no empty ticks. "Expected
+  program is loaded" and AUTO_RUN are separate commands.
+| Publish on change (event or version number), liveness counters separate from state;
+  AUTO_RUN with the expected file in one command.
+| The sidecar polls at the GUI period and diffs; `--drop-fields heartbeat,taskbeat` gives
+  9 % empty ticks (BENCH). `run{expect_file}` checks `stat.file` before AUTO_RUN; the race
+  window between the check and AUTO_RUN remains.
+
+| CC-7
+| Protocol version
+| Mismatch detection is only the message type at connect (`emc/usr_intf/shcom.cc:93`
+  `EMC_STAT_TYPE != peek()`); Python copies `sizeof(EMC_STAT)` (`emcmodule.cc:1028`), so
+  builds of different versions read garbage silently.
+| A handshake carrying a schema version.
+| `snapshot.schema_version` + JSON Schema. The sidecar cannot see a mismatch between
+  LinuxCNC and its own module (it sits on the same emcmodule). Note: the schema describes
+  one build (91 fields); the live stand reports 88 fields and `SCHEMA_VERSION` is the
+  same, so the version does not tell builds apart (see REQUIREMENTS B6 / C6).
+
+| CC-8
+| Core asks a client (pre-checks, focus)
+| NML is only "client to task" plus a shared status; there is no "task to one client"
+  channel.
+| Request / response core to the client in focus (sketched in the upstream discussion).
+| Not done.
+
+| CC-9
+| Direct commands without a mode change
+| G-code only through `EMC_TASK_PLAN_EXECUTE` in MDI (`emc/task/emctaskmain.cc:2349`
+  "Must be in MDI mode to issue MDI command"); in MANUAL / AUTO "can't do that ... in
+  manual mode" (`:1058`, `:1168`, `:1231`).
+| Commands such as "set origin" without changing `task_mode`.
+| Not done: any wrapper still changes `task_mode`, visible to all clients in the stream --
+  exactly the complaint.
+
+| CC-10
+| Program text from LinuxCNC
+| EMC_STAT carries only the path (`file`), not the text.
+| Delivery of the loaded program's text (in chunks).
+| Not done (the sidecar would read the same file from disk, with the same desync risk).
+
+| CC-11
+| Tool table and offsets
+| stat has only the active coordinate system (`emcmodule.cc:1269-1275` `g5x_index`,
+  `g5x_offset`); G54..G59.3 are in the interpreter var file; the tool table is read through
+  mmap.
+| All coordinate systems and editing of tool table / offsets by core commands.
+| What is in stat is read; editing only as MDI G10 (mode change, CC-9).
+
+| CC-12
+| Operating state (jog rate, axis, increment)
+| Not in task: halui and every GUI keep their own copies.
+| Keep it in the core.
+| Not done: halui would not see it anyway.
+
+| CC-13
+| Blocking in the Python module
+| `emcSendCommand` and `emcWaitCommandComplete` (`emcmodule.cc:925-963`) wait in an
+  `esleep` loop without releasing the GIL (the only `Py_BEGIN_ALLOW_THREADS` pair in the
+  module is at `:2988`). The whole Python process of a GUI stands still for up to 5 s.
+| Optional small patch: release the GIL for the duration of the wait in
+  `emcSendCommand` and `emcWaitCommandComplete` (only the polling loop touches C++
+  state, not Python objects). Then the sidecar needs no child process. Not prepared or
+  tested.
+| Commands are sent by a child process (`sidecar/lcnc_state/sender.py`) that owns the only
+  `linuxcnc.command`; a thread does not help (a thread sleeping 1 ms is silent for 20.4 ms
+  during each command). Before: tick period max 147.5 ms, at the client 154.7 ms; after:
+  max 101.7 ms (min 97.9), 105.0 ms at the client; no `seq` gaps (BENCH, "Fixed after the
+  live run"). `wait_complete` is not called at all: the outcome comes from the sidecar's
+  own polling of stat. Cost: one extra process, and a hung child leaves the outcome
+  `unknown` (see the outcome table in `state-layer.adoc`).
+
+| CC-14
+| Slow or vanished client
+| The core does not know its clients and does not notice them.
+| Subscriber accounting, ping.
+| Bounded per-client queue plus a snapshot on overflow; websocket ping 20 s; application
+  `ping` with `keepalive` 2 s.
+|===
+
+Summary: CC-1 to CC-4 -- the outcome of a command, the error log and the reason a program
+ended -- can be closed by a wrapper **only heuristically**, and only while the sidecar is
+the sole NML client. The argument for producing them **at the source, in task** is the
+Machinetalk experience: `mkwrapper` was the same kind of wrapper and did not solve
+these problems.

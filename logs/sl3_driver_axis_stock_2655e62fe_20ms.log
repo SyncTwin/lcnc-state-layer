@@ -1,0 +1,75 @@
+2026-10-12 09:59:26,448 drive INFO command state['STATE_ESTOP_RESET'] -> {'type': 'command_result', 'id': '4064-1', 'outcome': 'completed'}
+2026-10-12 09:59:26,500 drive INFO command state['STATE_ON'] -> {'type': 'command_result', 'id': '4064-2', 'outcome': 'completed'}
+2026-10-12 09:59:26,562 drive INFO command mode['MODE_MANUAL'] -> {'type': 'command_result', 'id': '4064-3', 'outcome': 'completed'}
+2026-10-12 09:59:26,597 drive INFO command home[-1] -> {'type': 'command_result', 'id': '4064-4', 'outcome': 'failed', 'error': 'must be in joint mode to home', 'errors': [{'seq': 1, 'kind': 'OPERATOR_ERROR', 'text': 'must be in joint mode to home', 'time': 1791799166.576396, 'command_ids': ['4064-4'], 'attribution': 'heuristic'}], 'attribution': 'heuristic'}
+2026-10-12 09:59:26,597 drive INFO ok: all joints homed (0.00 s)
+2026-10-12 09:59:26,650 drive INFO set_optional_stop(False) -> {'type': 'command_result', 'id': '4064-5', 'outcome': 'completed'}
+2026-10-12 09:59:28,438 lcnc_state_client INFO verify at seq 175: reconstructed state == snapshot
+2026-10-12 09:59:30,439 lcnc_state_client INFO verify at seq 275: reconstructed state == snapshot
+2026-10-12 09:59:32,438 lcnc_state_client INFO verify at seq 375: reconstructed state == snapshot
+2026-10-12 09:59:34,439 lcnc_state_client INFO verify at seq 475: reconstructed state == snapshot
+2026-10-12 09:59:36,438 lcnc_state_client INFO verify at seq 575: reconstructed state == snapshot
+2026-10-12 09:59:38,438 lcnc_state_client INFO verify at seq 675: reconstructed state == snapshot
+2026-10-12 09:59:40,439 lcnc_state_client INFO verify at seq 775: reconstructed state == snapshot
+2026-10-12 09:59:42,438 lcnc_state_client INFO verify at seq 875: reconstructed state == snapshot
+2026-10-12 09:59:44,439 lcnc_state_client INFO verify at seq 975: reconstructed state == snapshot
+2026-10-12 09:59:46,438 lcnc_state_client INFO verify at seq 1075: reconstructed state == snapshot
+2026-10-12 09:59:48,438 lcnc_state_client INFO verify at seq 1175: reconstructed state == snapshot
+2026-10-12 09:59:50,440 lcnc_state_client INFO verify at seq 1275: reconstructed state == snapshot
+2026-10-12 09:59:52,438 lcnc_state_client INFO verify at seq 1375: reconstructed state == snapshot
+2026-10-12 09:59:54,439 lcnc_state_client INFO verify at seq 1475: reconstructed state == snapshot
+2026-10-12 09:59:56,439 lcnc_state_client INFO verify at seq 1575: reconstructed state == snapshot
+2026-10-12 09:59:58,438 lcnc_state_client INFO verify at seq 1675: reconstructed state == snapshot
+2026-10-12 10:00:00,440 lcnc_state_client INFO verify at seq 1775: reconstructed state == snapshot
+2026-10-12 10:00:02,438 lcnc_state_client INFO verify at seq 1875: reconstructed state == snapshot
+2026-10-12 10:00:04,439 lcnc_state_client INFO verify at seq 1975: reconstructed state == snapshot
+2026-10-12 10:00:06,438 lcnc_state_client INFO verify at seq 2075: reconstructed state == snapshot
+2026-10-12 10:00:08,438 lcnc_state_client INFO verify at seq 2175: reconstructed state == snapshot
+2026-10-12 10:00:10,439 lcnc_state_client INFO verify at seq 2275: reconstructed state == snapshot
+2026-10-12 10:00:12,438 lcnc_state_client INFO verify at seq 2375: reconstructed state == snapshot
+2026-10-12 10:00:14,438 lcnc_state_client INFO verify at seq 2475: reconstructed state == snapshot
+2026-10-12 10:00:16,438 lcnc_state_client INFO verify at seq 2575: reconstructed state == snapshot
+2026-10-12 10:00:18,438 lcnc_state_client INFO verify at seq 2675: reconstructed state == snapshot
+2026-10-12 10:00:20,438 lcnc_state_client INFO verify at seq 2775: reconstructed state == snapshot
+2026-10-12 10:00:22,438 lcnc_state_client INFO verify at seq 2875: reconstructed state == snapshot
+2026-10-12 10:00:24,438 lcnc_state_client INFO verify at seq 2975: reconstructed state == snapshot
+2026-10-12 10:00:26,438 lcnc_state_client INFO verify at seq 3075: reconstructed state == snapshot
+2026-10-12 10:00:28,438 lcnc_state_client INFO verify at seq 3175: reconstructed state == snapshot
+2026-10-12 10:00:30,440 lcnc_state_client INFO verify at seq 3275: reconstructed state == snapshot
+2026-10-12 10:00:32,439 lcnc_state_client INFO verify at seq 3375: reconstructed state == snapshot
+2026-10-12 10:00:34,438 lcnc_state_client INFO verify at seq 3475: reconstructed state == snapshot
+2026-10-12 10:00:36,438 lcnc_state_client INFO verify at seq 3575: reconstructed state == snapshot
+2026-10-12 10:00:38,438 lcnc_state_client INFO verify at seq 3675: reconstructed state == snapshot
+2026-10-12 10:00:40,438 lcnc_state_client INFO verify at seq 3775: reconstructed state == snapshot
+2026-10-12 10:00:42,438 lcnc_state_client INFO verify at seq 3875: reconstructed state == snapshot
+2026-10-12 10:00:44,438 lcnc_state_client INFO verify at seq 3975: reconstructed state == snapshot
+2026-10-12 10:00:46,438 lcnc_state_client INFO verify at seq 4075: reconstructed state == snapshot
+2026-10-12 10:00:48,439 lcnc_state_client INFO verify at seq 4175: reconstructed state == snapshot
+2026-10-12 10:00:50,438 lcnc_state_client INFO verify at seq 4275: reconstructed state == snapshot
+2026-10-12 10:00:52,439 lcnc_state_client INFO verify at seq 4375: reconstructed state == snapshot
+2026-10-12 10:00:54,438 lcnc_state_client INFO verify at seq 4475: reconstructed state == snapshot
+2026-10-12 10:00:56,438 lcnc_state_client INFO verify at seq 4575: reconstructed state == snapshot
+2026-10-12 10:00:58,439 lcnc_state_client INFO verify at seq 4675: reconstructed state == snapshot
+2026-10-12 10:01:00,438 lcnc_state_client INFO verify at seq 4775: reconstructed state == snapshot
+2026-10-12 10:01:02,439 lcnc_state_client INFO verify at seq 4875: reconstructed state == snapshot
+2026-10-12 10:01:04,438 lcnc_state_client INFO verify at seq 4975: reconstructed state == snapshot
+2026-10-12 10:01:06,439 lcnc_state_client INFO verify at seq 5075: reconstructed state == snapshot
+2026-10-12 10:01:08,438 lcnc_state_client INFO verify at seq 5175: reconstructed state == snapshot
+2026-10-12 10:01:10,439 lcnc_state_client INFO verify at seq 5275: reconstructed state == snapshot
+2026-10-12 10:01:12,438 lcnc_state_client INFO verify at seq 5375: reconstructed state == snapshot
+2026-10-12 10:01:14,438 lcnc_state_client INFO verify at seq 5475: reconstructed state == snapshot
+2026-10-12 10:01:16,438 lcnc_state_client INFO verify at seq 5575: reconstructed state == snapshot
+2026-10-12 10:01:18,438 lcnc_state_client INFO verify at seq 5675: reconstructed state == snapshot
+2026-10-12 10:01:20,438 lcnc_state_client INFO verify at seq 5775: reconstructed state == snapshot
+2026-10-12 10:01:22,438 lcnc_state_client INFO verify at seq 5875: reconstructed state == snapshot
+2026-10-12 10:01:24,438 lcnc_state_client INFO verify at seq 5975: reconstructed state == snapshot
+2026-10-12 10:01:26,439 lcnc_state_client INFO verify at seq 6075: reconstructed state == snapshot
+2026-10-12 10:01:28,438 lcnc_state_client INFO verify at seq 6175: reconstructed state == snapshot
+2026-10-12 10:01:30,439 lcnc_state_client INFO verify at seq 6275: reconstructed state == snapshot
+2026-10-12 10:01:32,439 lcnc_state_client INFO verify at seq 6375: reconstructed state == snapshot
+2026-10-12 10:01:34,438 lcnc_state_client INFO verify at seq 6475: reconstructed state == snapshot
+2026-10-12 10:01:36,438 lcnc_state_client INFO verify at seq 6575: reconstructed state == snapshot
+2026-10-12 10:01:38,438 lcnc_state_client INFO verify at seq 6675: reconstructed state == snapshot
+2026-10-12 10:01:40,439 lcnc_state_client INFO verify at seq 6775: reconstructed state == snapshot
+2026-10-12 10:01:41,077 drive INFO run /tmp/linuxcnX/share/axis/images/axis.ngc -> {'type': 'command_result', 'id': '4064-6', 'outcome': 'completed', 'attribution': 'heuristic'} in 134.4 s; program_end=None
+2026-10-12 10:01:41,577 drive INFO client stats: {'snapshots': 68, 'patches': 6757, 'gaps': 0, 'resyncs': 0, 'verified_equal': 67, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 45476262, 'view_state_updates': 0}

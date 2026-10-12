@@ -1,0 +1,27 @@
+653.280 connected: ini=/tmp/lcnc-sim/axis_mm_headless.ini joints=3 task_state=1
+653.321 command state(2,) -> wait_complete=1
+653.352 command state(4,) -> wait_complete=1
+653.352 ok: task_state == STATE_ON after 0.00 s
+653.383 command mode(1,) -> wait_complete=1
+653.413 command home(-1,) -> wait_complete=1
+655.730 ok: all joints homed after 2.32 s
+655.761 command set_optional_stop(False,) -> wait_complete=1
+655.812 command mode(2,) -> wait_complete=1
+655.863 command program_open('/tmp/linuxcnc/share/axis/images/axis.ngc',) -> wait_complete=1
+655.863 loaded file=/tmp/linuxcnc/share/axis/images/axis.ngc
+665.884 command auto(0, 0) -> wait_complete=-1
+665.884 ok: program started after 0.00 s
+665.884 interp_state=WAITING exec_state=7 motion_line=19
+788.197 interp_state=WAITING exec_state=2 motion_line=198
+788.298 interp_state=IDLE exec_state=2 motion_line=198
+788.298 program /tmp/linuxcnc/share/axis/images/axis.ngc finished in 132.4 s, motion_line=198, position=(118.27432, 8.238890000000012, 3.000000000000001)
+788.338 command mode(2,) -> wait_complete=1
+788.389 command program_open('/tmp/linuxcnc/nc_files/gmoccapy_2_tools_with_cutter_radius_compensation.ngc',) -> wait_complete=1
+788.389 loaded file=/tmp/linuxcnc/nc_files/gmoccapy_2_tools_with_cutter_radius_compensation.ngc
+798.410 command auto(0, 0) -> wait_complete=-1
+798.410 ok: program started after 0.00 s
+798.410 interp_state=READING exec_state=7 motion_line=38
+811.843 error_channel: (13, ' optional stop, i.e. for cleaning the workpiece, or other thinks')
+811.844 interp_state=WAITING exec_state=7 motion_line=61
+827.978 interp_state=IDLE exec_state=2 motion_line=86
+827.978 program /tmp/linuxcnc/nc_files/gmoccapy_2_tools_with_cutter_radius_compensation.ngc finished in 39.6 s, motion_line=86, position=(51.5, 50.0, 30.511)

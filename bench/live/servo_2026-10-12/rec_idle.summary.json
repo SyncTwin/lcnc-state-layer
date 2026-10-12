@@ -1,0 +1,52 @@
+{
+ "samples": [
+  {
+   "tag": "idle0",
+   "t": 685948.300111885,
+   "seq": 41,
+   "hal_enc_counts": "570063530",
+   "hal_motor_pos_fb": "1049.379",
+   "stream_joint0": 1049.378951818924,
+   "stream_actual_x": 5.0537254531054e-14
+  },
+  {
+   "tag": "idle1",
+   "t": 685954.309764577,
+   "seq": 101,
+   "hal_enc_counts": "570063534",
+   "hal_motor_pos_fb": "1049.379",
+   "stream_joint0": 1049.3789494347382,
+   "stream_actual_x": 5.0537254531054e-14
+  },
+  {
+   "tag": "idle2",
+   "t": 685960.320972802,
+   "seq": 161,
+   "hal_enc_counts": "570063534",
+   "hal_motor_pos_fb": "1049.379",
+   "stream_joint0": 1049.3789494347382,
+   "stream_actual_x": 5.0537254531054e-14
+  },
+  {
+   "tag": "idle3",
+   "t": 685966.328163411,
+   "seq": 221,
+   "hal_enc_counts": "570063530",
+   "hal_motor_pos_fb": "1049.379",
+   "stream_joint0": 1049.3789494347382,
+   "stream_actual_x": 5.0537254531054e-14
+  },
+  {
+   "tag": "idle4",
+   "t": 685972.335864781,
+   "seq": 281,
+   "hal_enc_counts": "570063534",
+   "hal_motor_pos_fb": "1049.379",
+   "stream_joint0": 1049.378951818924,
+   "stream_actual_x": 5.0537254531054e-14
+  }
+ ],
+ "results": [],
+ "gaps": 0,
+ "last_seq": 346
+}

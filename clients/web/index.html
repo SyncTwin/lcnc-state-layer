@@ -1,0 +1,99 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-2.0-or-later -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LinuxCNC state layer</title>
+<style>
+  :root { --bg: #fafafa; --fg: #1d1d1f; --muted: #6e6e73; --ok: #1a7f37; --bad: #c62828; --card: #fff; --line: #ddd; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #161618; --fg: #ececf0; --muted: #a0a0a8; --ok: #4ac26b; --bad: #ff6b6b; --card: #222226; --line: #3a3a40; }
+  }
+  body { margin: 0; padding: 16px; background: var(--bg); color: var(--fg); font: 15px/1.4 system-ui, sans-serif; }
+  h1 { font-size: 18px; margin: 0 0 12px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+  .card h2 { font-size: 13px; color: var(--muted); margin: 0 0 6px; font-weight: 600; text-transform: uppercase; }
+  .dro { font: 600 22px/1.3 ui-monospace, monospace; }
+  .muted { color: var(--muted); }
+  .ok { color: var(--ok); } .bad { color: var(--bad); }
+  ul { margin: 0; padding-left: 18px; }
+  input { font: inherit; width: 100%; box-sizing: border-box; }
+</style>
+</head>
+<body>
+<h1>LinuxCNC state layer <span id="link" class="muted">down</span></h1>
+<div class="card" style="margin-bottom:12px">
+  <label class="muted" for="url">Sidecar URL</label>
+  <input id="url" value="ws://127.0.0.1:8791/">
+</div>
+<div class="grid">
+  <div class="card"><h2>Position</h2><div id="pos" class="dro">–</div></div>
+  <div class="card"><h2>State</h2><div id="state">–</div></div>
+  <div class="card"><h2>Program</h2><div id="prog">–</div></div>
+  <div class="card"><h2>Program end</h2><div id="pend">–</div></div>
+  <div class="card"><h2>Errors</h2><ul id="errors"></ul></div>
+  <div class="card"><h2>Link</h2><div id="stats" class="muted">–</div></div>
+</div>
+<script type="module">
+import { applyMergePatch } from "./merge_patch.js";
+
+const TASK_STATE = {1: "ESTOP", 2: "ESTOP_RESET", 3: "OFF", 4: "ON"};
+const TASK_MODE = {1: "MANUAL", 2: "AUTO", 3: "MDI"};
+const INTERP = {1: "IDLE", 2: "READING", 3: "PAUSED", 4: "WAITING"};
+const $ = (id) => document.getElementById(id);
+let ws, state = null, seq = null, epoch = null, awaitingSnapshot = false, lastRx = 0, keepalive = 2;
+const stats = { patches: 0, gaps: 0, resyncs: 0, bytes: 0 };
+
+function render() {
+  if (!state) return;
+  const s = state.stat;
+  const letters = "XYZABCUVW";
+  const axes = [];
+  for (let i = 0; i < 9; i++) if (s.axis_mask & (1 << i)) axes.push(`${letters[i]} ${s.position[i].toFixed(3)}`);
+  $("pos").textContent = axes.join("  ");
+  $("state").innerHTML = `${TASK_STATE[s.task_state] ?? s.task_state} · ${TASK_MODE[s.task_mode] ?? s.task_mode}` +
+    ` · interp ${INTERP[s.interp_state] ?? s.interp_state}<br><span class="muted">feed ${(s.feedrate * 100).toFixed(0)} %, vel ${s.current_vel.toFixed(2)}</span>`;
+  $("prog").innerHTML = `${s.file ? s.file.split("/").pop() : "<span class=muted>none</span>"}<br>` +
+    `<span class="muted">motion_line ${s.motion_line}</span>`;
+  const pe = state.program_end;
+  $("pend").innerHTML = pe ? `<span class="${pe.reason === "completed" ? "ok" : "bad"}">${pe.reason}</span> #${pe.seq}` +
+    `<br><span class="muted">${pe.file.split("/").pop()} line ${pe.line}</span>` : `<span class="muted">no run ended yet</span>`;
+  $("errors").innerHTML = state.errors.recent.slice(-5).reverse()
+    .map((e) => `<li><span class="muted">${e.kind}</span> ${e.text.replace(/[<&]/g, (c) => c === "<" ? "&lt;" : "&amp;")}</li>`).join("");
+  $("stats").textContent = `seq ${seq} · patches ${stats.patches} · gaps ${stats.gaps} · resyncs ${stats.resyncs} · ${(stats.bytes / 1024).toFixed(0)} KiB`;
+}
+
+function connect() {
+  $("link").textContent = "trying";
+  ws = new WebSocket($("url").value);
+  ws.onmessage = (ev) => {
+    lastRx = performance.now();
+    stats.bytes += ev.data.length;
+    const m = JSON.parse(ev.data);
+    if (m.type === "snapshot") {
+      if (epoch && m.epoch !== epoch) console.warn("sidecar restarted, new epoch", m.epoch);
+      epoch = m.epoch; state = m.state; seq = m.seq; awaitingSnapshot = false;
+      keepalive = (m.server && m.server.keepalive) || keepalive;
+      $("link").textContent = "up"; $("link").className = "ok";
+    } else if (m.type === "patch") {
+      if (!state || awaitingSnapshot) return;
+      if (m.seq !== seq + 1) {             // lost a patch: ask for a snapshot
+        stats.gaps++; stats.resyncs++; awaitingSnapshot = true;
+        ws.send(JSON.stringify({ type: "resync_request", seq }));
+        return;
+      }
+      state = applyMergePatch(state, m.patch); seq = m.seq; stats.patches++;
+    }
+    render();
+  };
+  ws.onclose = () => { $("link").textContent = "down"; $("link").className = "bad"; setTimeout(connect, 1000); };
+}
+// liveness: no message for 5 keepalive periods -> reconnect
+setInterval(() => { if (ws && ws.readyState === 1 && performance.now() - lastRx > 5000 * keepalive) ws.close(); }, 1000);
+$("url").addEventListener("change", () => ws && ws.close());
+connect();
+</script>
+</body>
+</html>

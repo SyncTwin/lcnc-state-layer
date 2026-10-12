@@ -1,0 +1,169 @@
+{
+ "samples": [
+  {
+   "tag": "before",
+   "t": 685990.042850543,
+   "seq": 458,
+   "hal_enc_counts": "570063526",
+   "hal_motor_pos_fb": "1049.379",
+   "stream_joint0": 1049.378951818924,
+   "stream_actual_x": 5.0537254531054e-14
+  },
+  {
+   "tag": "fwd0",
+   "t": 685990.85627036,
+   "seq": 466,
+   "hal_enc_counts": "573417274",
+   "hal_motor_pos_fb": "1051.378",
+   "stream_joint0": 1051.3743990969467,
+   "stream_actual_x": 5.0537254531054e-14
+  },
+  {
+   "tag": "fwd1",
+   "t": 685990.944347394,
+   "seq": 467,
+   "hal_enc_counts": "573418830",
+   "hal_motor_pos_fb": "1051.379",
+   "stream_joint0": 1051.3778150391388,
+   "stream_actual_x": 5.0537254531054e-14
+  },
+  {
+   "tag": "fwd2",
+   "t": 685991.031365993,
+   "seq": 468,
+   "hal_enc_counts": "573419394",
+   "hal_motor_pos_fb": "1051.379",
+   "stream_joint0": 1051.3788593125153,
+   "stream_actual_x": 5.0537254531054e-14
+  },
+  {
+   "tag": "fwd3",
+   "t": 685991.1213788,
+   "seq": 469,
+   "hal_enc_counts": "573419578",
+   "hal_motor_pos_fb": "1051.379",
+   "stream_joint0": 1051.3792240929413,
+   "stream_actual_x": 5.0537254531054e-14
+  },
+  {
+   "tag": "fwd4",
+   "t": 685991.210904784,
+   "seq": 470,
+   "hal_enc_counts": "573419714",
+   "hal_motor_pos_fb": "1051.379",
+   "stream_joint0": 1051.3793909859467,
+   "stream_actual_x": 5.0537254531054e-14
+  },
+  {
+   "tag": "fwd5",
+   "t": 685991.298728323,
+   "seq": 471,
+   "hal_enc_counts": "573419710",
+   "hal_motor_pos_fb": "1051.379",
+   "stream_joint0": 1051.379410059433,
+   "stream_actual_x": 5.0537254531054e-14
+  },
+  {
+   "tag": "fwd_end",
+   "t": 685992.106363646,
+   "seq": 479,
+   "hal_enc_counts": "573419542",
+   "hal_motor_pos_fb": "1051.379",
+   "stream_joint0": 1051.3792646240997,
+   "stream_actual_x": 5.0537254531054e-14
+  },
+  {
+   "tag": "back_end",
+   "t": 685993.872393079,
+   "seq": 497,
+   "hal_enc_counts": "570063010",
+   "hal_motor_pos_fb": "1049.379",
+   "stream_joint0": 1049.3786299538422,
+   "stream_actual_x": 5.0537254531054e-14
+  },
+  {
+   "tag": "after_off",
+   "t": 685996.077961983,
+   "seq": 519,
+   "hal_enc_counts": "570066798",
+   "hal_motor_pos_fb": "1049.381",
+   "stream_joint0": 1049.3808925461578,
+   "stream_actual_x": 5.0537254531054e-14
+  }
+ ],
+ "results": [
+  {
+   "name": "state",
+   "args": [
+    "STATE_ESTOP_RESET"
+   ],
+   "outcome": "completed",
+   "error": null,
+   "ms": 62.4
+  },
+  {
+   "name": "state",
+   "args": [
+    "STATE_ON"
+   ],
+   "outcome": "completed",
+   "error": null,
+   "ms": 51.8
+  },
+  {
+   "name": "mode",
+   "args": [
+    "MODE_MANUAL"
+   ],
+   "outcome": "completed",
+   "error": null,
+   "ms": 51.8
+  },
+  {
+   "name": "jog",
+   "args": [
+    "JOG_INCREMENT",
+    true,
+    0,
+    5.0,
+    2.0
+   ],
+   "outcome": "accepted",
+   "error": "RCS_DONE; effect not checkable in stat for jog",
+   "ms": 558.9
+  },
+  {
+   "name": "jog",
+   "args": [
+    "JOG_INCREMENT",
+    true,
+    0,
+    5.0,
+    -2.0
+   ],
+   "outcome": "accepted",
+   "error": "RCS_DONE; effect not checkable in stat for jog",
+   "ms": 556.6
+  },
+  {
+   "name": "state",
+   "args": [
+    "STATE_OFF"
+   ],
+   "outcome": "failed",
+   "error": "RCS_DONE but stat does not show the effect within 1.0 s",
+   "ms": 1073.0
+  },
+  {
+   "name": "state",
+   "args": [
+    "STATE_ESTOP"
+   ],
+   "outcome": "completed",
+   "error": null,
+   "ms": 121.9
+  }
+ ],
+ "gaps": 0,
+ "last_seq": 525
+}

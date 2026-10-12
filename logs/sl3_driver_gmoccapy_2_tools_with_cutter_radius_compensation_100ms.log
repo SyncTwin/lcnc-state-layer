@@ -1,0 +1,12 @@
+2026-10-12 03:25:50,691 drive INFO command state['STATE_ESTOP_RESET'] -> {'type': 'command_result', 'id': '20496-1', 'outcome': 'completed'}
+2026-10-12 03:25:50,746 drive INFO command state['STATE_ON'] -> {'type': 'command_result', 'id': '20496-2', 'outcome': 'completed'}
+2026-10-12 03:25:50,809 drive INFO command mode['MODE_MANUAL'] -> {'type': 'command_result', 'id': '20496-3', 'outcome': 'completed'}
+2026-10-12 03:25:50,862 drive INFO command home[-1] -> {'type': 'command_result', 'id': '20496-4', 'outcome': 'failed', 'error': 'must be in joint mode to home', 'errors': [{'seq': 1, 'kind': 'OPERATOR_ERROR', 'text': 'must be in joint mode to home', 'time': 1791775550.830809, 'command_ids': ['20496-4'], 'attribution': 'heuristic'}], 'attribution': 'heuristic'}
+2026-10-12 03:25:50,862 drive INFO ok: all joints homed (0.00 s)
+2026-10-12 03:25:50,915 drive INFO set_optional_stop(False) -> {'type': 'command_result', 'id': '20496-5', 'outcome': 'completed'}
+2026-10-12 03:26:00,532 lcnc_state_client INFO verify at seq 115: reconstructed state == snapshot
+2026-10-12 03:26:10,532 lcnc_state_client INFO verify at seq 215: reconstructed state == snapshot
+2026-10-12 03:26:20,533 lcnc_state_client INFO verify at seq 315: reconstructed state == snapshot
+2026-10-12 03:26:30,532 lcnc_state_client INFO verify at seq 415: reconstructed state == snapshot
+2026-10-12 03:26:30,630 drive INFO run /tmp/linuxcnc/nc_files/gmoccapy_2_tools_with_cutter_radius_compensation.ngc -> {'type': 'command_result', 'id': '20496-6', 'outcome': 'completed', 'errors': [{'seq': 2, 'kind': 'OPERATOR_DISPLAY', 'text': ' optional stop, i.e. for cleaning the workpiece, or other thinks', 'time': 1791775574.5276206, 'command_ids': ['20496-6'], 'attribution': 'heuristic'}], 'attribution': 'heuristic'} in 39.7 s; program_end=None
+2026-10-12 03:26:31,131 drive INFO client stats: {'snapshots': 5, 'patches': 406, 'gaps': 0, 'resyncs': 0, 'verified_equal': 4, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 2628812, 'view_state_updates': 0}

@@ -1,0 +1,25 @@
+date: 2026-10-12T10:17:44Z
+cpu: AMD Ryzen 7 PRO 6850H with Radeon Graphics, 16 CPUs,  VM
+os: Ubuntu 24.04.5 LTS, kernel 6.12.111+deb13-rt-amd64
+compiler: g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, flags -O2 -std=c++20
+deb nlohmann-json3-dev 3.11.3-1
+deb libflatbuffers-dev 2.0.8+dfsg1-6build1
+deb flatbuffers-compiler 2.0.8+dfsg1-6build1
+deb protobuf-compiler 3.21.12-8.2ubuntu0.3
+deb zlib1g-dev 1:1.3.dfsg-3.1ubuntu2.2
+deb python3-cbor2 5.6.2-1build1
+deb python3-msgpack 1.0.3-3build2
+deb python3-flatbuffers 2.0.8+dfsg1-6build1
+deb python3-protobuf 3.21.12-8.2ubuntu0.3
+deb python3-websockets 10.4-1
+deb nodejs 18.19.1+dfsg-6ubuntu5
+python (bench): Python 3.12.3
+py cbor2 None (C extension) /usr/lib/python3/dist-packages/cbor2/__init__.py
+py msgpack (1, 0, 3) (C extension) /usr/lib/python3/dist-packages/msgpack/__init__.py
+py flatbuffers 2.0.8+dfsg1 /usr/lib/python3/dist-packages/flatbuffers/__init__.py
+py google.protobuf 4.21.12 (cpp) /usr/lib/python3/dist-packages/google/protobuf/__init__.py
+py orjson 3.10.12 /usr/local/lib/python3.12/dist-packages/orjson/__init__.py
+py numpy 1.26.4 /usr/lib/python3/dist-packages/numpy/__init__.py
+node v22.22.0
+npm cbor-x 1.6.0 MIT
+npm @msgpack/msgpack 2.8.0 ISC

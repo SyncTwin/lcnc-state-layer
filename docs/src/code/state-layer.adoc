@@ -1,0 +1,123 @@
+:lang: en
+:toc:
+
+[[cha:state-layer]]
+= State layer prototype (websocket)
+
+This is a prototype, not part of LinuxCNC. It runs next to a running
+LinuxCNC as a separate process and uses only the Python interface
+(`linuxcnc.stat`, `linuxcnc.command`, `linuxcnc.error_channel`), see
+<<cha:python-interface,The LinuxCNC Python module>>.
+
+== Starting
+
+----
+linuxcnc-state-layer [--ini INIFILE] [--host 127.0.0.1] [--port 8791]
+                     [--period SECONDS] [--allow-commands] [--drop-fields LIST]
+                     [--deadband X] [--trace FILE.jsonl.gz] [--validate]
+----
+
+* The poll period defaults to `[DISPLAY]CYCLE_TIME`, computed the way AXIS
+  does it (seconds if below 1, else milliseconds; 0.020 if missing).
+* By default the sidecar is *read-only*. `--allow-commands` lets clients
+  send commands; on a real machine this moves axes.
+* It listens on 127.0.0.1 unless `--host` says otherwise.
+
+== Messages
+
+All messages are JSON objects with a `type` member (or the same objects in
+CBOR / MessagePack with `?encoding=cbor` / `?encoding=msgpack`). The schema is
+`schema/messages.schema.json`; the state part is
+`schema/emc_stat.schema.json`.
+
+Server to client::
+`snapshot`::: `{seq, epoch, schema_version, server, state, view_state?}` -- sent
+on connect and on `resync_request`.
+`patch`::: `{seq, patch}` -- JSON Merge Patch (RFC 7396) from state `seq-1`
+to state `seq`. No change, no message.
+`command_result`::: `{id, outcome, error?, errors?}` -- only to the client that
+sent the command. `outcome` is `completed`, `failed`, `aborted`, `accepted` or
+`unknown`, see <<sec:state-layer-outcomes,Command outcomes>>.
+`view_state`::: `{key, blob}` -- another connection with the same key stored a
+new blob.
+`ping`::: `{seq, epoch}` -- sent when nothing else was sent for
+`server.keepalive` seconds.
+`error`::: `{message}` -- the request could not be handled.
+
+Client to server::
+`resync_request`::: `{seq?}` -- send a snapshot.
+`command`::: `{id, name, args}` -- `name` is a `linuxcnc.command` method
+(`state`, `mode`, `home`, `mdi`, `program_open`, `auto`, `abort`, ...) or
+`run` (`{file?, line?, expect_file?}`). Constants by name, for example
+`"MODE_AUTO"`.
+`view_state_put`::: `{key, blob}` -- store an opaque blob under `key`.
+
+[[sec:state-layer-outcomes]]
+== Command outcomes
+
+Commands are put into one queue and sent one at a time, each with its own NML
+serial. The sidecar does not call `linuxcnc.command` itself: a child process
+(`sidecar/lcnc_state/sender.py`) owns the only `linuxcnc.command` object and
+sends the commands, one JSON line per request. The reason is that every
+`linuxcnc.command` method waits for task to echo the serial in
+`emcSendCommand` while holding the Python GIL (10-100 ms), which would stall the
+poll loop of the sidecar. `abort`, `state ESTOP` and `state OFF` do not wait in
+the queue: a second sender process sends them at once, and commands still
+queued are dropped with `failed`.
+
+The sender writes `{"sending": true}` right before it calls the method. If the
+sender dies or does not answer after that marker, the NML message may already
+be in task's queue; the sidecar kills the sender, reports `unknown` and never
+sends the command again.
+
+`completed`::
+task set RCS_DONE for the command's own serial and, for commands whose effect is
+visible in `linuxcnc.stat`, the effect is there (for `mdi` and `auto` RCS_DONE
+means motion has finished; for `home` the joints are homed).
+`failed`::
+RCS_ERROR for its serial, an operator or NML error while the command was in
+flight, a rejection before sending (commands disabled, unknown command, bad
+argument), or RCS_DONE without the expected effect in stat within 1 s.
+`aborted`::
+an `abort`, ESTOP or switching the machine off ended it; reported only after
+task has taken the abort (its serial is echoed).
+`accepted`::
+task received the command, but the outcome is not known: a command from another
+NML client was processed before the sidecar saw the status of this one, or the
+command is of a kind with no visible effect in stat (for example `jog`).
+`unknown`::
+the sidecar cannot tell whether task got the command: the sender died or hung
+after starting the write, or task did not echo the serial within 5 s
+(`emcSendCommand` ignores its own timeout, the message stays queued and may run
+later). The command is not sent again.
+
+An outcome that is derived from stat and errors carries `"attribution":
+"heuristic"`.
+
+== State
+
+`state.stat`::
+Every data field of `linuxcnc.stat`, same names. Tuples become arrays.
+`state.errors`::
+`{seq, recent}`: the last 16 entries read from the error channel, each with
+its own `seq`, `kind` (`OPERATOR_ERROR`, `NML_ERROR`, ...) and `text`.
+`state.program_end`::
+`{seq, reason, file, line}` with `reason` `completed`, `aborted` or `error`
+for the last program run.
+
+== Client rules
+
+. Apply patches in `seq` order. A patch whose `seq` is not the last one plus
+  one means a message was lost: send `resync_request` and ignore patches until
+  the snapshot arrives.
+. A snapshot with a different `epoch` means the sidecar restarted.
+. With no message for about five `keepalive` periods, reconnect.
+
+== Limitations
+
+The command outcome, the binding of an error to a command and the reason a
+program ended are derived from NML status and can be wrong when another NML
+client (for example a GUI reading the error channel) runs at the same time.
+See `docs/report/CORE_CHANGES.adoc` of the prototype.
+The `--no-error-channel` option leaves the NML error queue to the GUI; the
+sidecar's clients then get no error text.

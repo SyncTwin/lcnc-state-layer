@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Fragment in the style of LinuxCNC src/*/Submakefile, for building the C++
+# encoding benchmark inside the LinuxCNC tree (src/emc/state-layer/).
+# NOT tested in the LinuxCNC tree (the prototype does not touch it);
+# bench/run.sh builds the same file directly with $(CXX) -O2 -std=c++20.
+# Needs the generated emc_native.hh / emc_stat_generated.h (bench/gen_codecs.py, flatc).
+STATELAYERBENCHSRCS := emc/state-layer/bench.cc
+
+USERSRCS += $(STATELAYERBENCHSRCS)
+
+$(call TOOBJSDEPS, $(STATELAYERBENCHSRCS)) : EXTRAFLAGS = -O2 -Iemc/state-layer/gen
+
+../bin/state-layer-bench: $(call TOOBJS, $(STATELAYERBENCHSRCS))
+	$(ECHO) Linking $(notdir $@)
+	$(Q)$(CXX) $(LDFLAGS) -o $@ $^
+
+TARGETS += ../bin/state-layer-bench

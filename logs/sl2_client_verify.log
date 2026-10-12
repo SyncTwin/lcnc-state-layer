@@ -1,0 +1,63 @@
+2026-10-12 03:14:26,267 lcnc_state_client INFO snapshot seq=20, 91 stat fields, server={'linuxcnc_version': '2.10.0~pre2', 'allow_commands': True, 'dropped_fields': []}
+2026-10-12 03:14:31,258 lcnc_state_client INFO verify at seq 70: reconstructed state == snapshot
+2026-10-12 03:14:36,258 lcnc_state_client INFO verify at seq 120: reconstructed state == snapshot
+2026-10-12 03:14:36,286 lcnc_state_client INFO seq=120 stats={'snapshots': 3, 'patches': 100, 'gaps': 0, 'resyncs': 0, 'verified_equal': 2, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 613780, 'view_state_updates': 0}
+2026-10-12 03:14:41,259 lcnc_state_client INFO verify at seq 170: reconstructed state == snapshot
+2026-10-12 03:14:46,258 lcnc_state_client INFO verify at seq 220: reconstructed state == snapshot
+2026-10-12 03:14:46,304 lcnc_state_client INFO seq=220 stats={'snapshots': 5, 'patches': 200, 'gaps': 0, 'resyncs': 0, 'verified_equal': 4, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 1311914, 'view_state_updates': 0}
+2026-10-12 03:14:51,259 lcnc_state_client INFO verify at seq 270: reconstructed state == snapshot
+2026-10-12 03:14:56,259 lcnc_state_client INFO verify at seq 320: reconstructed state == snapshot
+2026-10-12 03:14:56,321 lcnc_state_client INFO seq=320 stats={'snapshots': 7, 'patches': 300, 'gaps': 0, 'resyncs': 0, 'verified_equal': 6, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 2008212, 'view_state_updates': 0}
+2026-10-12 03:15:01,259 lcnc_state_client INFO verify at seq 370: reconstructed state == snapshot
+2026-10-12 03:15:06,258 lcnc_state_client INFO verify at seq 420: reconstructed state == snapshot
+2026-10-12 03:15:06,341 lcnc_state_client INFO seq=420 stats={'snapshots': 9, 'patches': 400, 'gaps': 0, 'resyncs': 0, 'verified_equal': 8, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 2710380, 'view_state_updates': 0}
+2026-10-12 03:15:11,260 lcnc_state_client INFO verify at seq 470: reconstructed state == snapshot
+2026-10-12 03:15:16,258 lcnc_state_client INFO verify at seq 520: reconstructed state == snapshot
+2026-10-12 03:15:16,355 lcnc_state_client INFO seq=520 stats={'snapshots': 11, 'patches': 500, 'gaps': 0, 'resyncs': 0, 'verified_equal': 10, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 3407033, 'view_state_updates': 0}
+2026-10-12 03:15:21,258 lcnc_state_client INFO verify at seq 570: reconstructed state == snapshot
+2026-10-12 03:15:26,258 lcnc_state_client INFO verify at seq 620: reconstructed state == snapshot
+2026-10-12 03:15:26,372 lcnc_state_client INFO seq=621 stats={'snapshots': 13, 'patches': 601, 'gaps': 0, 'resyncs': 0, 'verified_equal': 12, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 4113385, 'view_state_updates': 0}
+2026-10-12 03:15:31,258 lcnc_state_client INFO verify at seq 670: reconstructed state == snapshot
+2026-10-12 03:15:36,259 lcnc_state_client INFO verify at seq 720: reconstructed state == snapshot
+2026-10-12 03:15:36,388 lcnc_state_client INFO seq=721 stats={'snapshots': 15, 'patches': 701, 'gaps': 0, 'resyncs': 0, 'verified_equal': 14, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 4812365, 'view_state_updates': 0}
+2026-10-12 03:15:41,258 lcnc_state_client INFO verify at seq 770: reconstructed state == snapshot
+2026-10-12 03:15:46,259 lcnc_state_client INFO verify at seq 820: reconstructed state == snapshot
+2026-10-12 03:15:46,404 lcnc_state_client INFO seq=821 stats={'snapshots': 17, 'patches': 801, 'gaps': 0, 'resyncs': 0, 'verified_equal': 16, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 5510885, 'view_state_updates': 0}
+2026-10-12 03:15:51,259 lcnc_state_client INFO verify at seq 870: reconstructed state == snapshot
+2026-10-12 03:15:56,260 lcnc_state_client INFO verify at seq 920: reconstructed state == snapshot
+2026-10-12 03:15:56,422 lcnc_state_client INFO seq=921 stats={'snapshots': 19, 'patches': 901, 'gaps': 0, 'resyncs': 0, 'verified_equal': 18, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 6211341, 'view_state_updates': 0}
+2026-10-12 03:16:01,259 lcnc_state_client INFO verify at seq 970: reconstructed state == snapshot
+2026-10-12 03:16:06,260 lcnc_state_client INFO verify at seq 1020: reconstructed state == snapshot
+2026-10-12 03:16:06,441 lcnc_state_client INFO seq=1021 stats={'snapshots': 21, 'patches': 1001, 'gaps': 0, 'resyncs': 0, 'verified_equal': 20, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 6910259, 'view_state_updates': 0}
+2026-10-12 03:16:11,258 lcnc_state_client INFO verify at seq 1070: reconstructed state == snapshot
+2026-10-12 03:16:16,258 lcnc_state_client INFO verify at seq 1120: reconstructed state == snapshot
+2026-10-12 03:16:16,460 lcnc_state_client INFO seq=1122 stats={'snapshots': 23, 'patches': 1102, 'gaps': 0, 'resyncs': 0, 'verified_equal': 22, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 7616738, 'view_state_updates': 0}
+2026-10-12 03:16:21,260 lcnc_state_client INFO verify at seq 1170: reconstructed state == snapshot
+2026-10-12 03:16:26,260 lcnc_state_client INFO verify at seq 1220: reconstructed state == snapshot
+2026-10-12 03:16:26,480 lcnc_state_client INFO seq=1222 stats={'snapshots': 25, 'patches': 1202, 'gaps': 0, 'resyncs': 0, 'verified_equal': 24, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 8314053, 'view_state_updates': 0}
+2026-10-12 03:16:31,258 lcnc_state_client INFO verify at seq 1270: reconstructed state == snapshot
+2026-10-12 03:16:36,260 lcnc_state_client INFO verify at seq 1320: reconstructed state == snapshot
+2026-10-12 03:16:36,533 lcnc_state_client INFO seq=1322 stats={'snapshots': 27, 'patches': 1302, 'gaps': 0, 'resyncs': 0, 'verified_equal': 26, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 9017359, 'view_state_updates': 0}
+2026-10-12 03:16:41,258 lcnc_state_client INFO verify at seq 1370: reconstructed state == snapshot
+2026-10-12 03:16:46,260 lcnc_state_client INFO verify at seq 1420: reconstructed state == snapshot
+2026-10-12 03:16:46,548 lcnc_state_client INFO seq=1422 stats={'snapshots': 29, 'patches': 1402, 'gaps': 0, 'resyncs': 0, 'verified_equal': 28, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 9723657, 'view_state_updates': 0}
+2026-10-12 03:16:51,258 lcnc_state_client INFO verify at seq 1470: reconstructed state == snapshot
+2026-10-12 03:16:56,258 lcnc_state_client INFO verify at seq 1520: reconstructed state == snapshot
+2026-10-12 03:16:56,562 lcnc_state_client INFO seq=1523 stats={'snapshots': 31, 'patches': 1503, 'gaps': 0, 'resyncs': 0, 'verified_equal': 30, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 10421749, 'view_state_updates': 0}
+2026-10-12 03:17:01,260 lcnc_state_client INFO verify at seq 1570: reconstructed state == snapshot
+2026-10-12 03:17:06,258 lcnc_state_client INFO verify at seq 1620: reconstructed state == snapshot
+2026-10-12 03:17:06,583 lcnc_state_client INFO seq=1623 stats={'snapshots': 33, 'patches': 1603, 'gaps': 0, 'resyncs': 0, 'verified_equal': 32, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 11123199, 'view_state_updates': 0}
+2026-10-12 03:17:11,259 lcnc_state_client INFO verify at seq 1670: reconstructed state == snapshot
+2026-10-12 03:17:16,259 lcnc_state_client INFO verify at seq 1720: reconstructed state == snapshot
+2026-10-12 03:17:16,602 lcnc_state_client INFO seq=1723 stats={'snapshots': 35, 'patches': 1703, 'gaps': 0, 'resyncs': 0, 'verified_equal': 34, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 11752899, 'view_state_updates': 0}
+2026-10-12 03:17:21,258 lcnc_state_client INFO verify at seq 1770: reconstructed state == snapshot
+2026-10-12 03:17:26,257 lcnc_state_client INFO verify at seq 1820: reconstructed state == snapshot
+2026-10-12 03:17:26,620 lcnc_state_client INFO seq=1823 stats={'snapshots': 37, 'patches': 1803, 'gaps': 0, 'resyncs': 0, 'verified_equal': 36, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 12062417, 'view_state_updates': 0}
+2026-10-12 03:17:31,258 lcnc_state_client INFO verify at seq 1870: reconstructed state == snapshot
+2026-10-12 03:17:36,258 lcnc_state_client INFO verify at seq 1920: reconstructed state == snapshot
+2026-10-12 03:17:36,641 lcnc_state_client INFO seq=1923 stats={'snapshots': 39, 'patches': 1903, 'gaps': 0, 'resyncs': 0, 'verified_equal': 38, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 12103631, 'view_state_updates': 0}
+2026-10-12 03:17:41,258 lcnc_state_client INFO verify at seq 1970: reconstructed state == snapshot
+2026-10-12 03:17:46,259 lcnc_state_client INFO verify at seq 2020: reconstructed state == snapshot
+2026-10-12 03:17:46,657 lcnc_state_client INFO seq=2024 stats={'snapshots': 41, 'patches': 2004, 'gaps': 0, 'resyncs': 0, 'verified_equal': 40, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 12144928, 'view_state_updates': 0}
+2026-10-12 03:17:46,661 lcnc_state_client INFO verify at seq 2024: reconstructed state == snapshot
+2026-10-12 03:17:47,659 lcnc_state_client INFO final seq=2034 stats={'snapshots': 42, 'patches': 2014, 'gaps': 0, 'resyncs': 0, 'verified_equal': 41, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 12162215, 'view_state_updates': 0}

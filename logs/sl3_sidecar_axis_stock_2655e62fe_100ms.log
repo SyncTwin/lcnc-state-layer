@@ -1,0 +1,40 @@
+2026-10-12 09:57:06,306 lcnc_state INFO LinuxCNC 2.10.0~pre2, ini /tmp/lcnc-sim/axis_mm_headless.ini, 3 joints, period 0.100 s (--period), 91 stat fields
+2026-10-12 09:57:06,322 websockets.server INFO server listening on 127.0.0.1:8792
+2026-10-12 09:57:06,322 lcnc_state.ws INFO listening on ws://127.0.0.1:8792/ period=0.100 s commands=True epoch=fa308b6aa719468baa655607e6c272ff
+2026-10-12 09:57:06,343 lcnc_state INFO command sender pid 289
+2026-10-12 09:57:07,809 websockets.server INFO connection open
+2026-10-12 09:57:07,809 lcnc_state.ws INFO client ('127.0.0.1', 33080) connected (encoding=json view_key=None), 1 clients
+2026-10-12 09:57:07,881 lcnc_state INFO command 32688-1 state[2] serial=1 kind=quick send=70.5 ms
+2026-10-12 09:57:07,911 lcnc_state INFO command 32688-1 state -> completed
+2026-10-12 09:57:07,932 lcnc_state INFO command 32688-2 state[4] serial=2 kind=quick send=20.2 ms
+2026-10-12 09:57:07,962 lcnc_state INFO command 32688-2 state -> completed
+2026-10-12 09:57:07,983 lcnc_state INFO command 32688-3 mode[1] serial=3 kind=quick send=20.1 ms
+2026-10-12 09:57:08,014 lcnc_state INFO command 32688-3 mode -> completed
+2026-10-12 09:57:08,034 lcnc_state INFO command 32688-4 home[-1] serial=4 kind=home send=20.1 ms
+2026-10-12 09:57:10,424 lcnc_state INFO command 32688-4 home -> completed
+2026-10-12 09:57:10,496 lcnc_state INFO command 32688-5 set_optional_stop[False] serial=5 kind=quick send=20.1 ms
+2026-10-12 09:57:10,526 lcnc_state INFO command 32688-5 set_optional_stop -> completed
+2026-10-12 09:57:10,587 lcnc_state INFO command 32688-6 mode -> completed
+2026-10-12 09:57:10,658 lcnc_state INFO command 32688-6 program_open -> completed
+2026-10-12 09:59:23,123 lcnc_state INFO command 32688-6 run -> completed
+2026-10-12 09:59:23,625 lcnc_state.ws INFO client ('127.0.0.1', 33080) gone, 0 clients
+2026-10-12 09:59:23,625 websockets.server INFO connection closed
+2026-10-12 09:59:24,643 websockets.server INFO server closing
+2026-10-12 09:59:24,643 websockets.server INFO server closed
+2026-10-12 09:59:24,644 lcnc_state INFO trace: 1384 ticks -> /sl/traces/axis_100ms.jsonl.gz
+2026-10-12 09:59:24,644 lcnc_state INFO ticks=1384 empty=0 seq=1384
+Exception ignored in: <function BaseSubprocessTransport.__del__ at 0x7f98446fd300>
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/asyncio/base_subprocess.py", line 126, in __del__
+    self.close()
+  File "/usr/lib/python3.12/asyncio/base_subprocess.py", line 104, in close
+    proto.pipe.close()
+  File "/usr/lib/python3.12/asyncio/unix_events.py", line 767, in close
+    self.write_eof()
+  File "/usr/lib/python3.12/asyncio/unix_events.py", line 753, in write_eof
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 795, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 541, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed

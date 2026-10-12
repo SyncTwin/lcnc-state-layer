@@ -1,0 +1,8 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Headless stand-in for [DISPLAY]DISPLAY: the linuxcnc run script shuts
+# LinuxCNC down when the display program exits, so block until signalled.
+# Clients (the state-layer sidecar, test scripts) attach over NML themselves.
+trap 'exit 0' TERM INT HUP
+echo "headless_display: waiting (pid $$) $*"
+while :; do sleep 1; done

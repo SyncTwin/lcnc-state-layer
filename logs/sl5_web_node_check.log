@@ -1,0 +1,8 @@
+node replay: 1382 patches, 14 checkpoints, seq gaps 0 
+axis_100ms.jsonl.gz: 1382 patches; node vs python checkpoints equal: 14, different: 0; final python state == last trace tick: True
+node replay: 430 patches, 5 checkpoints, seq gaps 0 
+gmoccapy_2_tools_with_cutter_radius_compensation_100ms.jsonl.gz: 430 patches; node vs python checkpoints equal: 5, different: 0; final python state == last trace tick: True
+node replay: 6824 patches, 69 checkpoints, seq gaps 0 
+axis_20ms.jsonl.gz: 6824 patches; node vs python checkpoints equal: 69, different: 0; final python state == last trace tick: True
+node replay: 2145 patches, 22 checkpoints, seq gaps 0 
+gmoccapy_2_tools_with_cutter_radius_compensation_20ms.jsonl.gz: 2145 patches; node vs python checkpoints equal: 22, different: 0; final python state == last trace tick: True

@@ -1,0 +1,37 @@
+side,lib,variant,trace,period_s,ticks,msgs,empty_pct,bytes_mean,bytes_p50,bytes_p95,bytes_max,enc_med_us,enc_p95_us,dec_med_us,dec_p95_us,diff_med_us,diff_p95_us,apply_med_us,apply_p95_us,cold_enc_us,cold_dec_us,repeats,note
+cpp,nlohmann,json_full,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,16025,16034,16062,16120,204.49,210.00,356.15,366.10,0.00,0.00,0.00,0.00,261.73,404.55,5,""
+cpp,nlohmann,json_merge_patch,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,6402,6562,6605,8045,392.48,402.56,150.63,157.64,46.67,50.14,35.70,38.20,314.99,3.14,5,""
+cpp,nlohmann,cbor_full,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,13850,13852,13856,13872,184.40,208.94,341.57,375.56,0.00,0.00,0.00,0.00,197.35,337.68,5,""
+cpp,nlohmann,cbor_merge_patch,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,5426,5559,5580,6684,373.14,385.50,126.72,133.87,45.43,47.96,33.16,33.98,324.27,2.62,5,""
+cpp,nlohmann,msgpack_full,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,13895,13895,13903,13919,178.44,184.64,333.50,342.27,0.00,0.00,0.00,0.00,203.19,339.52,5,""
+cpp,nlohmann,msgpack_merge_patch,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,5463,5597,5618,6722,372.73,383.38,128.96,134.93,44.06,46.16,33.45,34.47,315.47,2.75,5,""
+cpp,nlohmann,json_merge_patch_objidx_structs,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,731,750,830,1218,454.83,489.12,20.84,24.56,51.58,54.86,4.96,5.92,426.89,6.03,5,""
+cpp,nlohmann,json_merge_patch_objidx_all,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,497,541,620,977,558.33,608.14,13.79,17.44,68.17,75.76,3.06,3.94,490.43,2.54,5,""
+cpp,flatbuffers,fb_full,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,6372,6376,6384,6392,5.74,6.07,3.64,3.71,0.00,0.00,0.00,0.00,13.52,8.94,5,""
+cpp,flatbuffers,fb_delta,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,1998,2040,2048,2568,3.04,3.31,1.97,2.00,3.04,3.31,0.00,0.00,4.37,2.93,5,"EmcStatDelta: changed fields only (optional scalars), arrays whole"
+cpp,nlohmann,json_full_read5,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,16025,16034,16062,16120,202.74,212.21,318.28,330.19,0.00,0.00,0.00,0.00,238.85,328.87,5,"decode = parse to DOM + read the same 5 fields"
+cpp,flatbuffers,fb_full_read5,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,6372,6376,6384,6392,7.16,7.49,3.08,3.14,0.00,0.00,0.00,0.00,13.72,4.73,5,"decode = verify + read task_state, interp_state, motion_line, current_vel, position"
+py,json,json_full,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,16025,16034,16062,16120,200.89,226.32,282.77,312.81,0.00,0.00,0.00,0.00,278.03,375.06,2,
+py,json,json_merge_patch,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,6402,6562,6605,8045,122.17,146.84,105.14,127.81,41.34,54.00,5.58,7.04,76.28,15.41,2,
+py,json+zlib,json_full_deflate,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,305,318,356,1571,297.27,333.35,297.34,332.11,0.00,0.00,0.00,0.00,405.75,322.95,2,"permessage-deflate simulated: raw deflate, context takeover, level 6"
+py,json+zlib,json_merge_patch_deflate,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,185,197,244,806,161.79,190.38,112.30,121.82,42.08,46.22,5.58,6.63,75.75,12.79,2,permessage-deflate simulated (RFC 7692)
+py,json,json_merge_patch_no_beats,axis_stock_2655e62fe_20ms,0.02,6886,6720,2.4,6519,6525,6569,8008,118.75,128.49,103.97,112.47,39.78,43.01,4.88,5.98,70.01,20.41,2,"heartbeat, taskbeat dropped (sidecar --drop-fields)"
+py,json,json_merge_patch_no_beats_deadband,axis_stock_2655e62fe_20ms,0.02,6886,6721,2.4,6518,6525,6569,8008,631.30,666.65,108.32,119.86,340.31,367.27,5.42,6.60,509.94,22.64,2,+ float deadband 1e-4 (mkwrapper threshold)
+py,json,json_merge_patch_objidx_structs,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,731,750,830,1218,265.27,274.89,25.82,29.40,63.36,66.98,4.34,5.23,334.51,21.41,2,arrays of objects as {index: obj}
+py,json,json_merge_patch_objidx_all,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,497,541,620,977,405.61,449.46,19.68,25.66,87.38,104.83,6.12,7.79,363.48,9.86,2,all arrays as {index: value}
+py,orjson,json_full,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,16025,16034,16062,16120,31.03,33.25,69.03,72.58,0.00,0.00,0.00,0.00,46.54,174.88,2,
+py,orjson,json_merge_patch,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,6402,6562,6605,8045,53.43,58.73,26.52,29.99,40.37,45.27,4.72,5.96,57.54,4.10,2,
+py,cbor2,cbor_full,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,16819,16820,16821,16821,223.04,259.79,291.14,335.56,0.00,0.00,0.00,0.00,244.23,321.44,2,
+py,cbor2,cbor_merge_patch,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,6239,6391,6412,7600,123.96,130.47,106.68,112.98,40.86,45.17,7.42,8.96,69.53,4.83,2,
+py,msgpack,msgpack_full,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,16864,16863,16867,16867,61.77,70.32,118.96,138.76,0.00,0.00,0.00,0.00,118.60,205.03,2,
+py,msgpack,msgpack_merge_patch,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,6276,6429,6450,7638,62.98,70.91,48.45,54.64,40.38,46.25,4.65,6.02,74.69,5.91,2,
+py,flatbuffers,fb_full,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,6267,6272,6280,6288,1780.73,1856.97,1804.66,1872.68,0.00,0.00,0.00,0.00,2189.43,1971.54,2,
+py,flatbuffers,fb_delta,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,1950,1992,2000,2496,767.82,819.82,834.98,877.39,767.82,819.82,834.98,877.39,153.77,181.26,2,"EmcStatDelta: changed fields only, arrays whole"
+py,protobuf,pb_machinetalk_full,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,8384,8383,8387,8387,666.60,686.98,104.92,110.51,0.00,0.00,0.00,0.00,871.62,121.98,2,"Machinetalk status.proto, motion+io+task+interp"
+py,protobuf,pb_machinetalk_incremental,axis_stock_2655e62fe_20ms,0.02,6886,6799,1.2,150,165,191,334,2191.41,2397.00,35.98,45.85,1702.80,1865.97,27.00,34.45,2142.65,9.14,2,"mkwrapper style: changed fields, repeated by index, float threshold 1e-4"
+node,JSON,json_full,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,14553,14562,14592,14658,48.51,50.81,58.30,59.26,0.00,0.00,0.00,0.00,80.42,107.61,10,""
+node,JSON,json_merge_patch,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,6006,6156,6202,7597,65.92,69.10,23.52,24.39,44.05,47.53,0.77,0.87,516.90,57.50,10,""
+node,cbor-x,cbor_full,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,11071,11072,11082,11112,90.44,93.17,131.24,135.66,0.00,0.00,0.00,0.00,2149.86,1119.09,10,""
+node,cbor-x,cbor_merge_patch,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,4693,4805,4831,5865,88.17,91.71,44.24,45.27,43.89,47.38,0.77,0.88,96.27,244.73,10,""
+node,@msgpack/msgpack,msgpack_full,axis_stock_2655e62fe_20ms,0.02,6886,6886,0.0,10998,11002,11011,11042,118.88,121.87,88.85,91.94,0.00,0.00,0.00,0.00,2550.04,3214.30,10,""
+node,@msgpack/msgpack,msgpack_merge_patch,axis_stock_2655e62fe_20ms,0.02,6886,6882,0.0,4698,4811,4835,5856,94.66,98.13,35.64,36.89,44.39,48.02,0.76,0.90,93.17,5.71,10,""

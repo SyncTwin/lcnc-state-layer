@@ -1,0 +1,43 @@
+2026-10-12 03:14:27,356 drive INFO command state['STATE_ESTOP_RESET'] -> {'type': 'command_result', 'id': '4448-1', 'outcome': 'completed'}
+2026-10-12 03:14:27,455 drive INFO command state['STATE_ON'] -> {'type': 'command_result', 'id': '4448-2', 'outcome': 'completed'}
+2026-10-12 03:14:27,554 drive INFO command mode['MODE_MANUAL'] -> {'type': 'command_result', 'id': '4448-3', 'outcome': 'completed'}
+2026-10-12 03:14:27,655 drive INFO command home[-1] -> {'type': 'command_result', 'id': '4448-4', 'outcome': 'failed', 'error': 'must be in joint mode to home', 'errors': [{'seq': 1, 'kind': 'OPERATOR_ERROR', 'text': 'must be in joint mode to home', 'time': 1791774867.6539364, 'command_ids': ['4448-4'], 'attribution': 'heuristic'}], 'attribution': 'heuristic'}
+2026-10-12 03:14:27,655 drive INFO ok: all joints homed (0.00 s)
+2026-10-12 03:14:27,755 drive INFO set_optional_stop(False) -> {'type': 'command_result', 'id': '4448-5', 'outcome': 'completed'}
+2026-10-12 03:14:32,259 lcnc_state_client INFO verify at seq 80: reconstructed state == snapshot
+2026-10-12 03:14:37,259 lcnc_state_client INFO verify at seq 130: reconstructed state == snapshot
+2026-10-12 03:14:42,260 lcnc_state_client INFO verify at seq 180: reconstructed state == snapshot
+2026-10-12 03:14:47,259 lcnc_state_client INFO verify at seq 230: reconstructed state == snapshot
+2026-10-12 03:14:52,260 lcnc_state_client INFO verify at seq 280: reconstructed state == snapshot
+2026-10-12 03:14:57,260 lcnc_state_client INFO verify at seq 330: reconstructed state == snapshot
+2026-10-12 03:15:02,259 lcnc_state_client INFO verify at seq 380: reconstructed state == snapshot
+2026-10-12 03:15:07,258 lcnc_state_client INFO verify at seq 430: reconstructed state == snapshot
+2026-10-12 03:15:12,261 lcnc_state_client INFO verify at seq 480: reconstructed state == snapshot
+2026-10-12 03:15:17,257 lcnc_state_client INFO verify at seq 530: reconstructed state == snapshot
+2026-10-12 03:15:22,259 lcnc_state_client INFO verify at seq 580: reconstructed state == snapshot
+2026-10-12 03:15:27,260 lcnc_state_client INFO verify at seq 630: reconstructed state == snapshot
+2026-10-12 03:15:32,258 lcnc_state_client INFO verify at seq 680: reconstructed state == snapshot
+2026-10-12 03:15:37,259 lcnc_state_client INFO verify at seq 730: reconstructed state == snapshot
+2026-10-12 03:15:42,258 lcnc_state_client INFO verify at seq 780: reconstructed state == snapshot
+2026-10-12 03:15:47,259 lcnc_state_client INFO verify at seq 830: reconstructed state == snapshot
+2026-10-12 03:15:52,259 lcnc_state_client INFO verify at seq 880: reconstructed state == snapshot
+2026-10-12 03:15:57,261 lcnc_state_client INFO verify at seq 930: reconstructed state == snapshot
+2026-10-12 03:16:02,258 lcnc_state_client INFO verify at seq 980: reconstructed state == snapshot
+2026-10-12 03:16:07,258 lcnc_state_client INFO verify at seq 1030: reconstructed state == snapshot
+2026-10-12 03:16:12,259 lcnc_state_client INFO verify at seq 1080: reconstructed state == snapshot
+2026-10-12 03:16:17,258 lcnc_state_client INFO verify at seq 1130: reconstructed state == snapshot
+2026-10-12 03:16:22,259 lcnc_state_client INFO verify at seq 1180: reconstructed state == snapshot
+2026-10-12 03:16:27,258 lcnc_state_client INFO verify at seq 1230: reconstructed state == snapshot
+2026-10-12 03:16:32,259 lcnc_state_client INFO verify at seq 1280: reconstructed state == snapshot
+2026-10-12 03:16:37,263 lcnc_state_client INFO verify at seq 1330: reconstructed state == snapshot
+2026-10-12 03:16:41,055 drive INFO run /tmp/linuxcnc/share/axis/images/axis.ngc -> {'type': 'command_result', 'id': '4448-6', 'outcome': 'completed'} in 133.3 s; program_end={'seq': 1, 'reason': 'completed', 'file': '/tmp/linuxcnc/share/axis/images/axis.ngc', 'line': 198, 'command_id': '4448-6', 'attribution': 'heuristic'}
+2026-10-12 03:16:42,260 lcnc_state_client INFO verify at seq 1380: reconstructed state == snapshot
+2026-10-12 03:16:47,258 lcnc_state_client INFO verify at seq 1430: reconstructed state == snapshot
+2026-10-12 03:16:52,260 lcnc_state_client INFO verify at seq 1480: reconstructed state == snapshot
+2026-10-12 03:16:57,259 lcnc_state_client INFO verify at seq 1530: reconstructed state == snapshot
+2026-10-12 03:17:02,258 lcnc_state_client INFO verify at seq 1580: reconstructed state == snapshot
+2026-10-12 03:17:07,260 lcnc_state_client INFO verify at seq 1630: reconstructed state == snapshot
+2026-10-12 03:17:12,262 lcnc_state_client INFO verify at seq 1680: reconstructed state == snapshot
+2026-10-12 03:17:17,259 lcnc_state_client INFO verify at seq 1730: reconstructed state == snapshot
+2026-10-12 03:17:20,655 drive INFO run /tmp/linuxcnc/nc_files/gmoccapy_2_tools_with_cutter_radius_compensation.ngc -> {'type': 'command_result', 'id': '4448-7', 'outcome': 'completed', 'errors': [{'seq': 2, 'kind': 'OPERATOR_DISPLAY', 'text': ' optional stop, i.e. for cleaning the workpiece, or other thinks', 'time': 1791775024.5541656, 'command_ids': ['4448-7'], 'attribution': 'heuristic'}], 'attribution': 'heuristic'} in 39.6 s; program_end={'seq': 1, 'reason': 'completed', 'file': '/tmp/linuxcnc/share/axis/images/axis.ngc', 'line': 198, 'command_id': '4448-6', 'attribution': 'heuristic'}
+2026-10-12 03:17:21,156 drive INFO client stats: {'snapshots': 35, 'patches': 1739, 'gaps': 0, 'resyncs': 0, 'verified_equal': 34, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 12024965, 'view_state_updates': 0}

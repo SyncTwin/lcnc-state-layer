@@ -1,0 +1,115 @@
+2026-10-12 03:14:26,261 lcnc_state_client INFO snapshot seq=20, 91 stat fields, server={'linuxcnc_version': '2.10.0~pre2', 'allow_commands': True, 'dropped_fields': []}
+2026-10-12 03:14:30,055 lcnc_state_client WARNING seq gap: have 56, got 58 -> resync_request
+2026-10-12 03:14:31,458 lcnc_state_client INFO verify at seq 72: reconstructed state == snapshot
+2026-10-12 03:14:33,755 lcnc_state_client WARNING seq gap: have 93, got 95 -> resync_request
+2026-10-12 03:14:36,281 lcnc_state_client INFO seq=120 stats={'snapshots': 4, 'patches': 96, 'gaps': 2, 'resyncs': 2, 'verified_equal': 1, 'verified_mismatch': 0, 'dropped': 2, 'bytes': 630190, 'view_state_updates': 0}
+2026-10-12 03:14:36,658 lcnc_state_client INFO verify at seq 124: reconstructed state == snapshot
+2026-10-12 03:14:37,455 lcnc_state_client WARNING seq gap: have 130, got 132 -> resync_request
+2026-10-12 03:14:41,155 lcnc_state_client WARNING seq gap: have 167, got 169 -> resync_request
+2026-10-12 03:14:42,059 lcnc_state_client INFO verify at seq 178: reconstructed state == snapshot
+2026-10-12 03:14:44,854 lcnc_state_client WARNING seq gap: have 204, got 206 -> resync_request
+2026-10-12 03:14:46,302 lcnc_state_client INFO seq=220 stats={'snapshots': 9, 'patches': 190, 'gaps': 5, 'resyncs': 5, 'verified_equal': 3, 'verified_mismatch': 0, 'dropped': 5, 'bytes': 1377499, 'view_state_updates': 0}
+2026-10-12 03:14:47,261 lcnc_state_client INFO verify at seq 230: reconstructed state == snapshot
+2026-10-12 03:14:48,555 lcnc_state_client WARNING seq gap: have 241, got 243 -> resync_request
+2026-10-12 03:14:52,255 lcnc_state_client WARNING seq gap: have 278, got 280 -> resync_request
+2026-10-12 03:14:52,658 lcnc_state_client INFO verify at seq 284: reconstructed state == snapshot
+2026-10-12 03:14:55,954 lcnc_state_client WARNING seq gap: have 315, got 317 -> resync_request
+2026-10-12 03:14:56,320 lcnc_state_client INFO seq=320 stats={'snapshots': 14, 'patches': 284, 'gaps': 8, 'resyncs': 8, 'verified_equal': 5, 'verified_mismatch': 0, 'dropped': 8, 'bytes': 2123010, 'view_state_updates': 0}
+2026-10-12 03:14:57,857 lcnc_state_client INFO verify at seq 336: reconstructed state == snapshot
+2026-10-12 03:14:59,655 lcnc_state_client WARNING seq gap: have 352, got 354 -> resync_request
+2026-10-12 03:15:03,059 lcnc_state_client INFO verify at seq 388: reconstructed state == snapshot
+2026-10-12 03:15:03,355 lcnc_state_client WARNING seq gap: have 389, got 391 -> resync_request
+2026-10-12 03:15:06,339 lcnc_state_client INFO seq=420 stats={'snapshots': 18, 'patches': 380, 'gaps': 10, 'resyncs': 10, 'verified_equal': 7, 'verified_mismatch': 0, 'dropped': 10, 'bytes': 2858036, 'view_state_updates': 0}
+2026-10-12 03:15:07,055 lcnc_state_client WARNING seq gap: have 426, got 428 -> resync_request
+2026-10-12 03:15:08,458 lcnc_state_client INFO verify at seq 442: reconstructed state == snapshot
+2026-10-12 03:15:10,755 lcnc_state_client WARNING seq gap: have 463, got 465 -> resync_request
+2026-10-12 03:15:13,658 lcnc_state_client INFO verify at seq 494: reconstructed state == snapshot
+2026-10-12 03:15:14,454 lcnc_state_client WARNING seq gap: have 500, got 502 -> resync_request
+2026-10-12 03:15:16,357 lcnc_state_client INFO seq=521 stats={'snapshots': 23, 'patches': 475, 'gaps': 13, 'resyncs': 13, 'verified_equal': 9, 'verified_mismatch': 0, 'dropped': 13, 'bytes': 3610461, 'view_state_updates': 0}
+2026-10-12 03:15:18,155 lcnc_state_client WARNING seq gap: have 537, got 539 -> resync_request
+2026-10-12 03:15:19,058 lcnc_state_client INFO verify at seq 548: reconstructed state == snapshot
+2026-10-12 03:15:21,856 lcnc_state_client WARNING seq gap: have 574, got 576 -> resync_request
+2026-10-12 03:15:24,258 lcnc_state_client INFO verify at seq 600: reconstructed state == snapshot
+2026-10-12 03:15:25,555 lcnc_state_client WARNING seq gap: have 611, got 613 -> resync_request
+2026-10-12 03:15:26,375 lcnc_state_client INFO seq=621 stats={'snapshots': 28, 'patches': 569, 'gaps': 16, 'resyncs': 16, 'verified_equal': 11, 'verified_mismatch': 0, 'dropped': 16, 'bytes': 4359487, 'view_state_updates': 0}
+2026-10-12 03:15:29,255 lcnc_state_client WARNING seq gap: have 648, got 650 -> resync_request
+2026-10-12 03:15:29,658 lcnc_state_client INFO verify at seq 654: reconstructed state == snapshot
+2026-10-12 03:15:32,955 lcnc_state_client WARNING seq gap: have 685, got 687 -> resync_request
+2026-10-12 03:15:34,859 lcnc_state_client INFO verify at seq 706: reconstructed state == snapshot
+2026-10-12 03:15:36,390 lcnc_state_client INFO seq=721 stats={'snapshots': 32, 'patches': 665, 'gaps': 18, 'resyncs': 18, 'verified_equal': 13, 'verified_mismatch': 0, 'dropped': 18, 'bytes': 5091293, 'view_state_updates': 0}
+2026-10-12 03:15:36,655 lcnc_state_client WARNING seq gap: have 722, got 724 -> resync_request
+2026-10-12 03:15:40,057 lcnc_state_client INFO verify at seq 758: reconstructed state == snapshot
+2026-10-12 03:15:40,355 lcnc_state_client WARNING seq gap: have 759, got 761 -> resync_request
+2026-10-12 03:15:44,054 lcnc_state_client WARNING seq gap: have 796, got 798 -> resync_request
+2026-10-12 03:15:45,459 lcnc_state_client INFO verify at seq 812: reconstructed state == snapshot
+2026-10-12 03:15:46,407 lcnc_state_client INFO seq=821 stats={'snapshots': 37, 'patches': 759, 'gaps': 21, 'resyncs': 21, 'verified_equal': 15, 'verified_mismatch': 0, 'dropped': 21, 'bytes': 5839090, 'view_state_updates': 0}
+2026-10-12 03:15:47,755 lcnc_state_client WARNING seq gap: have 833, got 835 -> resync_request
+2026-10-12 03:15:50,659 lcnc_state_client INFO verify at seq 864: reconstructed state == snapshot
+2026-10-12 03:15:51,455 lcnc_state_client WARNING seq gap: have 870, got 872 -> resync_request
+2026-10-12 03:15:55,155 lcnc_state_client WARNING seq gap: have 907, got 909 -> resync_request
+2026-10-12 03:15:56,058 lcnc_state_client INFO verify at seq 918: reconstructed state == snapshot
+2026-10-12 03:15:56,424 lcnc_state_client INFO seq=921 stats={'snapshots': 42, 'patches': 853, 'gaps': 24, 'resyncs': 24, 'verified_equal': 17, 'verified_mismatch': 0, 'dropped': 24, 'bytes': 6588707, 'view_state_updates': 0}
+2026-10-12 03:15:58,855 lcnc_state_client WARNING seq gap: have 944, got 946 -> resync_request
+2026-10-12 03:16:01,261 lcnc_state_client INFO verify at seq 970: reconstructed state == snapshot
+2026-10-12 03:16:02,555 lcnc_state_client WARNING seq gap: have 981, got 983 -> resync_request
+2026-10-12 03:16:06,255 lcnc_state_client WARNING seq gap: have 1018, got 1020 -> resync_request
+2026-10-12 03:16:06,449 lcnc_state_client INFO seq=1021 stats={'snapshots': 46, 'patches': 947, 'gaps': 27, 'resyncs': 27, 'verified_equal': 18, 'verified_mismatch': 0, 'dropped': 27, 'bytes': 7320451, 'view_state_updates': 0}
+2026-10-12 03:16:06,659 lcnc_state_client INFO verify at seq 1024: reconstructed state == snapshot
+2026-10-12 03:16:09,955 lcnc_state_client WARNING seq gap: have 1055, got 1057 -> resync_request
+2026-10-12 03:16:11,858 lcnc_state_client INFO verify at seq 1076: reconstructed state == snapshot
+2026-10-12 03:16:13,655 lcnc_state_client WARNING seq gap: have 1092, got 1094 -> resync_request
+2026-10-12 03:16:16,469 lcnc_state_client INFO seq=1122 stats={'snapshots': 50, 'patches': 1044, 'gaps': 29, 'resyncs': 29, 'verified_equal': 20, 'verified_mismatch': 0, 'dropped': 29, 'bytes': 8059769, 'view_state_updates': 0}
+2026-10-12 03:16:17,057 lcnc_state_client INFO verify at seq 1128: reconstructed state == snapshot
+2026-10-12 03:16:17,355 lcnc_state_client WARNING seq gap: have 1129, got 1131 -> resync_request
+2026-10-12 03:16:21,055 lcnc_state_client WARNING seq gap: have 1166, got 1168 -> resync_request
+2026-10-12 03:16:22,458 lcnc_state_client INFO verify at seq 1182: reconstructed state == snapshot
+2026-10-12 03:16:24,756 lcnc_state_client WARNING seq gap: have 1203, got 1205 -> resync_request
+2026-10-12 03:16:26,488 lcnc_state_client INFO seq=1222 stats={'snapshots': 55, 'patches': 1138, 'gaps': 32, 'resyncs': 32, 'verified_equal': 22, 'verified_mismatch': 0, 'dropped': 32, 'bytes': 8806379, 'view_state_updates': 0}
+2026-10-12 03:16:27,662 lcnc_state_client INFO verify at seq 1234: reconstructed state == snapshot
+2026-10-12 03:16:28,455 lcnc_state_client WARNING seq gap: have 1240, got 1242 -> resync_request
+2026-10-12 03:16:32,155 lcnc_state_client WARNING seq gap: have 1277, got 1279 -> resync_request
+2026-10-12 03:16:33,057 lcnc_state_client INFO verify at seq 1288: reconstructed state == snapshot
+2026-10-12 03:16:35,855 lcnc_state_client WARNING seq gap: have 1314, got 1316 -> resync_request
+2026-10-12 03:16:36,504 lcnc_state_client INFO seq=1322 stats={'snapshots': 60, 'patches': 1232, 'gaps': 35, 'resyncs': 35, 'verified_equal': 24, 'verified_mismatch': 0, 'dropped': 35, 'bytes': 9558953, 'view_state_updates': 0}
+2026-10-12 03:16:38,258 lcnc_state_client INFO verify at seq 1340: reconstructed state == snapshot
+2026-10-12 03:16:39,555 lcnc_state_client WARNING seq gap: have 1351, got 1353 -> resync_request
+2026-10-12 03:16:43,255 lcnc_state_client WARNING seq gap: have 1388, got 1390 -> resync_request
+2026-10-12 03:16:43,659 lcnc_state_client INFO verify at seq 1394: reconstructed state == snapshot
+2026-10-12 03:16:46,525 lcnc_state_client INFO seq=1422 stats={'snapshots': 64, 'patches': 1328, 'gaps': 37, 'resyncs': 37, 'verified_equal': 26, 'verified_mismatch': 0, 'dropped': 37, 'bytes': 10298200, 'view_state_updates': 0}
+2026-10-12 03:16:46,956 lcnc_state_client WARNING seq gap: have 1425, got 1427 -> resync_request
+2026-10-12 03:16:48,859 lcnc_state_client INFO verify at seq 1446: reconstructed state == snapshot
+2026-10-12 03:16:50,656 lcnc_state_client WARNING seq gap: have 1462, got 1464 -> resync_request
+2026-10-12 03:16:54,058 lcnc_state_client INFO verify at seq 1498: reconstructed state == snapshot
+2026-10-12 03:16:54,355 lcnc_state_client WARNING seq gap: have 1499, got 1501 -> resync_request
+2026-10-12 03:16:56,542 lcnc_state_client INFO seq=1522 stats={'snapshots': 69, 'patches': 1422, 'gaps': 40, 'resyncs': 40, 'verified_equal': 28, 'verified_mismatch': 0, 'dropped': 40, 'bytes': 11038980, 'view_state_updates': 0}
+2026-10-12 03:16:58,055 lcnc_state_client WARNING seq gap: have 1536, got 1538 -> resync_request
+2026-10-12 03:16:59,458 lcnc_state_client INFO verify at seq 1552: reconstructed state == snapshot
+2026-10-12 03:17:01,754 lcnc_state_client WARNING seq gap: have 1573, got 1575 -> resync_request
+2026-10-12 03:17:04,658 lcnc_state_client INFO verify at seq 1604: reconstructed state == snapshot
+2026-10-12 03:17:05,455 lcnc_state_client WARNING seq gap: have 1610, got 1612 -> resync_request
+2026-10-12 03:17:06,557 lcnc_state_client INFO seq=1623 stats={'snapshots': 74, 'patches': 1517, 'gaps': 43, 'resyncs': 43, 'verified_equal': 30, 'verified_mismatch': 0, 'dropped': 43, 'bytes': 11797005, 'view_state_updates': 0}
+2026-10-12 03:17:09,155 lcnc_state_client WARNING seq gap: have 1647, got 1649 -> resync_request
+2026-10-12 03:17:10,059 lcnc_state_client INFO verify at seq 1658: reconstructed state == snapshot
+2026-10-12 03:17:12,855 lcnc_state_client WARNING seq gap: have 1684, got 1686 -> resync_request
+2026-10-12 03:17:15,259 lcnc_state_client INFO verify at seq 1710: reconstructed state == snapshot
+2026-10-12 03:17:16,555 lcnc_state_client WARNING seq gap: have 1721, got 1723 -> resync_request
+2026-10-12 03:17:16,577 lcnc_state_client INFO seq=1723 stats={'snapshots': 79, 'patches': 1611, 'gaps': 46, 'resyncs': 46, 'verified_equal': 32, 'verified_mismatch': 0, 'dropped': 46, 'bytes': 12476660, 'view_state_updates': 0}
+2026-10-12 03:17:20,255 lcnc_state_client WARNING seq gap: have 1758, got 1760 -> resync_request
+2026-10-12 03:17:20,659 lcnc_state_client INFO verify at seq 1764: reconstructed state == snapshot
+2026-10-12 03:17:23,954 lcnc_state_client WARNING seq gap: have 1795, got 1797 -> resync_request
+2026-10-12 03:17:25,857 lcnc_state_client INFO verify at seq 1816: reconstructed state == snapshot
+2026-10-12 03:17:26,593 lcnc_state_client INFO seq=1823 stats={'snapshots': 83, 'patches': 1707, 'gaps': 48, 'resyncs': 48, 'verified_equal': 34, 'verified_mismatch': 0, 'dropped': 48, 'bytes': 12819185, 'view_state_updates': 0}
+2026-10-12 03:17:27,654 lcnc_state_client WARNING seq gap: have 1832, got 1834 -> resync_request
+2026-10-12 03:17:31,058 lcnc_state_client INFO verify at seq 1868: reconstructed state == snapshot
+2026-10-12 03:17:31,355 lcnc_state_client WARNING seq gap: have 1869, got 1871 -> resync_request
+2026-10-12 03:17:35,055 lcnc_state_client WARNING seq gap: have 1906, got 1908 -> resync_request
+2026-10-12 03:17:36,458 lcnc_state_client INFO verify at seq 1922: reconstructed state == snapshot
+2026-10-12 03:17:36,609 lcnc_state_client INFO seq=1923 stats={'snapshots': 88, 'patches': 1801, 'gaps': 51, 'resyncs': 51, 'verified_equal': 36, 'verified_mismatch': 0, 'dropped': 51, 'bytes': 12909770, 'view_state_updates': 0}
+2026-10-12 03:17:38,755 lcnc_state_client WARNING seq gap: have 1943, got 1945 -> resync_request
+2026-10-12 03:17:41,657 lcnc_state_client INFO verify at seq 1974: reconstructed state == snapshot
+2026-10-12 03:17:42,454 lcnc_state_client WARNING seq gap: have 1980, got 1982 -> resync_request
+2026-10-12 03:17:46,155 lcnc_state_client WARNING seq gap: have 2017, got 2019 -> resync_request
+2026-10-12 03:17:46,630 lcnc_state_client INFO seq=2023 stats={'snapshots': 92, 'patches': 1895, 'gaps': 54, 'resyncs': 54, 'verified_equal': 37, 'verified_mismatch': 0, 'dropped': 54, 'bytes': 12983898, 'view_state_updates': 0}
+2026-10-12 03:17:46,633 lcnc_state_client INFO verify at seq 2023: reconstructed state == snapshot
+2026-10-12 03:17:47,057 lcnc_state_client INFO verify at seq 2028: reconstructed state == snapshot
+2026-10-12 03:17:47,631 lcnc_state_client INFO final seq=2033 stats={'snapshots': 94, 'patches': 1905, 'gaps': 54, 'resyncs': 54, 'verified_equal': 39, 'verified_mismatch': 0, 'dropped': 54, 'bytes': 13017642, 'view_state_updates': 0}

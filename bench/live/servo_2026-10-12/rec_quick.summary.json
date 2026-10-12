@@ -1,0 +1,97 @@
+{
+ "samples": [],
+ "results": [
+  {
+   "name": "set_block_delete",
+   "args": [
+    true
+   ],
+   "outcome": "completed",
+   "error": null,
+   "ms": 52.2
+  },
+  {
+   "name": "set_block_delete",
+   "args": [
+    false
+   ],
+   "outcome": "completed",
+   "error": null,
+   "ms": 51.7
+  },
+  {
+   "name": "set_block_delete",
+   "args": [
+    true
+   ],
+   "outcome": "completed",
+   "error": null,
+   "ms": 52.0
+  },
+  {
+   "name": "set_block_delete",
+   "args": [
+    false
+   ],
+   "outcome": "completed",
+   "error": null,
+   "ms": 52.8
+  },
+  {
+   "name": "set_block_delete",
+   "args": [
+    true
+   ],
+   "outcome": "completed",
+   "error": null,
+   "ms": 51.1
+  },
+  {
+   "name": "set_block_delete",
+   "args": [
+    false
+   ],
+   "outcome": "completed",
+   "error": null,
+   "ms": 51.2
+  },
+  {
+   "name": "set_block_delete",
+   "args": [
+    true
+   ],
+   "outcome": "completed",
+   "error": null,
+   "ms": 51.0
+  },
+  {
+   "name": "set_block_delete",
+   "args": [
+    false
+   ],
+   "outcome": "completed",
+   "error": null,
+   "ms": 51.1
+  },
+  {
+   "name": "set_block_delete",
+   "args": [
+    true
+   ],
+   "outcome": "completed",
+   "error": null,
+   "ms": 51.3
+  },
+  {
+   "name": "set_block_delete",
+   "args": [
+    false
+   ],
+   "outcome": "completed",
+   "error": null,
+   "ms": 52.6
+  }
+ ],
+ "gaps": 0,
+ "last_seq": 701
+}

@@ -1,0 +1,21 @@
+2026-10-12 03:23:32,242 drive INFO command state['STATE_ESTOP_RESET'] -> {'type': 'command_result', 'id': '53264-1', 'outcome': 'completed'}
+2026-10-12 03:23:32,295 drive INFO command state['STATE_ON'] -> {'type': 'command_result', 'id': '53264-2', 'outcome': 'completed'}
+2026-10-12 03:23:32,347 drive INFO command mode['MODE_MANUAL'] -> {'type': 'command_result', 'id': '53264-3', 'outcome': 'completed'}
+2026-10-12 03:23:34,765 drive INFO command home[-1] -> {'type': 'command_result', 'id': '53264-4', 'outcome': 'completed', 'attribution': 'heuristic'}
+2026-10-12 03:23:34,817 drive INFO ok: all joints homed (0.05 s)
+2026-10-12 03:23:34,871 drive INFO set_optional_stop(False) -> {'type': 'command_result', 'id': '53264-5', 'outcome': 'completed'}
+2026-10-12 03:23:42,168 lcnc_state_client INFO verify at seq 116: reconstructed state == snapshot
+2026-10-12 03:23:52,167 lcnc_state_client INFO verify at seq 216: reconstructed state == snapshot
+2026-10-12 03:24:02,167 lcnc_state_client INFO verify at seq 316: reconstructed state == snapshot
+2026-10-12 03:24:12,167 lcnc_state_client INFO verify at seq 416: reconstructed state == snapshot
+2026-10-12 03:24:22,166 lcnc_state_client INFO verify at seq 516: reconstructed state == snapshot
+2026-10-12 03:24:32,168 lcnc_state_client INFO verify at seq 616: reconstructed state == snapshot
+2026-10-12 03:24:42,167 lcnc_state_client INFO verify at seq 716: reconstructed state == snapshot
+2026-10-12 03:24:52,167 lcnc_state_client INFO verify at seq 816: reconstructed state == snapshot
+2026-10-12 03:25:02,167 lcnc_state_client INFO verify at seq 916: reconstructed state == snapshot
+2026-10-12 03:25:12,168 lcnc_state_client INFO verify at seq 1016: reconstructed state == snapshot
+2026-10-12 03:25:22,167 lcnc_state_client INFO verify at seq 1116: reconstructed state == snapshot
+2026-10-12 03:25:32,167 lcnc_state_client INFO verify at seq 1216: reconstructed state == snapshot
+2026-10-12 03:25:42,167 lcnc_state_client INFO verify at seq 1316: reconstructed state == snapshot
+2026-10-12 03:25:47,365 drive INFO run /tmp/linuxcnc/share/axis/images/axis.ngc -> {'type': 'command_result', 'id': '53264-6', 'outcome': 'completed', 'attribution': 'heuristic'} in 132.5 s; program_end={'seq': 1, 'reason': 'completed', 'file': '/tmp/linuxcnc/share/axis/images/axis.ngc', 'line': 198, 'command_id': '53264-6', 'attribution': 'heuristic'}
+2026-10-12 03:25:47,866 drive INFO client stats: {'snapshots': 14, 'patches': 1357, 'gaps': 0, 'resyncs': 0, 'verified_equal': 13, 'verified_mismatch': 0, 'dropped': 0, 'bytes': 8995618, 'view_state_updates': 0}

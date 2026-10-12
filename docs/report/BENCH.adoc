@@ -1,0 +1,266 @@
+:lang: en
+:toc:
+
+= BENCH: encodings on real EMC_STAT updates
+
+All numbers come from `bench/run.sh` (raw: `bench/results/*.csv`, full tables:
+`bench/results/*.md`, environment: `bench/results/env.txt`, run log:
+`logs/sl5_bench_run_partial.log`).
+
+NOTE: **Which LinuxCNC these numbers come from.** The sim traces (SL-3) and the main table were
+recorded on stock upstream master `2655e62fe6aa` (`2.10.0~pre2`, run-in-place, uspace; trace meta
+`linuxcnc_version`), 91 `linuxcnc.stat` fields including `g68_*`.
+Only the live run (last section) is on a downstream Debian package of `2.10.0~pre2` (with a
+downstream linuxcnc-ethercat `1.46.0` package), a build of 2.10 that predates the `g68_*` status fields: 88 fields. The main table was
+repeated on an independent stock build of the same commit on another host, see
+<<stock-repeat>>: bytes agree within 0.3 %, CPU within noise.
+
+== Main table: `axis_100ms`, period 0.1 s (tick budget 100 000 us)
+
+Bytes per message (mean / p95); CPU per message in us, median (p95 in
+`bench/results/axis_100ms.md`). "% of tick" = (encode + parse) / period.
+
+[cols="4,3,2,1,1,1,1,2",options="header"]
+|===
+| variant | side, library | bytes mean / p95 | encode | parse | diff | apply | % of tick
+
+| JSON full | C++ nlohmann | 15 959 / 16 004 | 219 | 400 | - | - | 0.62
+| JSON Merge Patch | C++ nlohmann | 6 302 / 6 705 | 461 | 182 | 53 | 51 | 0.64
+| CBOR full | C++ nlohmann | 13 849 / 13 860 | 197 | 394 | - | - | 0.59
+| CBOR Merge Patch | C++ nlohmann | 5 387 / 5 695 | 452 | 164 | 54 | 46 | 0.62
+| MessagePack full | C++ nlohmann | 13 894 / 13 907 | 198 | 395 | - | - | 0.59
+| MessagePack Merge Patch | C++ nlohmann | 5 423 / 5 731 | 446 | 161 | 52 | 45 | 0.61
+| JSON MP, arrays of objects as `{index: obj}` | C++ nlohmann | 744 / 983 | 511 | 28 | 59 | 6.6 | 0.54
+| JSON MP, all arrays as `{index: v}` | C++ nlohmann | 508 / 688 | 631 | 20 | 79 | 4.7 | 0.65
+| flatbuffers full | C++ | 6 367 / 6 384 | 6.7 | 3.6 | - | - | 0.01
+| flatbuffers delta | C++ | 1 998 / 2 224 | 4.0 | 1.9 | 4.0 | - | 0.01
+| JSON full, client reads 5 fields | C++ nlohmann | 15 959 | 210 | 349 | - | - | 0.56
+| flatbuffers full, client reads 5 fields (zero-copy) | C++ | 6 367 | 6.9 | 2.5 | - | - | 0.01
+| JSON full | Python json | 15 959 / 16 004 | 285 | 293 | - | - | 0.58
+| JSON Merge Patch | Python json | 6 302 / 6 705 | 171 | 109 | 59 | 7.0 | 0.28
+| JSON full + permessage-deflate | Python json+zlib | **313** / 374 | 408 | 313 | - | - | 0.72
+| JSON Merge Patch + permessage-deflate | Python json+zlib | **199** / 330 | 235 | 124 | 62 | 8.0 | 0.36
+| JSON MP without `heartbeat`/`taskbeat` | Python json | 6 477 / 6 670 | 172 | 109 | 58 | 6.9 | 0.28 (3.3 % of ticks empty)
+| the same + deadband 1e-4 | Python json | 6 477 / 6 670 | 817 | 115 | 439 | 7.6 | 0.93
+| JSON full / Merge Patch | Python orjson | 15 959 / 6 302 | 42 / 66 | 86 / 29 | - / 51 | - / 5.4 | 0.13 / 0.10
+| CBOR full / Merge Patch | Python cbor2 | 16 816 / 6 189 | 279 / 164 | 378 / 136 | - / 59 | - / 10 | 0.66 / 0.30
+| MessagePack full / Merge Patch | Python msgpack | 16 861 / 6 226 | 82 / 81 | 149 / 55 | - / 54 | - / 5.3 | 0.23 / 0.14
+| flatbuffers full / delta | Python flatbuffers (pure Python) | 6 261 / 1 950 | 2 260 / 984 | 2 277 / 1 034 | - | - | 4.54 / 2.02
+| protobuf Machinetalk full | Python protobuf | 8 383 / 8 387 | 846 | 132 | - | - | 0.98
+| protobuf Machinetalk incremental (mkwrapper) | Python protobuf | **156** / 223 | 2 803 | 47 | 2 170 | 33 | 2.85 (1.7 % empty)
+| JSON full / Merge Patch | JS node JSON | 14 485 / 5 907 | 60 / 106 | 68 / 30 | - / 79 | - / 1.9 | 0.13 / 0.14
+| CBOR full / Merge Patch | JS cbor-x | 11 058 / 4 649 | 116 / 131 | 189 / 60 | - / 77 | - / 1.7 | 0.30 / 0.19
+| MessagePack full / Merge Patch | JS @msgpack/msgpack | 10 984 / 4 653 | 155 / 139 | 140 / 54 | - / 77 | - / 1.8 | 0.30 / 0.19
+|===
+
+The second program (`gmoccapy_2_tools...\_100ms`, 431 ticks) gives the same orders of magnitude:
+C++ JSON MP 5 880 B, 449/178 us; flatbuffers full 6 390 B, 6.5/3.7 us; protobuf incremental
+187 B (`bench/results/gmoccapy_2_tools_with_cutter_radius_compensation_100ms.md`).
+
+[[stock-repeat]]
+== Repeat on a stock build: upstream `2655e62fe`, second host
+
+An independent run-in-place build of upstream master `2655e62fe` (uspace, Ubuntu 24.04 container;
+Debian packages `python3-websockets 10.4`, `libprotobuf-dev` and `bench/tools-packages.txt`).
+Deviation: node 22.22.0 from the nodejs.org tarball, because Ubuntu's node 18 does not load
+`clients/web/merge_patch.js` as an ES module. Same chain: `sim/run_sim.sh` (`axis_mm_headless.ini`)
+-> `tests/record_traces.sh 100|20 axis.ngc` (program ran 132.6 s / 134.4 s; client reconstruction
+checked against snapshots 13 / 67 times, 0 mismatches) -> `bench/run.sh`. To separate the build
+from the hardware, the original traces were benchmarked on the same host
+(AMD Ryzen 7 PRO 6850H, 16 vCPU, `bench/results/env_cnc.txt`). Raw data:
+`traces/axis_stock_2655e62fe_{100,20}ms.jsonl.gz`, `bench/results/axis_stock_2655e62fe_{100,20}ms.*`,
+`bench/results/axis_{100,20}ms_cnc.*`, `logs/bench_cnc.log`, driver script
+`bench/results/bench_cnc_all.sh`.
+
+Period 0.1 s. Bytes mean; CPU = encode + parse, us; "% of tick" as in the main table.
+
+[cols="4,3,4,4",options="header"]
+|===
+| variant | side | SL-3 trace, second host: bytes / CPU / % of tick | stock `2655e62fe` build: bytes / CPU / % of tick
+| JSON full | C++ nlohmann | 15 959 / 207+353 / 0.56 | 16 008 / 212+355 / 0.57
+| JSON Merge Patch | C++ nlohmann | 6 302 / 394+154 / 0.55 | 6 345 / 392+156 / 0.55
+| JSON MP, all arrays as `{index: v}` | C++ nlohmann | 508 / 548+14 / 0.56 | 508 / 526+14 / 0.54
+| flatbuffers full / delta | C++ | 6 367 / 1 998; 0.01 / 0.01 | 6 364 / 1 996; 0.01 / 0.00
+| JSON full | Python json | 15 959 / 196+275 / 0.47 | 16 008 / 200+280 / 0.48
+| JSON Merge Patch | Python json | 6 302 / 119+102 / 0.22 | 6 345 / 120+102 / 0.22
+| JSON full + permessage-deflate | Python json+zlib | 313 / 283+291 / 0.57 | 313 / 282+292 / 0.57
+| JSON MP + permessage-deflate | Python json+zlib | 199 / 160+110 / 0.27 | 199 / 159+109 / 0.27
+| JSON full / MP | Python orjson | 15 959 / 6 302; 0.10 / 0.08 | 16 008 / 6 345; 0.10 / 0.08
+| protobuf Machinetalk incremental | Python protobuf | 156 / 2 134+33 / 2.17 | 156 / 2 095+33 / 2.13
+| JSON full / MP | JS node JSON | 14 485 / 5 907; 0.11 / 0.09 | 14 535 / 5 953; 0.11 / 0.09
+|===
+
+Result: the stock build gives the same numbers, within 0.3 % in bytes (same 91 fields; the
+difference is float and velocity values of a different run) and 0-4 % in CPU (noise). CPU on the
+second host is 5-30 % lower than on the main-table machine: different hardware, not a different
+LinuxCNC. Not measured: sidecar CPU with 1 / 5 / 20 clients. `bench` replays a trace without
+clients; the sidecar encodes once per encoding for all clients (`server.py _broadcast`), parsing
+happens on each client.
+
+== Period 0.02 s: `axis_20ms`
+
+Measured on the stock `2655e62fe` build, second host (repeats: C++ 5, Python 2, node 10), trace
+`axis_stock_2655e62fe_20ms` (6 886 ticks); the SL-3 trace `axis_20ms` on the same host in
+parentheses. Full tables: `bench/results/axis_stock_2655e62fe_20ms.md`, `bench/results/axis_20ms_cnc.md`.
+
+[cols="4,3,2,3,2",options="header"]
+|===
+| variant | side | bytes mean | encode + parse, us | % of tick (budget 20 000 us)
+| JSON full | C++ nlohmann | 16 025 (16 008) | 204 + 356 | 2.80 (2.81)
+| JSON Merge Patch | C++ nlohmann | 6 402 (6 379) | 392 + 151 | 2.72 (2.71)
+| JSON MP, all arrays as `{index: v}` | C++ nlohmann | 497 (495) | 558 + 14 | 2.86 (2.75)
+| flatbuffers full / delta | C++ | 6 372 / 1 998 | 5.7 + 3.6 / 3.0 + 2.0 | 0.05 / 0.03
+| JSON full / Merge Patch | Python json | 16 025 / 6 402 | 201 + 283 / 122 + 105 | 2.42 / 1.14
+| JSON full / MP + permessage-deflate | Python json+zlib | 305 / 185 | 297 + 297 / 162 + 112 | 2.97 / 1.37
+| JSON full / MP | Python orjson | 16 025 / 6 402 | 31 + 69 / 53 + 27 | 0.50 / 0.40
+| flatbuffers full / delta | Python (pure) | 6 267 / 1 950 | 1 781 + 1 805 / 768 + 835 | 17.9 / 8.0
+| protobuf Machinetalk incremental | Python protobuf | 150 | 2 191 + 36 | 11.1
+| JSON full / MP | JS node JSON | 14 553 / 6 006 | 49 + 58 / 66 + 24 | 0.53 / 0.45
+|===
+
+At 0.02 s C++ JSON stays under 3 % of a tick; pure-Python flatbuffers and protobuf incremental take
+8-18 %. The `gmoccapy` 20 ms trace was not benchmarked.
+
+== Pitfalls (measured where possible)
+
+. **RFC 7396 replaces an array as a whole.** In `linuxcnc.stat` `joint` is 16 dictionaries
+  (`EMCMOT_MAX_JOINTS`, although there are 3 joints), `joint_position` / `joint_actual_position`
+  have 16 entries each, positions 9; during motion `joint` changes in 96.5 % of ticks
+  (`logs/sl3_trace_summary.md`). So Merge Patch is 6.3 KB (40 % of full JSON), while the same
+  Merge Patch on the "arrays as index dictionaries" model is 0.74 KB (arrays of objects) / 0.51 KB
+  (all arrays); flatbuffers delta with whole arrays is 2.0 KB; Machinetalk's index deltas 0.16 KB.
+  The price of the "by index" model in C++ is +50...170 us for DOM build/diff; on the client the
+  parse is cheaper (28 against 182 us).
+. **There are no empty ticks**: `heartbeat` and `taskbeat` change on every poll (100 % of ticks).
+  Without them 3.3 % of ticks are empty on axis.ngc and 9.3 % on the gmoccapy program: while a
+  program runs something is almost always moving; empty ticks are in the pauses. Bytes barely
+  change (6 302 to 6 477 B: the "counter only" messages disappear).
+. **Float noise**: in sim, positions at rest do not change in any tick
+  (`logs/sl3_trace_summary.md`: "position fields changed anyway: none"); a 1e-4 deadband removes
+  no bytes on this trace (6 477 to 6 477) and makes the Python diff 7.5 times dearer (recursive
+  comparison `merge_patch.same()`). On real encoders, see the live run below.
+. **Warm-up**: the first message (the warm-up pass) is dearer than the steady state: C++ JSON
+  full encode 314 against 219 us, flatbuffers full 16.5 against 6.7; node cbor-x full 2 652
+  against 116, @msgpack/msgpack 3 173 against 155 -- JIT / codec initialisation. For the patch
+  variants the "first message" is a small first patch and its time is not representative
+  (`cold_*` in the CSV).
+. **The same JSON has different sizes** on different sides: Python and C++ print `1.0`, JS prints
+  `1` (14 485 against 15 959 B). CBOR: nlohmann writes a float short when lossless (13 849 B),
+  cbor2 always float64 (16 816 B); MessagePack likewise.
+. **C++ Merge Patch parsing ends in a DOM**, not in a struct; the full variants end in a struct
+  (`from_json`). Converting DOM to struct for every patch would cost another ~180 us (like
+  `from_json` in "JSON full").
+. **C++ JSON encoding is dear because of DOM building** (`to_json`): "JSON full" 219 us with
+  DOM serialisation about equal to "CBOR full" 197 -- the cost is in the DOM, not in the format.
+. **Python flatbuffers is pure Python** (package `python3-flatbuffers` 2.0.8): 2.3 ms per
+  message, 8-27 times dearer than JSON/MsgPack with C acceleration. On the C++ side flatbuffers
+  is 30-100 times cheaper than nlohmann.
+. **NML today**: the status buffer is 20 480 B (`configs/common/linuxcnc.nml:11`), copied by
+  every client on every poll (`emcmodule.cc:1028`) -- for reference; NML CPU was not measured.
+
+== Conclusion for the JSON vs flatbuffers argument (by the numbers)
+
+* **CPU does not decide at the GUI period.** At 0.1 s the dearest C++ variant (JSON MP, 461 + 182
+  us) is 0.64 % of a tick; flatbuffers 0.01 %. About 100 times in relative terms, but in absolute
+  terms ~0.6 ms per tick per client. The difference would matter with tens of clients on a weak
+  ARM or with polling faster than 0.02 s -- not measured (ASSUMPTION, not a measurement: CPU
+  grows linearly with the number of clients for parsing only; encoding in the sidecar is done once
+  per encoding for all clients, `server.py _broadcast`).
+* **Bytes are decided by the data model and compression, not by the format.** Full JSON 16 KB,
+  Merge Patch 6.3 KB, Merge Patch with arrays by index 0.74 KB; flatbuffers full 6.4 KB, delta
+  2.0 KB; CBOR/MsgPack save 13-15 % over JSON. permessage-deflate, which websocket gives for free,
+  compresses **even full JSON to 313 B**, Merge Patch to 199 B at ~120 us of Python CPU.
+* **Where flatbuffers is objectively better**: C++ CPU (encode 6.7 against 219-461 us, parse 3.6
+  against 182-400), zero-copy reading of some fields (2.5 us). **Where JSON is better**: browser
+  and Python without code generation (node JSON parse + patch apply 30 us; Python flatbuffers
+  2.3 ms), readability, one JSON Schema; the drawback is that the schema has to be kept
+  separately (here `schema/*.json`, from which the `.fbs` is generated, so the "second schema"
+  need not be written by hand).
+* **Proposal by the numbers**: the wire format is secondary; what matters first is (1) the array
+  model (by index or index deltas), (2) permessage-deflate, (3) separating liveness counters
+  from state. JSON + Merge Patch with arrays by index + deflate gives ~0.2 KB per update at < 1 %
+  of a tick in C++.
+
+== Live servos on a test bench, 2026-10-12
+
+A manual run of the sidecar next to LinuxCNC on real EtherCAT drives. Raw data, the
+recorder and the analysis are in `bench/live/servo_2026-10-12/` (`rec.py` -- recording client,
+`ana.py` -- analysis, `ana_output.txt` -- its output, `trace_live_100ms.jsonl.gz` -- the sidecar's
+trace, 701 ticks, `sidecar.log`).
+
+**Bench.** A VM (2 vCPU, Debian 13, python 3.13). LinuxCNC `2.10.0~pre2` (a downstream Debian
+package of 2.10 with a number of patches, see the note at the top) and linuxcnc-ethercat
+`1.46.0` (downstream package with patches). On the bus 6 slaves in OP: 3x Inovance IS620N (X/Y/Z, CSP, cia402), Wecon
+VD3E, SV660, coupler NX-ECC202. Configuration: a 5-axis mill `5axiskins` (X/Y/Z on live drives,
+B/C a model), `[DISPLAY]CYCLE_TIME = 0.100`, so the sidecar period is 0.1 s. `websockets` 13.1
+was put into a local `vendor/` directory (not part of this repository) from a wheel because the
+machine had no apt access -- a deviation from the dependency policy "Debian packages only"; see
+the README for the Debian package versions. The sidecar ran with `--allow-commands --trace`,
+deflate on, deadband 0. One client (the recorder), on 127.0.0.1.
+
+**Scenario.** 30 s of rest without torque. Then through the sidecar: `state ESTOP_RESET`,
+`state ON`, `mode MANUAL`, `jog(JOG_INCREMENT, joint, 0, 5 mm/s, +2 mm)`, `jog(..., -2 mm)`,
+`state OFF`, `state ESTOP`. A safety net in `finally`: OFF and ESTOP directly through
+`linuxcnc.command`. Then 10x `set_block_delete` without torque. Torque was held
+08:38:46-08:38:51 UTC. After switch-off the statusword of X/Y/Z = 592 (0x0250, switch on
+disabled), `amp-enable-out` FALSE. LinuxCNC was started by hand, with no other NML client: only the
+sidecar read `error_channel`, there was no competition for the error queue (CC-2).
+
+[cols="3,3,5,4",options="header"]
+|===
+| metric | sim (`axis_100ms`, above) | live servos, test bench | conclusion
+
+| fields in stat | 91 | 88 | another build of 2.10
+| tick period (sidecar), ms: mean / sigma / p99 / max | 100.0 / 1.33 / 102.8 / 116.9 | 100.0 / 4.91 / 101.2 / 188.1 | p99 not worse than in sim. Outliers only at command moments, see "pitfalls"
+| patch arrival at the client at rest, ms: sigma / p99 / max | - | 0.69 / 101.7 / 102.4 | jitter < 2 ms on a VM without an RT host kernel
+| patch arrival at the client during commands and jog, ms: sigma / min / max | - | 19.1 / 12.1 / 188.0 | one tick was 88 ms late, the next came after 12 ms
+| bytes, full snapshot | 15 959 (mean) | 12 591-12 604 (snapshot) / 12 403-12 410 (mean of full state) | fewer fields and joints
+| bytes, Merge Patch, mean / p95 | 6 302 / 6 705 | 6 295 / 6 320 (rest); 6 268 / 6 358 (jog) | the same. Arrays `joint`/`joint_*` whole in every tick, as in sim
+| Merge Patch + permessage-deflate, mean / p95 | 199 / 330 | 115 / 138 (rest); 139 / 194 (jog) | same deflate model as in "Method"
+| full + deflate, mean | 313 | 205 (rest) / 232 (jog) |
+| empty ticks | 0 | 0 of 701 | `heartbeat`/`taskbeat`/`joint` change every tick
+| encoder noise at rest | none (floats do not jitter in sim) | +-4 counts of IS620N (8 388 608/rev, 1 677 722/mm), so `joint_actual_position` changes by ~2 nm in 99 % of ticks | on a live machine without a deadband the position always "lives". A deadband of 1e-4 mm kills the noise
+| position in the stream vs HAL (`lcec.0.x.srv-actual-position` to mm) | - | 10 points: at rest and at the end of the move delta 0.0 um. In motion -3.5 / -1.0 / -0.3 / -0.1 um (the stream lags by <= 1 tick) | stream = drive encoder, up to the age of a tick
+| travel by encoder | - | +3 356 016 counts = +2.0003 mm; back 570 063 526 to 570 063 010 (-0.3 um) | motion proven by the shaft
+| seq gaps | 0 (sl2) | 0 (346 + 525 + 10 patches over three connections) |
+| command reply to the client (fast ones) | `send` NML 20-41 ms (sl4) | `state`/`mode`/`set_block_delete`: completed in 51-62 ms (12 commands); NML `send` 20-91 ms | same order as in sim
+| reply to a 2 mm `jog` | - | `accepted` in 557-559 ms: task holds RCS_EXEC while the move runs | `accepted` for jog, as designed (no effect in stat)
+| reply to `state OFF` | not checked | **`failed`: "RCS_DONE but stat does not show the effect within 1.0 s"**, although the machine switched off in the first tick after the command (<= 0.1 s) | a sidecar bug, see "pitfalls" (fixed, below)
+| sidecar CPU (1 client, 0.1 s) | not measured | 1.2 % at rest, 1.4 % jog (one core, `utime+stime`, CLK_TCK 100) |
+| CPU `milltask` / `rtapi_app` | not measured | 1.4 % / 3.8 % (at rest and on jog) | the sidecar consumes about as much as task
+|===
+
+**Pitfalls of the live run**
+
+. **`state OFF` always "failed".** After `STATE_OFF` LinuxCNC shows `task_state ==
+  STATE_ESTOP_RESET` (2), not `STATE_OFF` (3): in the trace the 2 appears in the first tick after
+  the command. The effect rule (`EFFECTS["state"]`, `sidecar/lcnc_state/core.py`) waited for
+  literally 3. Not a live-only problem: in sim `state OFF` was simply never sent.
+. **Sending an NML command blocks the event loop.** `linuxcnc.command.*()` waits for the serial
+  echo (20-91 ms) inside asyncio and ticks do not run meanwhile: outliers of 124.5 ms
+  (ESTOP_RESET/ON) and 188.1 ms (OFF + ESTOP), then a catch-up tick after 12 ms. The ticker no
+  longer "squeezes" missed ticks (`overran: skip`), so `seq` does not break, but the client sees a
+  dip of 1-2 periods.
+. **Encoder noise.** On a live drive the position changes every tick even at rest. Without
+  `--deadband` the stream is never empty and Merge Patch always carries the joint arrays whole.
+  This is an argument for arrays by index and for the deadband from the main table. The deadband
+  was not measured on this noise.
+
+**Fixed after the run** (checked in sim, LinuxCNC `2.10.0~pre2` from the same downstream package in a
+container, `[DISPLAY]CYCLE_TIME = 0.100`).
+
+. `state OFF`. Task itself never shows `STATE_OFF`: `determineState()` (`emctask.cc`) gives ESTOP
+  on io estop, otherwise ESTOP_RESET while traj is off, otherwise ON. The effect of OFF is now
+  `task_state != STATE_ON` (OFF from ESTOP stays ESTOP). Before: OFF from ESTOP / ESTOP_RESET / ON
+  was `failed` after 1.06 s. After: `completed` in 84 / 84 / 105 ms.
+. Send blocking. A thread does not help: `emcSendCommand` (`emcmodule.cc`) waits for the serial
+  echo without releasing the GIL (measured: a thread doing `sleep(1 ms)` is silent for 20.4 ms
+  on every command). Commands are now sent by a child process `sidecar/lcnc_state/sender.py`,
+  the only owner of `linuxcnc.command`, one at a time, JSON lines. Scenario: OFF/ON/ESTOP
+  transitions and 10 `set_block_delete` in a row. Before: tick period max 147.5 ms, at the
+  client 154.7 ms. After: max 101.7 ms (min 97.9), at the client 105.0 ms; 0 `seq` gaps, replies
+  in the order sent. `tests/sl4_live.sh`: 28 checks, 0 failures.
+
+What this run did not cover: a G-code program on live axes (jog only), several clients, clients
+over the network, homing, operation next to another process that reads `error_channel` itself
+(CC-2).
