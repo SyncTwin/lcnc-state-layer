@@ -7,8 +7,16 @@ fixed period, and turns every change into a JSON Merge Patch (RFC 7396) with a
 sequence number.  Transports (websocket server, trace recorder, tests)
 subscribe to the published messages.
 
+Every connection starts with a `hello` (machine configuration: joints,
+axes by axis_mask, spindles, units, limits, as stat reports them), then the
+snapshot.
+
 State layout (snapshot.state):
-    stat         every data field of linuxcnc.stat, names as in the module
+    stat         every data field of linuxcnc.stat, names as in the module;
+                 per-joint arrays have `joints` entries, `axis` has one entry
+                 per axis in axis_mask (order of hello.axes), `spindle` has
+                 `spindles` entries (stat itself always has the build maxima
+                 EMCMOT_MAX_JOINTS / _AXIS / _SPINDLES)
     errors       {"seq": n, "recent": [last ERROR_RING entries]} -- the
                  error_channel is read here only, so every client sees every
                  entry the sidecar gets
@@ -63,7 +71,19 @@ from .statdict import stat_names, stat_to_dict
 
 log = logging.getLogger("lcnc_state")
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2              # 2: hello; per-joint/axis/spindle arrays cut to the configuration
+# Axis index -> letter: EmcPose member order (emc/nml_intf/emcpos.h), the
+# order of linuxcnc.stat position and of the bits of axis_mask.
+AXIS_LETTERS = "XYZABCUVW"
+# stat arrays indexed by joint number (length EMCMOT_MAX_JOINTS in stat)
+JOINT_ARRAYS = ("joint", "homed", "limit", "joint_position", "joint_actual_position")
+# per-joint configuration copied into hello (jointType goes as "type")
+JOINT_CONFIG = ("units", "backlash", "min_position_limit", "max_position_limit",
+                "min_ferror", "max_ferror")
+# scalar configuration copied into hello
+HELLO_STAT = ("joints", "num_extrajoints", "axis_mask", "spindles", "kinematics_type",
+              "linear_units", "angular_units", "cycle_time", "max_velocity",
+              "max_acceleration")
 ERROR_RING = 16
 COMMAND_TIMEOUT = 5.0          # as EMC_COMMAND_TIMEOUT in emcmodule.cc
 HOME_TIMEOUT = 300.0           # ASSUMPTION, not measured: longest homing sequence
@@ -285,14 +305,53 @@ class StateLayer:
         self._wake = None
         self.subscribers = []
         self.views = view_store if view_store is not None else {}
+        # configuration is fixed while LinuxCNC runs: read once
+        self.n_joints = self.stat.joints
+        self.n_spindles = self.stat.spindles
+        self.axis_index = [i for i in range(len(self.stat.axis))
+                           if self.stat.axis_mask & (1 << i)]
+        self.stat_max = {"joints": len(self.stat.joint), "axes": len(self.stat.axis),
+                         "spindles": len(self.stat.spindle)}
         self.last_stat = stat_to_dict(self.stat, self.names)
         self.state = self._build_state(self.last_stat)
         self.ticks = 0
         self.empty_ticks = 0
 
     # ------------------------------------------------------------ state
+    def _shape(self, stat):
+        """Published stat: per-joint/axis/spindle arrays only as long as the
+        configuration (last_stat, the trace and command tracking keep the
+        full module shape; indices below `joints` are the same in both)."""
+        out = dict(stat)
+        for k in JOINT_ARRAYS:
+            if k in out:
+                out[k] = out[k][:self.n_joints]
+        if "axis" in out:
+            out["axis"] = [out["axis"][i] for i in self.axis_index]
+        if "spindle" in out:
+            out["spindle"] = out["spindle"][:self.n_spindles]
+        return out
+
+    def hello(self):
+        """First message of every connection: what the arrays in the
+        snapshot and patches are sized by, and the configuration stat has."""
+        st = self.stat
+        msg = {"type": "hello", "schema_version": SCHEMA_VERSION, "epoch": self.epoch,
+               "linuxcnc_version": getattr(self.lc, "version", "")}
+        for k in HELLO_STAT:
+            msg[k] = getattr(st, k)
+        msg["axes"] = [dict(index=i, letter=AXIS_LETTERS[i],
+                            min_position_limit=st.axis[i]["min_position_limit"],
+                            max_position_limit=st.axis[i]["max_position_limit"])
+                       for i in self.axis_index]
+        msg["joint_config"] = [dict({"index": j, "type": st.joint[j]["jointType"]},
+                                    **{k: st.joint[j][k] for k in JOINT_CONFIG})
+                               for j in range(self.n_joints)]
+        msg["stat_max"] = dict(self.stat_max)
+        return msg
+
     def _build_state(self, stat):
-        st = {"stat": stat,
+        st = {"stat": self._shape(stat),
               "errors": {"seq": self.error_seq, "recent": list(self.errors)}}
         if self.program_end is not None:
             st["program_end"] = dict(self.program_end)

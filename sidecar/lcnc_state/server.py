@@ -126,6 +126,7 @@ class Server:
         self.clients.add(c)
         log.info("client %s connected (encoding=%s view_key=%s), %d clients",
                  c.peer, encoding, view_key, len(self.clients))
+        c.send_msg(self.layer.hello())
         c.send_msg(self.layer.snapshot(view_key, self.keepalive))
         writer = asyncio.ensure_future(self._writer(c))
         try:

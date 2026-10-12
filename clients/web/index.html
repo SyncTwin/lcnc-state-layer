@@ -43,16 +43,14 @@ const TASK_STATE = {1: "ESTOP", 2: "ESTOP_RESET", 3: "OFF", 4: "ON"};
 const TASK_MODE = {1: "MANUAL", 2: "AUTO", 3: "MDI"};
 const INTERP = {1: "IDLE", 2: "READING", 3: "PAUSED", 4: "WAITING"};
 const $ = (id) => document.getElementById(id);
-let ws, state = null, seq = null, epoch = null, awaitingSnapshot = false, lastRx = 0, keepalive = 2;
+let ws, hello = null, state = null, seq = null, epoch = null, awaitingSnapshot = false, lastRx = 0, keepalive = 2;
 const stats = { patches: 0, gaps: 0, resyncs: 0, bytes: 0 };
 
 function render() {
   if (!state) return;
   const s = state.stat;
-  const letters = "XYZABCUVW";
-  const axes = [];
-  for (let i = 0; i < 9; i++) if (s.axis_mask & (1 << i)) axes.push(`${letters[i]} ${s.position[i].toFixed(3)}`);
-  $("pos").textContent = axes.join("  ");
+  // axes and their letters come from hello; position is a pose (index = axis number)
+  $("pos").textContent = hello ? hello.axes.map((a) => `${a.letter} ${s.position[a.index].toFixed(3)}`).join("  ") : "–";
   $("state").innerHTML = `${TASK_STATE[s.task_state] ?? s.task_state} · ${TASK_MODE[s.task_mode] ?? s.task_mode}` +
     ` · interp ${INTERP[s.interp_state] ?? s.interp_state}<br><span class="muted">feed ${(s.feedrate * 100).toFixed(0)} %, vel ${s.current_vel.toFixed(2)}</span>`;
   $("prog").innerHTML = `${s.file ? s.file.split("/").pop() : "<span class=muted>none</span>"}<br>` +
@@ -72,6 +70,10 @@ function connect() {
     lastRx = performance.now();
     stats.bytes += ev.data.length;
     const m = JSON.parse(ev.data);
+    if (m.type === "hello") {             // first on every connection: configuration
+      hello = m;
+      return;
+    }
     if (m.type === "snapshot") {
       if (epoch && m.epoch !== epoch) console.warn("sidecar restarted, new epoch", m.epoch);
       epoch = m.epoch; state = m.state; seq = m.seq; awaitingSnapshot = false;

@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 """Python client of the LinuxCNC state layer.
 
-Asyncio API (StateClient): subscribe, apply JSON Merge Patches, detect a gap
+Asyncio API (StateClient): read the hello (configuration: joints, axes,
+spindles; the snapshot's per-joint/axis/spindle arrays are sized by it), subscribe, apply JSON Merge Patches, detect a gap
 in seq and ask for a snapshot, verify the reconstructed state against a fresh
 snapshot every N patches, send commands and wait for this client's own
 command_result, store view state.
@@ -86,6 +87,7 @@ class StateClient:
         self.enc, self.dec = _codec(encoding)
         self.verify_every = verify_every
         self.drop_every = drop_every
+        self.hello = None           # configuration message, first on every connection
         self.state = None
         self.seq = None
         self.epoch = None
@@ -158,7 +160,9 @@ class StateClient:
 
     async def _handle(self, msg):
         t = msg.get("type")
-        if t == "snapshot":
+        if t == "hello":
+            self.hello = msg
+        elif t == "snapshot":
             self.stats["snapshots"] += 1
             if self._verify_pending and self.state is not None and msg["seq"] == self.seq:
                 diff = first_difference(self.state, msg["state"])
@@ -268,18 +272,48 @@ def _bg(url):
     return _shared[url]
 
 
+JOINT_ARRAYS = ("joint", "homed", "limit", "joint_position", "joint_actual_position")
+
+
+def _blank(v):
+    """Zero value of the same shape (what linuxcnc.stat has in unused slots)."""
+    if isinstance(v, dict):
+        return {k: _blank(x) for k, x in v.items()}
+    if isinstance(v, bool):
+        return False
+    return type(v)() if isinstance(v, (int, float, str, list)) else v
+
+
+def expand_stat(stat, hello):
+    """Back to the linuxcnc.stat shape: per-joint/spindle arrays padded to
+    hello.stat_max, axis entries put at their axis index."""
+    out = dict(stat)
+    mx = hello["stat_max"]
+    for k, n in [(k, mx["joints"]) for k in JOINT_ARRAYS] + [("spindle", mx["spindles"])]:
+        v = out.get(k)
+        if v:
+            out[k] = v + [_blank(v[0]) for _ in range(n - len(v))]
+    if out.get("axis"):
+        full = [_blank(out["axis"][0]) for _ in range(mx["axes"])]
+        for a, v in zip(hello["axes"], out["axis"]):
+            full[a["index"]] = v
+        out["axis"] = full
+    return out
+
+
 class RemoteStat:
     """linuxcnc.stat look-alike: poll() copies the latest state into attributes
-    (lists become tuples, as linuxcnc.stat returns them)."""
+    (lists become tuples, as linuxcnc.stat returns them; arrays expanded to
+    the linuxcnc.stat lengths with expand_stat, so stat.axis[2] is Z)."""
 
     def __init__(self, url="ws://127.0.0.1:8791/"):
         self._bg = _bg(url)
 
     def poll(self):
-        st = self._bg.client.state["stat"]
-        for k, v in st.items():
+        c = self._bg.client
+        for k, v in expand_stat(c.state["stat"], c.hello).items():
             setattr(self, k, _tuplify(v))
-        self.seq = self._bg.client.seq
+        self.seq = c.seq
 
 
 def _tuplify(v):
@@ -336,6 +370,19 @@ async def _cli(args):
     t0 = time.monotonic()
     try:
         await asyncio.wait_for(c.ready.wait(), 10)
+        h, st = c.hello, c.state["stat"]
+        if h is None:
+            log.error("no hello before the snapshot")
+            return 1
+        lens = {k: len(st[k]) for k in ("joint", "axis", "spindle") if k in st}
+        want = {"joint": h["joints"], "axis": len(h["axes"]), "spindle": h["spindles"]}
+        sized = all(lens[k] == want[k] for k in lens)
+        log.info("hello: joints=%d axes=%s spindles=%d kins=%d stat_max=%s; snapshot arrays %s %s",
+                 h["joints"], "".join(a["letter"] for a in h["axes"]), h["spindles"],
+                 h["kinematics_type"], h["stat_max"], lens,
+                 "== hello" if sized else "!= hello %s" % want)
+        if not sized:
+            return 1
         log.info("snapshot seq=%d, %d stat fields, server=%s", c.seq,
                  len(c.state["stat"]), c.server)
         last_report = t0

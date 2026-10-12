@@ -107,7 +107,7 @@ LinuxCNC; the rows document the limits of the sidecar approach.
   `EMC_STAT_TYPE != peek()`); Python copies `sizeof(EMC_STAT)` (`emcmodule.cc:1028`), so
   builds of different versions read garbage silently.
 | A handshake carrying a schema version.
-| `snapshot.schema_version` + JSON Schema. The sidecar cannot see a mismatch between
+| `hello.schema_version` (first message, also in the snapshot) + JSON Schema. The sidecar cannot see a mismatch between
   LinuxCNC and its own module (it sits on the same emcmodule). Note: the schema describes
   one build (91 fields); the live stand reports 88 fields and `SCHEMA_VERSION` is the
   same, so the version does not tell builds apart (see REQUIREMENTS B6 / C6).

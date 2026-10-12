@@ -20,6 +20,11 @@ async def main():
 asyncio.run(main())
 ```
 
+- Configuration: `c.hello` (first message of every connection): `joints`, `axes` (index + letter),
+  `spindles`, units, limits. `c.state["stat"]["joint"]` has `joints` entries and `["axis"]` one per
+  element of `c.hello["axes"]` (`axis[k]` is axis `hello["axes"][k]["index"]`, so on an XZ lathe
+  `axis[1]` is Z). `RemoteStat` and `expand_stat(stat, hello)` give back the `linuxcnc.stat` shape
+  (arrays padded to `hello["stat_max"]`, `axis[2]` is Z).
 - Errors: read `c.state["errors"]["recent"]` (every entry has `seq`); do **not** open a second
   `linuxcnc.error_channel()` next to the sidecar — it takes entries away from it
   (`logs/sl4_results.md` case 10, `docs/report/CORE_CHANGES.adoc` CC-2).

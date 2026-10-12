@@ -4,7 +4,7 @@
 
 Attaches to an already running LinuxCNC through the stock Python module
 (linuxcnc.stat / linuxcnc.command / linuxcnc.error_channel, i.e. the same NML
-channels a GUI uses).  Serves a full snapshot on connect, then JSON Merge
+channels a GUI uses).  Serves a hello (configuration) and a full snapshot on connect, then JSON Merge
 Patch deltas with a sequence number.  Read-only unless --allow-commands.
 """
 import argparse
@@ -114,8 +114,10 @@ def main():
         from validate import Validator
         v = Validator(SCHEMA_DIR)
         validator = v.client_message_error
+        hello_err = v.message_error(layer.hello())
         snap_err = v.message_error(layer.snapshot())
-        log.info("schema check of first snapshot: %s", snap_err or "ok")
+        log.info("schema check of hello: %s, of first snapshot: %s",
+                 hello_err or "ok", snap_err or "ok")
 
     srv = Server(layer, period, args.host, args.port,
                  compression=not args.no_deflate, validator=validator,

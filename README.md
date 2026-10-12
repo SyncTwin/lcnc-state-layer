@@ -28,7 +28,7 @@ sidecar cannot solve are the point.
 | Path | What |
 |---|---|
 | `schema/emc_stat.schema.json` | JSON Schema (draft 2020-12) of `state.stat` = every field of `linuxcnc.stat` (generated once from a live stat by `schema/gen_emc_stat_schema.py`) |
-| `schema/messages.schema.json` | envelopes: `snapshot`, `patch`, `resync_request`, `command`, `command_result`, `view_state_put`, `view_state`, `ping`, `error` |
+| `schema/messages.schema.json` | envelopes: `hello` (configuration, first), `snapshot`, `patch`, `resync_request`, `command`, `command_result`, `view_state_put`, `view_state`, `ping`, `error` |
 | `schema/fbs/` | flatbuffers schema, generated from the JSON Schema (the "second schema" of the flatbuffers variant), `Pose` from rmu75's IDL |
 | `sidecar/linuxcnc-state-layer` | the sidecar (Python asyncio + python3-websockets over the `linuxcnc` module) |
 | `clients/python/lcnc_state_client.py` | Python client (asyncio `StateClient`, blocking `RemoteStat`/`RemoteCommand`/`RemoteErrorChannel` with the `linuxcnc` call shapes) |

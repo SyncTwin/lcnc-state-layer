@@ -31,8 +31,17 @@ CBOR / MessagePack with `?encoding=cbor` / `?encoding=msgpack`). The schema is
 `schema/emc_stat.schema.json`.
 
 Server to client::
+`hello`::: `{schema_version, epoch, joints, num_extrajoints, axis_mask, axes,
+spindles, kinematics_type, linear_units, angular_units, cycle_time,
+max_velocity, max_acceleration, joint_config, stat_max}` -- first message on
+every connection: the configuration as stat reports it. In the snapshot and in
+patches the per-joint arrays (`joint`, `homed`, `limit`, `joint_position`,
+`joint_actual_position`) have `joints` entries, `axis` has one entry per
+element of `axes` (same order; `axes[k].index` is the axis number and the
+index into `position`), `spindle` has `spindles` entries. `stat_max` are the
+array lengths of `linuxcnc.stat` in this build, for clients that need its shape.
 `snapshot`::: `{seq, epoch, schema_version, server, state, view_state?}` -- sent
-on connect and on `resync_request`.
+after `hello` on connect and on `resync_request`.
 `patch`::: `{seq, patch}` -- JSON Merge Patch (RFC 7396) from state `seq-1`
 to state `seq`. No change, no message.
 `command_result`::: `{id, outcome, error?, errors?}` -- only to the client that

@@ -2,8 +2,11 @@
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "$id": "urn:linuxcnc-state-layer:messages",
  "title": "State layer websocket messages",
- "description": "Envelopes exchanged between the state layer and its clients. Server -> client: snapshot, patch, command_result, view_state, error. Client -> server: resync_request, command, view_state_put. The same objects are carried as JSON text frames or as CBOR / MessagePack binary frames (?encoding=).",
+ "description": "Envelopes exchanged between the state layer and its clients. Server -> client: hello (first, once per connection), snapshot, patch, command_result, view_state, error. Client -> server: resync_request, command, view_state_put. The same objects are carried as JSON text frames or as CBOR / MessagePack binary frames (?encoding=).",
  "oneOf": [
+  {
+   "$ref": "#/$defs/hello"
+  },
   {
    "$ref": "#/$defs/snapshot"
   },
@@ -169,7 +172,7 @@
      "$ref": "#/$defs/seq"
     },
     "schema_version": {
-     "const": 1
+     "const": 2
     },
     "server": {
      "type": "object",
@@ -412,6 +415,177 @@
     }
    },
    "description": "sent when no other message went out for `keepalive` seconds"
+  },
+  "hello": {
+   "type": "object",
+   "description": "First message on every connection, before the snapshot: the machine configuration as linuxcnc.stat reports it. The arrays in the snapshot and in patches are sized by it: per-joint arrays (joint, homed, limit, joint_position, joint_actual_position) have `joints` entries, `axis` has one entry per element of `axes` (same order), `spindle` has `spindles` entries. Values fixed while LinuxCNC runs, except the limits, which are the values at connect time (live values are in the snapshot). INI-only settings are not in stat and not here.",
+   "required": [
+    "type",
+    "schema_version",
+    "joints",
+    "num_extrajoints",
+    "axis_mask",
+    "axes",
+    "spindles",
+    "kinematics_type",
+    "linear_units",
+    "angular_units",
+    "joint_config",
+    "stat_max"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "hello"
+    },
+    "schema_version": {
+     "const": 2
+    },
+    "epoch": {
+     "type": "string",
+     "description": "same as snapshot.epoch"
+    },
+    "linuxcnc_version": {
+     "type": "string"
+    },
+    "joints": {
+     "type": "integer",
+     "minimum": 0,
+     "description": "stat.joints, including num_extrajoints"
+    },
+    "num_extrajoints": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "axis_mask": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "axes": {
+     "type": "array",
+     "description": "axes present in axis_mask, ascending index",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "index",
+       "letter",
+       "min_position_limit",
+       "max_position_limit"
+      ],
+      "properties": {
+       "index": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "axis number: bit of axis_mask, index into position and the other pose arrays"
+       },
+       "letter": {
+        "type": "string",
+        "description": "XYZABCUVW by index (EmcPose order)"
+       },
+       "min_position_limit": {
+        "type": "number"
+       },
+       "max_position_limit": {
+        "type": "number"
+       }
+      }
+     }
+    },
+    "spindles": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "kinematics_type": {
+     "type": "integer",
+     "description": "KINEMATICS_IDENTITY=1, FORWARD_ONLY=2, INVERSE_ONLY=3, BOTH=4"
+    },
+    "linear_units": {
+     "type": "number"
+    },
+    "angular_units": {
+     "type": "number"
+    },
+    "cycle_time": {
+     "type": "number"
+    },
+    "max_velocity": {
+     "type": "number"
+    },
+    "max_acceleration": {
+     "type": "number"
+    },
+    "joint_config": {
+     "type": "array",
+     "description": "one entry per joint (stat.joint[j] configuration fields)",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "index",
+       "type",
+       "units",
+       "backlash",
+       "min_position_limit",
+       "max_position_limit",
+       "min_ferror",
+       "max_ferror"
+      ],
+      "properties": {
+       "index": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "type": {
+        "type": "integer",
+        "description": "stat.joint[j].jointType: EMC_LINEAR=1, EMC_ANGULAR=2"
+       },
+       "units": {
+        "type": "number"
+       },
+       "backlash": {
+        "type": "number"
+       },
+       "min_position_limit": {
+        "type": "number"
+       },
+       "max_position_limit": {
+        "type": "number"
+       },
+       "min_ferror": {
+        "type": "number"
+       },
+       "max_ferror": {
+        "type": "number"
+       }
+      }
+     }
+    },
+    "stat_max": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "joints",
+      "axes",
+      "spindles"
+     ],
+     "description": "array lengths linuxcnc.stat has in this build (EMCMOT_MAX_JOINTS / EMCMOT_MAX_AXIS / EMCMOT_MAX_SPINDLES); a client that needs the linuxcnc.stat shape pads to them",
+     "properties": {
+      "joints": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "axes": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "spindles": {
+       "type": "integer",
+       "minimum": 0
+      }
+     }
+    }
+   }
   }
  }
 }

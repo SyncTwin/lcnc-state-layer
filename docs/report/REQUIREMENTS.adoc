@@ -154,7 +154,7 @@ Status: ✅ shown (log) · ◐ partly · ✗ not done, with the reason · ⬜ no
 | Versioning: today a UI/task build mismatch is not detected (memcpy of `sizeof(EMC_STAT)`)
 | grandixximo https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18521152
 | `snapshot.schema_version` + the field list in the schema; the client compares. A mismatch between the sidecar and LinuxCNC is invisible to the sidecar (it sits on the same emcmodule, CC-7). **`schema_version` is a single constant (1) for a schema that describes one build** (91 fields vs 88 on the live stand), so it does not tell two real builds apart.
-| ◐ `schema_version` and `epoch` in the snapshot; LinuxCNC vs emcmodule mismatch (CC-7); no way to tell builds apart (see B6)
+| ◐ `schema_version` (2) in `hello` and the snapshot, `epoch`; LinuxCNC vs emcmodule mismatch (CC-7); no way to tell builds apart (see B6)
 
 | C7
 | XDR: task marshals the whole EMC_STAT every cycle, every UI parses it
@@ -207,8 +207,8 @@ Status: ✅ shown (log) · ◐ partly · ✗ not done, with the reason · ⬜ no
 | C15
 | A hello with the machine configuration (axes / joints, limits, spindles, units)
 | alex-pres https://github.com/LinuxCNC/linuxcnc/discussions/4571#discussioncomment-18801482
-| The snapshot has what is in stat (`axis`, `joint`, `joints`, `spindles`, `axis_mask`, `linear_units`, `max_velocity` ...); INI-only fields (is_lathe, min overrides) are not there.
-| ◐ what is in stat
+| `hello` is the first message of every connection, before the snapshot (`sidecar/lcnc_state/core.py:335` `StateLayer.hello`, sent at `server.py:129`; schema `messages.schema.json` `$defs/hello`): `schema_version`, `joints`, `num_extrajoints`, `axis_mask` + `axes` (index, letter, position limits), `spindles`, `kinematics_type`, `linear_units` / `angular_units`, `cycle_time`, `max_velocity` / `max_acceleration`, `joint_config` (type, units, backlash, position limits, ferror) and `stat_max` (EMCMOT_MAX_* of the build). The per-joint / axis / spindle arrays of the snapshot and of patches are cut to it (`core.py:321` `_shape`): 3-joint XYZ sim — first snapshot 15 516 -> 9 498 bytes, mean patch 6 346 -> 1 726 bytes (`axis_100ms` trace). Checked live on LinuxCNC 2.10.0~pre2 sim (vm-virt): hello, then snapshot with joint/axis/spindle = 3/3/1, 2 verifications equal. Same idea as Machinekit's `config` status channel (PROVENANCE). INI-only fields (is_lathe, min overrides, jog increments) are not in stat and not in hello.
+| ✅ what is in stat (INI-only fields: not there)
 
 | C16
 | A separate channel for big data (/preview) so status is not delayed

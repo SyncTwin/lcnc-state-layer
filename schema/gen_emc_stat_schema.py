@@ -91,6 +91,17 @@ def main():
     for k in ("tool_table", "call_stack"):
         props[k].pop("minItems", None)
         props[k].pop("maxItems", None)
+    # the sidecar cuts per-joint / per-axis / per-spindle arrays to the
+    # configuration announced in hello (stat has the build maxima
+    # EMCMOT_MAX_*; hello.stat_max carries them)
+    sized = {k: "hello.joints entries (joint number = index)"
+             for k in ("joint", "homed", "limit", "joint_position", "joint_actual_position")}
+    sized["axis"] = "one entry per axis in axis_mask, in the order of hello.axes"
+    sized["spindle"] = "hello.spindles entries"
+    for k, d in sized.items():
+        props[k].pop("minItems", None)
+        props[k].pop("maxItems", None)
+        props[k]["description"] = d
     # call_stack is empty in the main program; frames per emcmodule.cc Stat_call_stack
     props["call_stack"]["items"] = {
         "type": "object", "additionalProperties": False,

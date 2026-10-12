@@ -63,8 +63,7 @@
     ],
     "additionalProperties": false
    },
-   "minItems": 9,
-   "maxItems": 9
+   "description": "one entry per axis in axis_mask, in the order of hello.axes"
   },
   "axis_mask": {
    "type": "integer"
@@ -228,8 +227,7 @@
    "items": {
     "type": "integer"
    },
-   "minItems": 16,
-   "maxItems": 16
+   "description": "hello.joints entries (joint number = index)"
   },
   "ini_filename": {
    "type": "string"
@@ -345,24 +343,21 @@
     ],
     "additionalProperties": false
    },
-   "minItems": 16,
-   "maxItems": 16
+   "description": "hello.joints entries (joint number = index)"
   },
   "joint_actual_position": {
    "type": "array",
    "items": {
     "type": "number"
    },
-   "minItems": 16,
-   "maxItems": 16
+   "description": "hello.joints entries (joint number = index)"
   },
   "joint_position": {
    "type": "array",
    "items": {
     "type": "number"
    },
-   "minItems": 16,
-   "maxItems": 16
+   "description": "hello.joints entries (joint number = index)"
   },
   "joints": {
    "type": "integer"
@@ -375,8 +370,7 @@
    "items": {
     "type": "integer"
    },
-   "minItems": 16,
-   "maxItems": 16
+   "description": "hello.joints entries (joint number = index)"
   },
   "linear_units": {
    "type": "number"
@@ -534,8 +528,7 @@
     ],
     "additionalProperties": false
    },
-   "minItems": 8,
-   "maxItems": 8
+   "description": "hello.spindles entries"
   },
   "spindles": {
    "type": "integer"
